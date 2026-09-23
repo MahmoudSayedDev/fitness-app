@@ -8,7 +8,39 @@
   "projects": {
     "fitness-app": {
       "projectType": "application",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss",
+          "type": "component",
+          "addTypeToClassName": true
+        },
+        "@schematics/angular:directive": {
+          "type": "directive",
+          "addTypeToClassName": true
+        },
+        "@schematics/angular:service": {
+          "type": "service",
+          "addTypeToClassName": true
+        },
+        "@schematics/angular:interface": {
+          "type": "interface"
+        },
+        "@schematics/angular:guard": {
+          "typeSeparator": "."
+        },
+        "@schematics/angular:interceptor": {
+          "typeSeparator": "."
+        },
+        "@schematics/angular:module": {
+          "typeSeparator": "."
+        },
+        "@schematics/angular:pipe": {
+          "typeSeparator": "."
+        },
+        "@schematics/angular:resolver": {
+          "typeSeparator": "."
+        }
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
