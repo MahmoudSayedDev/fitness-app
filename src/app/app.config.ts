@@ -5,6 +5,7 @@ import { provideClientHydration } from '@angular/platform-browser';
 import { providePrimeNG } from 'primeng/config';
 import Aura from '@primeuix/themes/aura';
 import { provideHttpClient, withFetch } from '@angular/common/http';
+import { MY_TOKEN } from './core/tokens/app-config.token';
 
 
 export const appConfig: ApplicationConfig = {
@@ -27,6 +28,10 @@ export const appConfig: ApplicationConfig = {
                     darkModeSelector: 'dark',
                 }
             }
-        })
+        }),
+        {
+            provide: MY_TOKEN,
+            useValue: 'https://fitness.elevateegy.com/api/v1'
+        }
     ]
 };
