@@ -7,5 +7,9 @@ export const routes: Routes = [
     {
         path: 'auth',
         loadChildren: () => import('./features/auth/auth.routes').then((R) => R.AuthRoutes)
+    },
+    {
+        path: 'home',
+        loadComponent: () => import('./features/home/home.component').then((C) => C.HomeComponent)
     }
 ];
