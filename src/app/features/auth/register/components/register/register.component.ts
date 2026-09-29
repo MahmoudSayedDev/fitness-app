@@ -1,4 +1,9 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, DestroyRef, inject, signal } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
+import { RegisterRes } from '../../../../../core/auth/models/register.interface';
+import { AuthService } from '../../../../../core/auth/services/auth.service';
 import {
   RegisterAccountData,
   RegisterActivityData,
@@ -7,19 +12,39 @@ import {
   RegisterGoalData,
   RegisterHeightData,
   RegisterWeightData,
+  RegistrationData,
 } from '../../models/register.models';
 import { RegisterFacadeService } from '../../services/register.facade.service';
 import { RegisterAccountComponent } from '../register-account/register-account.component';
+import { RegisterActivityComponent } from '../register-activity/register-activity.component';
+import { RegisterAgeComponent } from '../register-age/register-age.component';
+import { RegisterGenderComponent } from '../register-gender/register-gender.component';
+import { RegisterGoalComponent } from '../register-goal/register-goal.component';
+import { RegisterHeightComponent } from '../register-height/register-height.component';
+import { RegisterWeightComponent } from '../register-weight/register-weight.component';
 
 @Component({
-  imports: [RegisterAccountComponent],
+  imports: [
+    RegisterAccountComponent,
+    RegisterActivityComponent,
+    RegisterAgeComponent,
+    RegisterGenderComponent,
+    RegisterGoalComponent,
+    RegisterHeightComponent,
+    RegisterWeightComponent,
+  ],
   providers: [RegisterFacadeService],
   selector: 'app-register',
   styleUrl: './register.component.scss',
   templateUrl: './register.component.html',
 })
 export class RegisterComponent {
-  private registerFacade = inject(RegisterFacadeService);
+  private readonly registerFacade = inject(RegisterFacadeService);
+  private readonly authService = inject(AuthService);
+  private readonly cookieService = inject(CookieService);
+  private readonly router = inject(Router);
+  private readonly destroyRef = inject(DestroyRef);
+  private readonly tokenKey = 'token';
 
   currentStep = signal(1);
   readonly totalSteps = 7;
@@ -67,7 +92,30 @@ export class RegisterComponent {
   }
 
   private register(): void {
-    const data = this.registerFacade.registrationData();
-    // API call will come here.
+    const data = this.registerFacade.registrationData() as RegistrationData;
+    this.authService
+      .register({
+        firstName: data.firstName,
+        lastName: data.lastName,
+        email: data.email,
+        password: data.password,
+        rePassword: data.rePassword,
+        gender: data.gender,
+        age: data.age,
+        weight: data.weight,
+        height: data.height,
+        goal: data.goal,
+        activityLevel: data.activityLevel,
+      })
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe({
+        next: (res: RegisterRes) => {
+          this.cookieService.set(this.tokenKey, res.token);
+          this.router.navigate(['/home']);
+        },
+        error: (err) => {
+          console.error('Registration failed', err);
+        },
+      });
   }
 }

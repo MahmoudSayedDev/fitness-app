@@ -1,0 +1,74 @@
+:host {
+  display: block;
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+swiper-container {
+  width: 100%;
+  max-width: 320px;
+  overflow: hidden;
+}
+
+swiper-slide {
+  /* REMOVED: width: auto !important; -> This is what broke your coverflow spacing! */
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wheel-selector {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 320px;
+}
+
+.wheel-unit {
+  font-family: 'Baloo Thambi 2', sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  color: #ff4100;
+  text-align: center;
+  text-transform: capitalize;
+  margin-bottom: 0.5rem;
+}
+
+.slide-value {
+  display: block;
+  text-align: center;
+  font-family: 'Baloo Thambi 2', sans-serif;
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: #555555;
+  transition: color 0.2s ease, font-size 0.2s ease;
+}
+
+/* Uses Swiper's native active class for smooth visual updates without Angular lag */
+swiper-slide.swiper-slide-active .slide-value {
+  color: var(--p-primary-color, #ffffff);
+  font-size: 2.25rem;
+}
+
+/* Your arrow styling */
+.arrowUp {
+  display: block;
+  color: var(--p-primary-color, #ff4100);
+  margin: 1rem 0; /* matches your previous my-4 */
+  
+  &::after {
+    content: '';
+    display: block;
+    transform: translateX(-50%);
+    position: relative;
+    inset-inline-start: 50%;
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 12px solid currentColor;
+  }
+}

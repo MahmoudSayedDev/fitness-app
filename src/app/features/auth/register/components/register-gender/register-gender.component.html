@@ -1,0 +1,29 @@
+<div class="step-container">
+  <app-step-header
+    title="What's Your Gender?"
+    [subtitle]="'To give you a better experience we need to know your gender'"
+    [currentStep]="1"
+    [totalSteps]="6"
+  />
+  <div class="gender-cards">
+    <div
+      class="gender-card"
+      [class.selected]="selected() === 'male'"
+      (click)="selected.set('male')"
+    >
+      <svg lucideUser></svg>
+      <span>Male</span>
+    </div>
+    <div
+      class="gender-card"
+      [class.selected]="selected() === 'female'"
+      (click)="selected.set('female')"
+    >
+      <svg lucideUser></svg>
+      <span>Female</span>
+    </div>
+  </div>
+  <app-button type="button" (onClick)="onNext()" [isDisabled]="!isValid()">
+    Next
+  </app-button>
+</div>
