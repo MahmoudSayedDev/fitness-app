@@ -185,7 +185,7 @@
           </svg>
         </button>
       </div>
-      <app-button type="submit" text="Next" [disabled]="form.invalid"></app-button>
+      <app-button type="submit" [isDisabled]="form.invalid">Next</app-button>
     </form>
     <app-auth-switcher
       text="Already Have an account ?"
