@@ -1,16 +1,13 @@
 <button
-  class="capitalize enabled:cursor-pointer transition-all flex justify-center items-center disabled:opacity-75 disabled:cursor-not-allowed w-full py-2 px-4 rounded-full text-white font-extrabold"
-  [class.bg-[#D3D3D3]]="disabled()"
-  [class.bg-primary]="!disabled()"
   [type]="type()"
-  [disabled]="disabled()"
+  [disabled]="isInactive()"
+  [attr.aria-busy]="isLoading()"
+  class="flex w-full cursor-pointer items-center justify-center gap-2 rounded-[20px] bg-[#FF4100] px-4 py-2.5 text-base font-bold text-white transition hover:bg-[#e63a00] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FF4100] active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-60 disabled:bg-[#D3D3D3]! {{ styleClass() }}"
   (click)="handleClick()"
 >
-  @if (text()) {
-    <span>{{ text() }}</span>
+  @if (isLoading()) {
+    <svg lucideLoaderCircle class="size-5 animate-spin" strokeWidth="2"></svg>
   }
-
-  @if (loading()) {
-    <i class="pi pi-spin pi-spinner" style="font-size: 0.9rem"></i>
-  }
+  
+  <ng-content />
 </button>

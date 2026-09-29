@@ -1,21 +1,26 @@
-import { Component, input, output } from '@angular/core';
+import { Component, computed, input, output } from '@angular/core';
+import { LucideLoaderCircle } from '@lucide/angular';
 
 @Component({
-  imports: [],
   selector: 'app-button',
-  styleUrl: './button.component.scss',
+  imports: [LucideLoaderCircle],
   templateUrl: './button.component.html',
+  styleUrl: './button.component.scss',
+  host: {
+    class: 'block',
+  },
 })
 export class ButtonComponent {
   type = input<'button' | 'submit' | 'reset'>('button');
-  text = input<string>('');
-  disabled = input<boolean>(false);
-  loading = input<boolean>(false);
-
+  isLoading = input<boolean>(false);
+  isDisabled = input<boolean>(false);
+  styleClass = input<string>('');
   onClick = output<void>();
 
+  protected readonly isInactive = computed(() => this.isLoading() || this.isDisabled());
+
   handleClick() {
-    if (!this.disabled() && !this.loading()) {
+    if (!this.isDisabled() && !this.isLoading()) {
       this.onClick.emit();
     }
   }
