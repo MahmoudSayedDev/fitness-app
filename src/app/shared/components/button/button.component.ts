@@ -1,4 +1,4 @@
-import { Component, computed, input } from '@angular/core';
+import { Component, computed, input, output } from '@angular/core';
 import { LucideLoaderCircle } from '@lucide/angular';
 
 @Component({
@@ -15,6 +15,13 @@ export class ButtonComponent {
   isLoading = input<boolean>(false);
   isDisabled = input<boolean>(false);
   styleClass = input<string>('');
+  onClick = output<void>();
 
   protected readonly isInactive = computed(() => this.isLoading() || this.isDisabled());
+
+  handleClick() {
+    if (!this.isDisabled() && !this.isLoading()) {
+      this.onClick.emit();
+    }
+  }
 }
