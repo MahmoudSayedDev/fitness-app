@@ -1,0 +1,18 @@
+<div class="step-container">
+  <app-step-header
+    [title]="'How Old Are You?'"
+    [subtitle]="'This helps us create your personalized plan'"
+    [currentStep]="2"
+    [totalSteps]="6"
+  />
+  <app-wheel-selector
+    [min]="18"
+    [max]="45"
+    unit="year"
+    [initialValue]="selectedAge()"
+    (valueChange)="onAgeChange($event)"
+  />
+  <app-button type="button" (onClick)="onNext()" [isDisabled]="!isValid()">
+    Next
+  </app-button>
+</div>

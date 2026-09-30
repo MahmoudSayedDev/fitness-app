@@ -26,6 +26,7 @@
     "ngx-cookie-service": "^22.0.0",
     "primeng": "^21.1.10",
     "rxjs": "~7.8.0",
+    "swiper": "^14.3.0",
     "tailwindcss-primeui": "^0.6.1",
     "tslib": "^2.3.0"
   },

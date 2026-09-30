@@ -1,27 +1,21 @@
 @if (currentStep() === 1) {
   <app-register-account (next)="onAccountNext($event)" />
 }
-
 @if (currentStep() === 2) {
-  <!-- gender -->
+  <app-register-gender (next)="onGenderNext($event)" />
 }
-
 @if (currentStep() === 3) {
-  <!-- age step -->
+  <app-register-age (next)="onAgeNext($event)" />
 }
-
 @if (currentStep() === 4) {
-  <!-- weight step -->
+  <app-register-weight (next)="onWeightNext($event)" />
 }
-
 @if (currentStep() === 5) {
-  <!-- height step -->
+  <app-register-height (next)="onHeightNext($event)" />
 }
-
 @if (currentStep() === 6) {
-  <!-- goal step -->
+  <app-register-goal (next)="onGoalNext($event)" />
 }
-
 @if (currentStep() === 7) {
-  <!-- activity step -->
+  <app-register-activity (next)="onActivitySubmit($event)" />
 }

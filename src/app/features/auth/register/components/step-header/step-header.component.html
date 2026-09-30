@@ -1,0 +1,19 @@
+<div class="step-header">
+  <div
+    class="step-ring"
+    [attr.style]="ringStyle()"
+    role="progressbar"
+    [attr.aria-valuenow]="currentStep()"
+    [attr.aria-valuemin]="1"
+    [attr.aria-valuemax]="totalSteps()"
+    [attr.aria-label]="'Step ' + currentStep() + ' of ' + totalSteps()"
+  >
+    <div class="step-ring-inner">
+      <span class="ring-current">{{ currentStep() }}</span>
+      <span class="ring-sep">/</span>
+      <span class="ring-total">{{ totalSteps() }}</span>
+    </div>
+  </div>
+  <h1 class="step-title">{{ title() }}</h1>
+  <p class="step-subtitle">{{ subtitle() }}</p>
+</div>

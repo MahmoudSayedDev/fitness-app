@@ -1,0 +1,26 @@
+<div class="step-container">
+  <app-step-header
+    [title]="'Your Regular Physical Activity Level?'"
+    [subtitle]="'This helps us create your personalized plan'"
+    [currentStep]="6"
+    [totalSteps]="6"
+  />
+  <div class="radio-list">
+    @for (activity of activities; track activity.value) {
+      <label class="radio-item" [class.selected]="selected() === activity.value">
+        <span class="radio-circle" [class.checked]="selected() === activity.value"></span>
+        <input
+          type="radio"
+          name="activity"
+          [value]="activity.value"
+          (change)="selected.set(activity.value)"
+          hidden
+        />
+        <span class="radio-label">{{ activity.label }}</span>
+      </label>
+    }
+  </div>
+  <app-button type="button" (onClick)="onNext()" [isDisabled]="!isValid()">
+    Finish
+  </app-button>
+</div>

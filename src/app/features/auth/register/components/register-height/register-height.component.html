@@ -1,0 +1,18 @@
+<div class="step-container">
+  <app-step-header
+    [title]="'What Is Your Height?'"
+    [subtitle]="'You can always change this later'"
+    [currentStep]="4"
+    [totalSteps]="6"
+  />
+  <app-wheel-selector
+    [min]="100"
+    [max]="250"
+    unit="cm"
+    [initialValue]="selectedHeight()"
+    (valueChange)="selectedHeight.set($event)"
+  />
+  <app-button type="button" (onClick)="onNext()" [isDisabled]="!isValid()">
+    Next
+  </app-button>
+</div>

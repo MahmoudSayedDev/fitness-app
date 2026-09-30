@@ -1,0 +1,63 @@
+.step-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  text-align: center;
+  color: #ffffff;
+}
+
+.step-ring {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+}
+
+.step-ring-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: #242424;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  font-family: 'Baloo Thambi 2', sans-serif;
+  font-weight: 800;
+  font-size: 1.4rem;
+  color: #ffffff;
+}
+
+.ring-sep {
+  font-size: 1rem;
+  color: #aaaaaa;
+  font-weight: 400;
+}
+
+.ring-total {
+  font-size: 1rem;
+  color: #aaaaaa;
+}
+
+.step-title {
+  margin: 0;
+  font-family: 'Baloo Thambi 2', sans-serif;
+  font-size: 2.25rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.step-subtitle {
+  margin: 0;
+  max-width: 28rem;
+  font-family: 'Baloo Thambi 2', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #d3d3d3;
+}
