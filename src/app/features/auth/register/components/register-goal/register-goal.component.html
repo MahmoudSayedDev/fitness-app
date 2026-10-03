@@ -1,10 +1,4 @@
 <div class="step-container">
-  <app-step-header
-    [title]="'What Is Your Goal?'"
-    [subtitle]="'This helps us create your personalized plan'"
-    [currentStep]="5"
-    [totalSteps]="6"
-  />
   <div class="radio-list">
     @for (goal of goals; track goal.value) {
       <label class="radio-item" [class.selected]="selected() === goal.value">

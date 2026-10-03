@@ -1,14 +1,29 @@
 <div class="step-header">
   <div
-    class="step-ring"
-    [attr.style]="ringStyle()"
+    class="ring-wrapper"
     role="progressbar"
     [attr.aria-valuenow]="currentStep()"
     [attr.aria-valuemin]="1"
     [attr.aria-valuemax]="totalSteps()"
     [attr.aria-label]="'Step ' + currentStep() + ' of ' + totalSteps()"
   >
-    <div class="step-ring-inner">
+    <svg class="ring-svg" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="60" cy="60" r="52" fill="none" stroke="#333333" stroke-width="8" />
+      <circle
+        cx="60"
+        cy="60"
+        r="52"
+        fill="none"
+        stroke="#FF4100"
+        stroke-width="8"
+        stroke-linecap="round"
+        [attr.stroke-dasharray]="circumference"
+        [attr.stroke-dashoffset]="dashOffset()"
+        transform="rotate(-90 60 60)"
+        class="ring-progress"
+      />
+    </svg>
+    <div class="ring-label">
       <span class="ring-current">{{ currentStep() }}</span>
       <span class="ring-sep">/</span>
       <span class="ring-total">{{ totalSteps() }}</span>

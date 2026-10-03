@@ -1,10 +1,4 @@
 <div class="step-container">
-  <app-step-header
-    [title]="'Your Regular Physical Activity Level?'"
-    [subtitle]="'This helps us create your personalized plan'"
-    [currentStep]="6"
-    [totalSteps]="6"
-  />
   <div class="radio-list">
     @for (activity of activities; track activity.value) {
       <label class="radio-item" [class.selected]="selected() === activity.value">

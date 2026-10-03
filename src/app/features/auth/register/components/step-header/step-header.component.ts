@@ -13,11 +13,10 @@ export class StepHeaderComponent {
   currentStep = input.required<number>();
   totalSteps = input.required<number>();
 
-  ringStyle = computed(() => {
-    const percent = (this.currentStep() / this.totalSteps()) * 100;
-    return `background: conic-gradient(
-      #FF4100 0% ${percent}%,
-      #333333 ${percent}% 100%
-    )`;
+  readonly circumference = 2 * Math.PI * 52;
+
+  dashOffset = computed(() => {
+    const progress = this.currentStep() / this.totalSteps();
+    return this.circumference * (1 - progress);
   });
 }
