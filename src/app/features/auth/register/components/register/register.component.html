@@ -15,22 +15,22 @@
       />
     }
     @if (currentStep() === 2) {
-      <app-register-gender (next)="onGenderNext($event)" />
+      <app-register-gender (next)="onGenderNext($event)" class="w-full"/>
     }
     @if (currentStep() === 3) {
-      <app-register-age (next)="onAgeNext($event)" />
+      <app-register-age (next)="onAgeNext($event)" class="w-full"/>
     }
     @if (currentStep() === 4) {
-      <app-register-weight (next)="onWeightNext($event)" />
+      <app-register-weight (next)="onWeightNext($event)" class="w-full"/>
     }
     @if (currentStep() === 5) {
-      <app-register-height (next)="onHeightNext($event)" />
+      <app-register-height (next)="onHeightNext($event)" class="w-full"/>
     }
     @if (currentStep() === 6) {
-      <app-register-goal (next)="onGoalNext($event)" />
+      <app-register-goal (next)="onGoalNext($event)" class="w-full"/>
     }
     @if (currentStep() === 7) {
-      <app-register-activity (next)="onActivitySubmit($event)" />
+      <app-register-activity (next)="onActivitySubmit($event)" class="w-full"/>
     }
   </div>
 </div>

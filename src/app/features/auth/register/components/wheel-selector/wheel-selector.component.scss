@@ -41,7 +41,7 @@ swiper-slide {
   display: block;
   text-align: center;
   font-family: 'Baloo Thambi 2', sans-serif;
-  font-size: 1.875rem;
+  font-size: 2.25rem;
   font-weight: 700;
   color: #555555;
   transition: color 0.2s ease, font-size 0.2s ease;
@@ -50,7 +50,7 @@ swiper-slide {
 /* Uses Swiper's native active class for smooth visual updates without Angular lag */
 swiper-slide.swiper-slide-active .slide-value {
   color: var(--p-primary-color, #ffffff);
-  font-size: 2.25rem;
+  // font-size: 2.25rem;
 }
 
 /* Your arrow styling */

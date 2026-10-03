@@ -6,11 +6,6 @@
   --field-error-font-weight: 600;
 }
 
-:host-context(.dark),
-:root.dark :host {
-  --field-error-color: #fb7185;
-}
-
 .field-error__message {
   display: flex;
   align-items: flex-start;

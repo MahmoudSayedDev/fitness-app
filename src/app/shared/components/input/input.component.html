@@ -15,14 +15,14 @@
       (input)="handleInput($event)"
       (blur)="onBlur()"
       [disabled]="isDisabled()"
-      class="w-full rounded-[20px] border border-[#D9D9D9] py-3.5 pr-4 text-sm text-[#D3D3D3] placeholder:text-[#D3D3D3] outline-none transition"
+      class="w-full rounded-[20px] border border-[#D9D9D9] py-3.5 pr-4 text-sm text-[#D3D3D3] placeholder:text-[#D3D3D3] outline-none transition focus:border-primary"
       [class]="styleClass()"
       [class.pl-10]="hasIcon()"
       [class.pl-4]="!hasIcon()"
       [class]="
         isInvalid()
-          ? 'border-rose-300 focus:border-rose-400 dark:border-rose-400 dark:focus:border-rose-300'
-          : 'border-slate-200 focus:border-[#00298d] dark:border-slate-700 dark:focus:border-blue-400'
+          ? 'border-[#ec003f]'
+          : ''
       "
     />
     @if (type() == 'password') {

@@ -1,12 +1,13 @@
 import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
-import { provideRouter, withInMemoryScrolling, withViewTransitions } from '@angular/router';
+import { provideRouter, withInMemoryScrolling } from '@angular/router';
 import { routes } from './app.routes';
 import { provideClientHydration } from '@angular/platform-browser';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { providePrimeNG } from 'primeng/config';
 import Aura from '@primeuix/themes/aura';
-import { provideHttpClient, withFetch } from '@angular/common/http';
+import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { MY_TOKEN } from './core/tokens/app-config.token';
+import { authInterceptor } from './core/interceptors/auth/auth.interceptor';
 
 
 export const appConfig: ApplicationConfig = {
@@ -14,15 +15,17 @@ export const appConfig: ApplicationConfig = {
         provideBrowserGlobalErrorListeners(),
         provideAnimations(),
         provideRouter(
-            routes, 
-            withViewTransitions(),
+            routes,
             withInMemoryScrolling({
                 scrollPositionRestoration: 'enabled',
                 anchorScrolling: 'enabled'
             })
-        ), 
+        ),
         provideClientHydration(),
-        provideHttpClient(),
+        provideHttpClient(
+            withFetch(),
+            withInterceptors([authInterceptor]),
+        ),
         providePrimeNG({
             theme: {
                 preset: Aura,

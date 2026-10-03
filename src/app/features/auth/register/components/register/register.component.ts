@@ -168,7 +168,7 @@ export class RegisterComponent {
         },
         error: (err) => {
           const message =
-            err?.error?.message || err?.message || 'Registration failed. Please try again.';
+            err.error.error || err?.error?.message || err?.message || 'Registration failed. Please try again.';
           this.registerError.set(message);
           this.registerFacade.reset();
           this.currentStep.set(1);
