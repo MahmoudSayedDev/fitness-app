@@ -20,10 +20,12 @@
 
 .gender-card {
   display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  gap: 1rem;
-  padding: 1.25rem 1.5rem;
-  border-radius: 12px;
+  gap: 0.75rem;
+  padding: 2rem 1.5rem;
+  border-radius: 999px;
   border: 2px solid #333;
   color: #ffffff;
   font-family: 'Baloo Thambi 2', sans-serif;
@@ -34,6 +36,25 @@
     border-color 0.2s ease,
     background 0.2s ease;
   background: transparent;
+}
+
+.icon-circle {
+  width: 64px;
+  height: 64px;
+  border-radius: 9999px;
+  border: 2px solid currentColor;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.gender-card .icon-circle {
+  border-color: #555;
+}
+
+.gender-card.selected .icon-circle {
+  border-color: #ff4100;
 }
 
 .step-container app-button {
@@ -49,8 +70,7 @@
 
 .gender-card i,
 .gender-card svg {
-  width: 1.5rem;
-  height: 1.5rem;
-  font-size: 1.5rem;
+  width: 40px;
+  height: 40px;
   color: #ff4100;
 }

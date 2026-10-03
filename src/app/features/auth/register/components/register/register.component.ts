@@ -1,4 +1,10 @@
-import { Component, DestroyRef, inject, signal } from '@angular/core';
+import {
+  animate,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
+import { Component, computed, DestroyRef, inject, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
@@ -22,8 +28,21 @@ import { RegisterGenderComponent } from '../register-gender/register-gender.comp
 import { RegisterGoalComponent } from '../register-goal/register-goal.component';
 import { RegisterHeightComponent } from '../register-height/register-height.component';
 import { RegisterWeightComponent } from '../register-weight/register-weight.component';
+import { StepHeaderComponent } from '../step-header/step-header.component';
 
 @Component({
+  animations: [
+    trigger('stepTransition', [
+      transition(':increment', [
+        style({ opacity: 0, transform: 'translateX(40px)' }),
+        animate('300ms ease-out', style({ opacity: 1, transform: 'translateX(0)' })),
+      ]),
+      transition(':decrement', [
+        style({ opacity: 0, transform: 'translateX(-40px)' }),
+        animate('300ms ease-out', style({ opacity: 1, transform: 'translateX(0)' })),
+      ]),
+    ]),
+  ],
   imports: [
     RegisterAccountComponent,
     RegisterActivityComponent,
@@ -32,6 +51,7 @@ import { RegisterWeightComponent } from '../register-weight/register-weight.comp
     RegisterGoalComponent,
     RegisterHeightComponent,
     RegisterWeightComponent,
+    StepHeaderComponent,
   ],
   providers: [RegisterFacadeService],
   selector: 'app-register',
@@ -48,8 +68,40 @@ export class RegisterComponent {
 
   currentStep = signal(1);
   readonly totalSteps = 7;
+  registerError = signal<string>('');
+
+  stepConfig = computed(() => {
+    const configs: Record<number, { title: string; subtitle: string }> = {
+      2: {
+        title: 'What is your gender?',
+        subtitle: 'Help us personalize your experience',
+      },
+      3: {
+        title: 'How old are you?',
+        subtitle: 'Your age helps us tailor your plan',
+      },
+      4: {
+        title: 'What is your weight?',
+        subtitle: 'We will help you track your progress',
+      },
+      5: {
+        title: 'What is your height?',
+        subtitle: 'Used to calculate your body metrics',
+      },
+      6: {
+        title: 'What is your goal?',
+        subtitle: 'Choose the goal that fits you best',
+      },
+      7: {
+        title: 'How active are you?',
+        subtitle: 'Pick your current activity level',
+      },
+    };
+    return configs[this.currentStep()] ?? { title: '', subtitle: '' };
+  });
 
   onAccountNext(data: RegisterAccountData): void {
+    this.registerError.set('');
     this.registerFacade.updateRegistrationData(data);
     this.currentStep.set(2);
   }
@@ -110,11 +162,16 @@ export class RegisterComponent {
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: (res: RegisterRes) => {
+          this.registerError.set('');
           this.cookieService.set(this.tokenKey, res.token);
           this.router.navigate(['/home']);
         },
         error: (err) => {
-          console.error('Registration failed', err);
+          const message =
+            err?.error?.message || err?.message || 'Registration failed. Please try again.';
+          this.registerError.set(message);
+          this.registerFacade.reset();
+          this.currentStep.set(1);
         },
       });
   }

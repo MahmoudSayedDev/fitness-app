@@ -1,4 +1,4 @@
-import { Component, inject, output } from '@angular/core';
+import { Component, inject, input, output } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { LucideUser, LucideMail, LucideLock } from '@lucide/angular';
 import { ButtonComponent } from '../../../../../shared/components/button/button.component';
@@ -30,6 +30,7 @@ export class RegisterAccountComponent {
   private _fb = inject(FormBuilder);
 
   readonly next = output<RegisterAccountData>();
+  serverError = input<string>('');
 
   form = this._fb.nonNullable.group(
     {

@@ -8,21 +8,24 @@
   color: #ffffff;
 }
 
-.step-ring {
+.ring-wrapper {
+  position: relative;
   width: 120px;
   height: 120px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 6px;
 }
 
-.step-ring-inner {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  background: #242424;
+.ring-svg {
+  width: 120px;
+  height: 120px;
+}
+
+.ring-progress {
+  transition: stroke-dashoffset 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ring-label {
+  position: absolute;
+  inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;

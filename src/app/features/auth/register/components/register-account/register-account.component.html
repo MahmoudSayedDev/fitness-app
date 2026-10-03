@@ -187,6 +187,11 @@
       </div>
       <app-button type="submit" [isDisabled]="form.invalid">Next</app-button>
     </form>
+    @if (serverError()) {
+      <div class="server-error">
+        {{ serverError() }}
+      </div>
+    }
     <app-auth-switcher
       text="Already Have an account ?"
       linkLabel="Login"

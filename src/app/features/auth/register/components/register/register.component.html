@@ -1,21 +1,36 @@
-@if (currentStep() === 1) {
-  <app-register-account (next)="onAccountNext($event)" />
-}
-@if (currentStep() === 2) {
-  <app-register-gender (next)="onGenderNext($event)" />
-}
-@if (currentStep() === 3) {
-  <app-register-age (next)="onAgeNext($event)" />
-}
-@if (currentStep() === 4) {
-  <app-register-weight (next)="onWeightNext($event)" />
-}
-@if (currentStep() === 5) {
-  <app-register-height (next)="onHeightNext($event)" />
-}
-@if (currentStep() === 6) {
-  <app-register-goal (next)="onGoalNext($event)" />
-}
-@if (currentStep() === 7) {
-  <app-register-activity (next)="onActivitySubmit($event)" />
-}
+<div class="register-wrapper">
+  <app-step-header
+    [title]="stepConfig().title"
+    [subtitle]="stepConfig().subtitle"
+    [currentStep]="currentStep() - 1"
+    [totalSteps]="6"
+    [class.hidden]="currentStep() === 1"
+  />
+
+  <div class="step-content" [@stepTransition]="currentStep()">
+    @if (currentStep() === 1) {
+      <app-register-account
+        (next)="onAccountNext($event)"
+        [serverError]="registerError()"
+      />
+    }
+    @if (currentStep() === 2) {
+      <app-register-gender (next)="onGenderNext($event)" />
+    }
+    @if (currentStep() === 3) {
+      <app-register-age (next)="onAgeNext($event)" />
+    }
+    @if (currentStep() === 4) {
+      <app-register-weight (next)="onWeightNext($event)" />
+    }
+    @if (currentStep() === 5) {
+      <app-register-height (next)="onHeightNext($event)" />
+    }
+    @if (currentStep() === 6) {
+      <app-register-goal (next)="onGoalNext($event)" />
+    }
+    @if (currentStep() === 7) {
+      <app-register-activity (next)="onActivitySubmit($event)" />
+    }
+  </div>
+</div>

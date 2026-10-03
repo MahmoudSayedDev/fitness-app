@@ -1,11 +1,10 @@
 import { ChangeDetectionStrategy, Component, computed, output, signal } from '@angular/core';
 import { ButtonComponent } from '../../../../../shared/components/button/button.component';
 import { Goal, RegisterGoalData } from '../../models/register.models';
-import { StepHeaderComponent } from '../step-header/step-header.component';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [ButtonComponent, StepHeaderComponent],
+  imports: [ButtonComponent],
   selector: 'app-register-goal',
   styleUrl: './register-goal.component.scss',
   templateUrl: './register-goal.component.html',

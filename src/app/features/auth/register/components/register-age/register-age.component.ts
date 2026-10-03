@@ -1,12 +1,11 @@
 import { ChangeDetectionStrategy, Component, computed, output, signal } from '@angular/core';
 import { ButtonComponent } from '../../../../../shared/components/button/button.component';
 import { RegisterAgeData } from '../../models/register.models';
-import { StepHeaderComponent } from '../step-header/step-header.component';
 import { WheelSelectorComponent } from '../wheel-selector/wheel-selector.component';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [ButtonComponent, StepHeaderComponent, WheelSelectorComponent],
+  imports: [ButtonComponent, WheelSelectorComponent],
   selector: 'app-register-age',
   styleUrl: './register-age.component.scss',
   templateUrl: './register-age.component.html',

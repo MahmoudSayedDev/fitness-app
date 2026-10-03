@@ -1,0 +1,21 @@
+.register-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  min-height: 100%;
+  padding: 2rem;
+  background: transparent;
+}
+
+.step-content {
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+app-step-header.hidden {
+  display: none;
+}

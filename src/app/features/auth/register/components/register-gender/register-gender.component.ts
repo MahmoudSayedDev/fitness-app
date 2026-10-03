@@ -1,12 +1,11 @@
 import { ChangeDetectionStrategy, Component, computed, output, signal } from '@angular/core';
-import { LucideUser } from '@lucide/angular';
+import { LucideMars, LucideVenus } from '@lucide/angular';
 import { ButtonComponent } from '../../../../../shared/components/button/button.component';
 import { Gender, RegisterGenderData } from '../../models/register.models';
-import { StepHeaderComponent } from '../step-header/step-header.component';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [ButtonComponent, LucideUser, StepHeaderComponent],
+  imports: [ButtonComponent, LucideMars, LucideVenus],
   selector: 'app-register-gender',
   styleUrl: './register-gender.component.scss',
   templateUrl: './register-gender.component.html',
