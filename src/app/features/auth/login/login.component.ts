@@ -10,6 +10,7 @@ import { FieldErrorComponent } from '../../../shared/components/field-error/fiel
 import { ButtonComponent } from '../../../shared/components/button/button.component';
 import { AuthService } from '../../../core/auth/services/auth.service';
 import { LoginReq } from '../../../core/auth/models/login.interface';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   imports: [
@@ -21,6 +22,8 @@ import { LoginReq } from '../../../core/auth/models/login.interface';
     RouterLink,
     LucideMail,
     LucideLock,
+    TranslatePipe
+    
   ],
   selector: 'app-login',
   styleUrl: './login.component.scss',
