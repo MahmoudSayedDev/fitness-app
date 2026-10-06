@@ -1,9 +1,13 @@
+import { NgClass } from '@angular/common';
 import { Component, computed, input, output } from '@angular/core';
 import { LucideLoaderCircle } from '@lucide/angular';
 
 @Component({
   selector: 'app-button',
-  imports: [LucideLoaderCircle],
+  imports: [
+    LucideLoaderCircle,
+    NgClass
+  ],
   templateUrl: './button.component.html',
   styleUrl: './button.component.scss',
   host: {
@@ -14,6 +18,8 @@ export class ButtonComponent {
   type = input<'button' | 'submit' | 'reset'>('button');
   isLoading = input<boolean>(false);
   isDisabled = input<boolean>(false);
+  outline = input<boolean>(false);
+  withArrow = input<boolean>(false);
   styleClass = input<string>('');
   onClick = output<void>();
 

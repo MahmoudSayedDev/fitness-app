@@ -2,11 +2,30 @@
   [type]="type()"
   [disabled]="isInactive()"
   [attr.aria-busy]="isLoading()"
-  class="flex w-full cursor-pointer items-center justify-center gap-2 rounded-[20px] bg-[#FF4100] px-4 py-2.5 text-base font-bold text-white transition hover:bg-[#e63a00] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FF4100] active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-60 disabled:bg-[#D3D3D3]! {{ styleClass() }}"
+  class="capitalize relative flex w-full cursor-pointer items-center justify-center gap-2 rounded-[20px] bg-primary px-4 py-2.5 text-base font-bold text-white transition hover:bg-[#e63a00] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FF4100] active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-60 disabled:bg-[#D3D3D3]! {{ styleClass() }}"
+  [ngClass]="{
+    'text-primary! bg-transparent border-2 border-primary hover:text-white! hover:bg-primary': outline()
+  }"
   (click)="handleClick()"
 >
   @if (isLoading()) {
     <svg lucideLoaderCircle class="size-5 animate-spin" strokeWidth="2"></svg>
+  }
+
+  @if (withArrow()) {
+    <div class="bg-primary absolute top-[50%] -inset-e-4 p-2 rounded-full border-white border-2 translate-y-[-50%] transition hover:bg-[#e63a00]"
+      [ngClass]="{
+        'bg-[#D3D3D3]!': isLoading()
+      }">
+      <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path 
+          id="Vector" 
+          fill-rule="evenodd" 
+          clip-rule="evenodd" 
+          d="M12.0206 0.707124C10.2967 2.43105 7.155 2.43175 5.43036 0.707116L4.72326 9.63389e-06L3.30904 1.41422L4.01615 2.12133C5.27056 3.37574 6.99731 4.00223 8.72478 4.00295L-0.000209446 12.7279L1.414 14.1422L10.139 5.41716C10.1397 7.14462 10.7662 8.87138 12.0206 10.1258L12.7277 10.8329L14.1419 9.41868L13.4348 8.71157C11.7102 6.98694 11.7109 3.84526 13.4348 2.12134L14.1419 1.41423L12.7277 1.70517e-05L12.0206 0.707124Z" 
+          fill="#F3F3F4"/>
+      </svg>
+    </div>
   }
   
   <ng-content />
