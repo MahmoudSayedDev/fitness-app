@@ -1,0 +1,9 @@
+<button (click)="toggleTheme()" class="p-1 cursor-pointer text-white hover:text-primary transition-all flex items-center" [class]="styleClass()">
+    @if (currentTheme() == 'dark') {
+        <svg lucideSun class="size-6" strokeWidth="1.5"></svg>
+    }
+
+    @if (currentTheme() == 'light') {
+        <svg lucideMoon class="size-6" strokeWidth="1.5" ></svg>
+    }
+</button>

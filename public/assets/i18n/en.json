@@ -1,0 +1,91 @@
+{
+  "common": {
+    "actions": {
+      "continue": "Continue",
+      "edit": "Edit",
+      "next": "Next",
+      "previous": "Previous",
+      "start": "Start",
+      "submite": "Submit",
+      "save-changes": "Save Changes",
+      "delete-my-account": "Delete My Account",
+      "retry": "Retry",
+      "Remove": "Remove",
+      "back": "back",
+      "checkout": "checkout",
+      "Add Address": "Add Address",
+      "Update Address": "Update Address"
+    },
+    "messages": {
+      "Loading": "Loading...",
+      "What awesome gift are you looking for?": "What awesome gift are you looking for?",
+      "no products found": "no products found",
+      "or": "or",
+      "Need help?": "Need help?",
+      "Contact us": "Contact us"
+    },
+    "validation": {
+      "required": "This field is required",
+      "This field is required": "This field is required",
+      "Please enter a valid email.": "Please enter a valid email.",
+      "passwordMismatch": "Passwords do not match",
+      "PASSWORD_REQ_ERROR": "Password is required",
+      "CPASSWORD_REQ_ERROR": "Confirm password is required",
+      "EMAIL_REQ_ERROR": "Email is required",
+      "PASSWORD_PATTERN_ERROR": "Please enter a valid password",
+      "USERNAME_REQ_ERROR": "Username is required",
+      "FN_REQ_ERROR": "First Name is required",
+      "LN_REQ_ERROR": "Last Name is required",
+      "PASSWORD_PATTERN_ERRORS": {
+        "8 or more characters": "8 or more characters",
+        "At least one uppercase letter A-Z": "At least one uppercase letter A-Z",
+        "At least one lowercase letter a-z": "At least one lowercase letter a-z",
+        "At least one number 0-9": "At least one number 0-9",
+        "At least one special character like": "At least one special character like #@&-"
+      }
+    }
+  },
+  "auth": {
+    "Hey There": "Hey There",
+    "WELCOME BACK": "WELCOME BACK",
+    "username": "Username",
+    "password": "Password",
+    "email": "Email",
+    "confirmPassword": "Confirm Password",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "gender": "Gender",
+    "male": "Male",
+    "female": "Female",
+    "login": "Login",
+    "register now": "Register",
+    "logout": "Logout",
+    "don\u2019t have an account yet?": "Don't have an account yet?",
+    "create one now!": "Create one now!",
+    "Create yours": "Create yours",
+    "forgot your password?": "Forgot your password?",
+    "Remember me": "Remember Me",
+    "register": {
+      "emailTitle": "Create your account",
+      "otpTitle": "Verify your email",
+      "formTitle": "Complete your profile",
+      "otpLabel": "Verification code",
+      "otpInvalid": "Please enter the 6-digit verification code",
+      "selectGender": "Select gender",
+      "submit": "Register",
+      "alreadyHaveAccount": "Already have an account?"
+    }
+  },
+  "header": {},
+  "footer": {},
+  "home": {
+    "title": "home",
+    "aboutUs": {}
+  },
+  "contact": {
+    "title": "contact"
+  },
+  "about": {
+    "title": "about"
+  }
+}

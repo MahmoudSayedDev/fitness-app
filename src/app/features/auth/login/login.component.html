@@ -1,8 +1,8 @@
 <section class="space-y-2">
-  <app-auth-title title="WELCOME BACK"></app-auth-title>
+  <app-auth-title title="auth.WELCOME BACK"></app-auth-title>
   <section class="rounded-[50px] border border-[#D3D3D3] p-10 w-full 2xl:w-[75%] mx-auto mt-4">
-    <form [formGroup]="loginForm" (ngSubmit)="submit()" class="mx-auto max-w-[350px] space-y-6" novalidate>
-      <p class="text-center text-2xl font-extrabold text-white">Login</p>
+    <form [formGroup]="loginForm" (ngSubmit)="submit()" class="mx-auto max-w-87.5 space-y-6" novalidate>
+      <p class="text-center text-2xl font-extrabold text-white">{{'auth.login' | translate}}</p>
 
       <div class="space-y-4">
         <div>
@@ -10,7 +10,7 @@
             inputId="email"
             type="email"
             formControlName="email"
-            placeholder="Email"
+            [placeholder]="'auth.email' | translate"
             [attr.aria-describedby]="emailError.id()"
             [attr.aria-invalid]="loginForm.controls.email.invalid && loginForm.controls.email.touched"
           >
@@ -28,7 +28,7 @@
             inputId="password"
             type="password"
             formControlName="password"
-            placeholder="Password"
+            [placeholder]="'auth.password' | translate"
             [attr.aria-describedby]="passwordError.id()"
             [attr.aria-invalid]="loginForm.controls.password.invalid && loginForm.controls.password.touched"
           >
@@ -46,15 +46,15 @@
             routerLink="/auth/forgot-password"
             class="text-base font-bold text-[#FF4100] underline underline-offset-2 hover:opacity-90"
           >
-            Forget Password ?
+            {{'auth.forgot your password?' | translate}}
           </a>
         </div>
       </div>
 
       <div class="flex items-center justify-center gap-6 text-sm text-[#D3D3D3]">
-        <span class="h-px w-[90px] bg-[#D3D3D3]"></span>
-        <span>Or</span>
-        <span class="h-px w-[90px] bg-[#D3D3D3]"></span>
+        <span class="h-px w-22.5 bg-[#D3D3D3]"></span>
+        <span>{{'common.messages.or' | translate}}</span>
+        <span class="h-px w-22.5 bg-[#D3D3D3]"></span>
       </div>
 
       <div class="flex items-center justify-center gap-4">
@@ -92,15 +92,15 @@
           <p class="text-center text-sm font-semibold text-[#ec003f]" role="alert">{{ errorMessage() }}</p>
         }
 
-        <app-button type="submit" [isLoading]="isLoading()">Login</app-button>
+        <app-button type="submit" [isLoading]="isLoading()">{{'auth.login' | translate}}</app-button>
 
         <p class="text-center text-base text-white">
-          Dont Have An Account Yet ?
+          {{'auth.don\u2019t have an account yet?' | translate}}
           <a
             routerLink="/auth/register"
             class="font-bold text-[#FF4100] underline underline-offset-2 hover:opacity-90"
           >
-            Register
+          {{'auth.register now' | translate}}
           </a>
         </p>
       </div>

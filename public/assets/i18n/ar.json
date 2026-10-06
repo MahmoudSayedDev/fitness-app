@@ -1,0 +1,102 @@
+{
+    "common": {
+        "actions": {
+            "edit": "تعديل",
+            "continue": "استمر",
+            "next": "التالي",
+            "previous": "السابق",
+            "start": "ابدأ",
+            "submite": "إرسال",
+            "save-changes": "حفظ التغييرات",
+            "delete-my-account": "حذف حسابي",
+            "retry": "إعادة المحاولة",
+            "Remove": "حذف",
+            "back": "رجوع",
+            "checkout": "دفع",
+            "Add Address": "إضافة العنوان",
+            "Update Address": "تحديث العنوان"
+        },
+        "messages": {
+            "Loading": "جاري التحميل...",
+            "What awesome gift are you looking for?": "ما هي الهدية الرائعة التي تبحث عنها؟",
+            "no products found": "لم يتم العثور على منتجات",
+            "or": "أو",
+            "Need help?": "بحاجة الى مساعدة؟",
+            "Contact us": "تواصل معنا"
+        },
+        "validation": {
+            "required": "هذا الحقل مطلوب",
+            "This field is required": "هذا الحقل مطلوب",
+            "Please enter a valid email.": "يرجى إدخال بريد إلكتروني صالح.",
+            "passwordMismatch": "كلمتا المرور غير متطابقتين",
+            "PASSWORD_REQ_ERROR": "كلمة المرور مطلوبة",
+            "EMAIL_REQ_ERROR": "البريد الإلكتروني مطلوب",
+            "PASSWORD_PATTERN_ERROR": "يرجى إدخال كلمة مرور صالحة",
+            "USERNAME_REQ_ERROR": "اسم المستخدم مطلوب",
+            "FN_REQ_ERROR": "الاسم الأول مطلوب",
+            "LN_REQ_ERROR": "الاسم الأخير مطلوب",
+            "PASSWORD_PATTERN_ERRORS": {
+                "8 or more characters": "8 خانات أو أكثر",
+                "At least one uppercase letter A-Z": "حرف واحد كبير على الأقل A-Z",
+                "At least one lowercase letter a-z": "حرف واحد صغير على الأقل a-z",
+                "At least one number 0-9": "رقم واحد على الأقل 0-9",
+                "At least one special character like": "رمز واحد على الأقل مثل #@&-"
+            }
+        }
+    },
+    "auth": {
+        "Hey There": "مرحباً",
+        "WELCOME BACK": "مرحباً بعودتك",
+        "username": "اسم المستخدم",
+        "password": "كلمة المرور",
+        "email": "البريد الإلكتروني",
+        "confirmPassword": "تأكيد كلمة المرور",
+        "firstName": "الاسم الأول",
+        "lastName": "اسم العائلة",
+        "gender": "الجنس",
+        "male": "ذكر",
+        "female": "أنثى",
+        "login": "تسجيل الدخول",
+        "register now": "انشاء حساب",
+        "logout": "تسجيل الخروج",
+        "don\u2019t have an account yet?": "ليس لديك حساب؟",
+        "create one now!": "أنشئ حساباً الآن!",
+        "Create yours": "أنشئ حسابك",
+        "forgot your password?": "نسيت كلمة المرور؟",
+        "Remember me": "تذكرنى",
+        "register": {
+            "emailTitle": "إنشاء حسابك",
+            "otpTitle": "تأكيد بريدك الإلكتروني",
+            "formTitle": "أكمل ملفك الشخصي",
+            "otpLabel": "رمز التحقق",
+            "otpInvalid": "يرجى إدخال رمز التحقق المكون من 6 أرقام",
+            "selectGender": "اختر الجنس",
+            "submit": "تسجيل",
+            "alreadyHaveAccount": "لديك حساب بالفعل؟"
+        },
+        "forgot-password": {
+            "Forgot Password?": "نسيت كلمة المرور؟",
+            "Worry not, we’ll send you instructions to help you reset it.": "لا تقلق، سنرسل لك التعليمات لمساعدتك في إعادة تعيينها.",
+            "Password Reset Sent": "تم إرسال رابط إعادة تعيين كلمة المرور",
+            "We have sent a password reset link to": "لقد قمنا بإرسال رابط إعادة تعيين كلمة المرور إلى:",
+            "Please check your inbox and follow the instructions to reset your password": "يرجى التحقق من صندوق البريد الوارد الخاص بك واتباع التعليمات لإعادة تعيين كلمة المرور.",
+            "If you don’t see the email within a few minutes, check your spam or junk folder": "إذا لم تجد البريد الإلكتروني خلال بضع دقائق، يرجى التحقق من مجلد الرسائل غير المرغوب فيها (Spam).",
+            "Send a new link": "إرسال رابط جديد",
+            "Create a new password": "قم بإنشاء كلمة مرور جديدة",
+            "Set a strong password to secure your account.": "قم بتعيين كلمة مرور قوية لتأمين حسابك.",
+            "resetPassword": "إعادة تعيين كلمة المرور"
+        }
+    },
+    "header": {},
+    "footer": {},
+    "home": {
+        "title": "الرئيسية",
+        "aboutUs": {}
+    },
+    "contact": {
+        "title": "اتصل بنا"
+    },
+    "about": {
+        "title": "نبذة عنا"
+    }
+}

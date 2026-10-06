@@ -8,6 +8,8 @@ import Aura from '@primeuix/themes/aura';
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { MY_TOKEN } from './core/tokens/app-config.token';
 import { authInterceptor } from './core/interceptors/auth/auth.interceptor';
+import { provideTranslateService } from '@ngx-translate/core';
+import { provideTranslateHttpLoader } from "@ngx-translate/http-loader";
 
 
 export const appConfig: ApplicationConfig = {
@@ -33,6 +35,12 @@ export const appConfig: ApplicationConfig = {
                     darkModeSelector: 'dark',
                 }
             }
+        }),
+        provideTranslateService({
+            loader: provideTranslateHttpLoader({
+                prefix: './assets/i18n/',
+                suffix: '.json'
+            }),
         }),
         {
             provide: MY_TOKEN,
