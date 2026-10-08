@@ -1,0 +1,13 @@
+<app-header></app-header>
+<router-outlet></router-outlet>
+
+<div class=" font-medium">
+    <p-speeddial 
+        [model]="items()" 
+        direction="up" 
+        [style]="{ position: 'fixed', insetInlineStart: '20px', bottom: '20px' }" 
+        maskClassName="text-red-500!"
+        buttonClassName="p-5!"
+        [buttonProps]="{ severity: 'primary', rounded: true }" 
+        [tooltipOptions]="{ tooltipPosition: 'right' }" />
+</div>
