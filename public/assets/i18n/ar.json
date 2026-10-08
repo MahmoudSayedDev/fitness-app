@@ -13,6 +13,8 @@
             "Remove": "حذف",
             "back": "رجوع",
             "checkout": "دفع",
+            "Get Started": "ابدأ الان",
+            "Explore More": "اكتشف المزيد",
             "Add Address": "إضافة العنوان",
             "Update Address": "تحديث العنوان"
         },
@@ -58,6 +60,7 @@
         "female": "أنثى",
         "login": "تسجيل الدخول",
         "register now": "انشاء حساب",
+        "sign up": "انشاء حساب",
         "logout": "تسجيل الخروج",
         "don\u2019t have an account yet?": "ليس لديك حساب؟",
         "create one now!": "أنشئ حساباً الآن!",
@@ -91,12 +94,31 @@
     "footer": {},
     "home": {
         "title": "الرئيسية",
+        "hero": {
+            "titleStart": "جسمك يمكنه",
+            "titleHighlight": "تحمّل تقريبًا",
+            "titleEnd": "أي شيء",
+            "descriptionStart": "عقلك هو ما يحتاج إلى الإقناع. تجاوز حدودك، وابق",
+            "descriptionMiddle": "ملتزماً، وشاهد جسدك يتحول إلى قوة هائلة من",
+            "descriptionEnd": "القوة والمرونة. ابدأ رحلتك اليوم واكتشف ما يمكنك تحقيقه حقاً!",
+            "stats": {
+                "activeMembers": "عضو نشط",
+                "certifiedTrainers": "مدرب معتمد",
+                "yearsOfExperience": "سنوات من الخبرة"
+            }
+        },
         "aboutUs": {}
-    },
-    "contact": {
-        "title": "اتصل بنا"
     },
     "about": {
         "title": "نبذة عنا"
+    },
+    "classes": {
+        "title": "الحصص"
+    },
+    "healthy": {
+        "title": "صحي"
+    },
+    "account settings": {
+        "title": "إعدادات الحساب"
     }
 }
