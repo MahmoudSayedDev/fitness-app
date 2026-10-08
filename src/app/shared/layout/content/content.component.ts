@@ -16,7 +16,7 @@ import { LanguageSwitcherService } from '../../components/language-switcher/serv
   styleUrl: './content.component.scss',
   templateUrl: './content.component.html',
 })
-export class ContentComponent implements OnInit {
+export class ContentComponent {
 
   private readonly _themeSwitcherService = inject(ThemeSwitcherService)
   private readonly _languageSwitcherService = inject(LanguageSwitcherService)
@@ -35,8 +35,4 @@ export class ContentComponent implements OnInit {
       }
     }
   ]);
-
-  ngOnInit() {
-    this._themeSwitcherService.initTheme()
-  }
 }

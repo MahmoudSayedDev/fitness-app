@@ -1,20 +1,50 @@
-<section class="h-screen pt-27 bg-amber-50">
-    <div class=" container mx-auto">
-        <h1 class=" uppercase font-bold mb-4 text-7xl">Your body can <span class="text-primary">stand <br> almost</span> anything</h1>
+<section id="hero" class="overflow-hidden bg-amber-50">
+    <div class="bg-[#ffffff99] dark:bg-[#24242499] backdrop-blur-[86.1px] pt-27">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-6 lg:grid-cols-12 items-center">
+                <div class="col-span-8 px-6 lg:px-0">
+                    <h1 class="uppercase font-bold mb-9 text-7xl">
+                        <!-- Your body can <span class="text-primary">stand <br> almost</span> anything -->
+                        {{ 'home.hero.titleStart' | translate }}
+                        <span class="text-primary">
+                            {{ 'home.hero.titleHighlight' | translate }}
+                        </span>
+                        {{ 'home.hero.titleEnd' | translate }}
+                    </h1>
 
-        <p class=" border-s-4 border-primary mb-12 ps-5">
-            It's your mind that needs convincing. Push past your limits, stay <br>
-            committed, and watch as your body transform into powerhouse of <br>
-            strength and resilience. Start your journey today & truly capable of!
-        </p>
+                    <p class="border-s-4 border-primary mb-12 ps-5">
+                        {{ 'home.hero.descriptionStart' | translate }} <br>
+                        {{ 'home.hero.descriptionMiddle' | translate }} <br>
+                        {{ 'home.hero.descriptionEnd' | translate }}
+                    </p>
 
-        <div>
+                    <div class="grid grid-cols-4 mb-12">
+                        <p class="text-xl leading-10">
+                            <span class="font-bold">1200+</span> <br>
+                            {{ 'home.hero.stats.activeMembers' | translate }}
+                        </p>
 
-        </div>
+                        <p class="text-xl leading-10">
+                            <span class="font-bold">12+</span> <br>
+                            {{ 'home.hero.stats.certifiedTrainers' | translate }}
+                        </p>
 
-        <div class=" flex justify-start items-center gap-12">
-            <app-button type="submit" [withArrow]="true">Get Started</app-button>
-            <app-button type="submit" [outline]="true" [withArrow]="true">Explore More</app-button>
+                        <p class="text-xl leading-10">
+                            <span class="font-bold">20+</span> <br>
+                            {{ 'home.hero.stats.yearsOfExperience' | translate }}
+                        </p>
+                    </div>
+
+                    <div class=" flex justify-start items-center gap-12">
+                        <app-button type="submit" [withArrow]="true" styleClass="border-[1px] px-6 rounded-full">{{'common.actions.Get Started' | translate}}</app-button>
+                        <app-button type="submit" [outline]="true" [withArrow]="true" styleClass="border-[1px] px-6 rounded-full">{{'common.actions.Explore More' | translate}}</app-button>
+                    </div>
+                </div>
+
+                <div class="col-span-4 px-6 lg:px-0 mt-12 lg:mt-0">
+                    <img class="w-full" src="/assets/imgs/hero-sec.png">
+                </div>
+            </div>
         </div>
     </div>
 </section>
