@@ -96,7 +96,7 @@
         "title": "الرئيسية",
         "hero": {
             "titleStart": "جسمك يمكنه",
-            "titleHighlight": "تحمّل تقريبًا",
+            "titleHighlight": "تحمل تقريباً",
             "titleEnd": "أي شيء",
             "descriptionStart": "عقلك هو ما يحتاج إلى الإقناع. تجاوز حدودك، وابق",
             "descriptionMiddle": "ملتزماً، وشاهد جسدك يتحول إلى قوة هائلة من",
@@ -120,5 +120,11 @@
     },
     "account settings": {
         "title": "إعدادات الحساب"
+    },
+    "marquee-banner": {
+        "outdoor & online trainers": "مدربون في الهواء الطلق وعبر الإنترنت",
+        "personal training": "التدريب الشخصي",
+        "live classes": "حصص مباشرة",
+        "personal trainers": "مدربون شخصيون"
     }
 }

@@ -1,5 +1,5 @@
 <section id="hero" class="overflow-hidden bg-amber-50">
-    <div class="bg-[#ffffff99] dark:bg-[#24242499] backdrop-blur-[86.1px] pt-27">
+    <div class="bg-[#ffffff99] dark:bg-[#24242499] backdrop-blur-[86.1px] pt-32">
         <div class="container mx-auto">
             <div class="grid grid-cols-6 lg:grid-cols-12 items-center">
                 <div class="col-span-8 px-6 lg:px-0">
@@ -18,7 +18,7 @@
                         {{ 'home.hero.descriptionEnd' | translate }}
                     </p>
 
-                    <div class="grid grid-cols-4 mb-12">
+                    <div class="grid grid-cols-3 lg:grid-cols-4 mb-12">
                         <p class="text-xl leading-10">
                             <span class="font-bold">1200+</span> <br>
                             {{ 'home.hero.stats.activeMembers' | translate }}
@@ -36,7 +36,7 @@
                     </div>
 
                     <div class=" flex justify-start items-center gap-12">
-                        <app-button type="submit" [withArrow]="true" styleClass="border-[1px] px-6 rounded-full">{{'common.actions.Get Started' | translate}}</app-button>
+                        <app-button type="submit" [withArrow]="true" styleClass="border-primary! border-[1px] px-6 rounded-full">{{'common.actions.Get Started' | translate}}</app-button>
                         <app-button type="submit" [outline]="true" [withArrow]="true" styleClass="border-[1px] px-6 rounded-full">{{'common.actions.Explore More' | translate}}</app-button>
                     </div>
                 </div>

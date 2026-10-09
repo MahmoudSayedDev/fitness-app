@@ -106,5 +106,14 @@
   },
   "healthy": {
     "title": "healthy"
+  },
+  "account settings": {
+    "title": "account settings"
+  },
+  "marquee-banner": {
+    "outdoor & online trainers": "outdoor & online trainers",
+    "personal training": "personal training",
+    "live classes": "live classes",
+    "personal trainers": "personal trainers"
   }
 }
