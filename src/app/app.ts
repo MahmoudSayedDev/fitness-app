@@ -2,6 +2,7 @@ import { afterNextRender, Component, inject, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { CookieService } from 'ngx-cookie-service';
+import { ThemeSwitcherService } from './shared/components/theme-switcher/services/theme-switcher.service';
 
 @Component({
   imports: [RouterOutlet],
@@ -13,6 +14,7 @@ export class App {
   protected readonly title = signal('fitness-app');
 
   private readonly _translateService = inject(TranslateService)
+  private readonly _themeSwitcherService = inject(ThemeSwitcherService)
   private readonly _cookieService = inject(CookieService);
 
   constructor() {
@@ -24,6 +26,8 @@ export class App {
       const root = document.documentElement
       root.setAttribute('lang', this._translateService.getCurrentLang()!)
       root.setAttribute('dir', this._translateService.getCurrentLang() == 'ar' ? 'rtl' : 'ltr')
+
+      this._themeSwitcherService.initTheme()
     })
   }
 }

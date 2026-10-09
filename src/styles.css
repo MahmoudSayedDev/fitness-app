@@ -18,6 +18,8 @@
 .dark {
   color: #F3F3F4;
   background: #242424;
+
+  height: 200vh;
 }
 
 html[lang="ar"] body {
