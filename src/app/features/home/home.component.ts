@@ -16,8 +16,8 @@ import { MarqueeBannerComponent } from '../../shared/components/marquee-banner/m
     WhyUsSectionComponent,
     HealthyNutritionSectionComponent,
     FooterComponent,
-    ThemeSwitcherComponent
-    MarqueeBannerComponent
+    ThemeSwitcherComponent,
+    MarqueeBannerComponent,
   ],
   selector: 'app-home',
   styleUrl: './home.component.scss',

@@ -1,1 +1,82 @@
-<p>workouts-section works!</p>
+<section class="workouts-section">
+  <div class="section-bg"></div>
+  <div class="section-blur"></div>
+
+  <div class="section-content">
+    <div class="section-header">
+      <span class="bg-text">WORKOUTS</span>
+      <div class="subtitle">
+        <i class="pi pi-dumbbell" style="color: #ff4100"></i>
+        <span style="color: #ff4100">Fitness Class</span>
+      </div>
+      <h2 class="main-title">
+        TRANSFORM YOUR BODY WITH OUR DYNAMIC
+        <span style="color: #ff4100">UPCOMING WORKOUTS</span>
+      </h2>
+    </div>
+
+    <div class="muscle-carousel">
+      <swiper-container
+        slides-per-view="7"
+        space-between="12"
+        free-mode="true"
+        [breakpoints]="{
+          '320': { slidesPerView: 2 },
+          '480': { slidesPerView: 3 },
+          '640': { slidesPerView: 4 },
+          '768': { slidesPerView: 5 },
+          '1024': { slidesPerView: 7 }
+        }"
+        style="width: 100%"
+      >
+        @for (muscle of muscles(); track muscle._id) {
+          <swiper-slide style="width: auto">
+            <button
+              type="button"
+              class="muscle-tab"
+              [class.active]="selectedMuscle()?._id === muscle._id"
+              (click)="selectMuscle(muscle)"
+            >
+              {{ muscle.name }}
+            </button>
+          </swiper-slide>
+        }
+      </swiper-container>
+    </div>
+
+    @if (isLoadingWorkouts()) {
+      <div class="loading">Loading...</div>
+    } @else {
+      <div class="carousel-wrapper">
+        <swiper-container
+          slides-per-view="3"
+          space-between="24"
+          centered-slides="false"
+          [breakpoints]="{
+            '320': { slidesPerView: 1 },
+            '768': { slidesPerView: 2 },
+            '1024': { slidesPerView: 3 }
+          }"
+          (swiperslidechange)="onSlideChange($any($event))"
+          style="width: 100%"
+        >
+          @for (workout of workouts(); track workout._id) {
+            <swiper-slide>
+              <app-workout-card
+                [imageUrl]="workout.image"
+                [title]="workout.title"
+                (explore)="onExplore(workout)"
+              />
+            </swiper-slide>
+          }
+        </swiper-container>
+      </div>
+
+      <div class="carousel-dots">
+        @for (workout of workouts(); track workout._id; let i = $index) {
+          <span class="dot" [class.active]="i === activeSlideIndex()"></span>
+        }
+      </div>
+    }
+  </div>
+</section>
