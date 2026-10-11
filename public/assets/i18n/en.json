@@ -96,7 +96,21 @@
         "yearsOfExperience": "Years Of Experience"
       }
     },
-    "aboutUs": {}
+    "aboutUs": {},
+    "whyUs": {
+      "bgText": "WHY US",
+      "subtitle": "Why Us",
+      "titlePart1": "ELEVATE FITNESS WITH THE",
+      "titleHighlight": "BEST WAY",
+      "titlePart2": "POSSIBLE",
+      "description": "We offer a fitness journey tailored to your goals, combining expert guidance, cutting-edge equipment, and a community that keeps you motivated every step of the way.",
+      "feature1Title": "Personalized Fitness Plans",
+      "feature1Desc": "Custom workout and nutrition plans designed specifically for your body and goals.",
+      "feature2Title": "Results-Driven Focus",
+      "feature2Desc": "Every program is built around measurable results and continuous progress tracking.",
+      "feature3Title": "State-Of-The-Art Equipment",
+      "feature3Desc": "Train with the latest fitness technology in a modern, inspiring environment."
+    }
   },
   "about": {
     "title": "about"
