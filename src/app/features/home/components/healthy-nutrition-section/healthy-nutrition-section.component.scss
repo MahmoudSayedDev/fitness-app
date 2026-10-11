@@ -1,0 +1,12 @@
+:host-context(.dark) {
+    .title-sction {
+
+        &::after {
+            background: linear-gradient(rgb(36, 36, 36, .7), #242424);
+        }
+    }
+}
+
+#Vector {
+    fill: var(--p-primary-color) !important;
+}

@@ -15,6 +15,7 @@
       "checkout": "checkout",
       "Get Started": "Get Started",
       "Explore More": "Explore More",
+      "read more": "read more",
       "Add Address": "Add Address",
       "Update Address": "Update Address"
     },
@@ -127,7 +128,10 @@
     "title": "classes"
   },
   "healthy": {
-    "title": "healthy"
+    "title": "healthy",
+    "headingStart": "Fuel your fitness journey with customized",
+    "headingHighlight": "meal plans",
+    "headingEnd": "for you"
   },
   "account settings": {
     "title": "account settings"
