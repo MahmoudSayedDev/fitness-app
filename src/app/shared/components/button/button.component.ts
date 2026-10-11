@@ -2,6 +2,12 @@ import { NgClass } from '@angular/common';
 import { Component, computed, input, output } from '@angular/core';
 import { LucideLoaderCircle } from '@lucide/angular';
 
+interface ArrowProps {
+  width?: string,
+  height?: string,
+  fill?: string,
+}
+
 @Component({
   selector: 'app-button',
   imports: [
@@ -20,6 +26,12 @@ export class ButtonComponent {
   isDisabled = input<boolean>(false);
   outline = input<boolean>(false);
   withArrow = input<boolean>(false);
+  arrowProps = input<ArrowProps>({
+    width: '15',
+    height: '15',
+    fill: '#F3F3F4',
+  });
+  arrowStyleClass = input<string>('');
   styleClass = input<string>('');
   onClick = output<void>();
 
