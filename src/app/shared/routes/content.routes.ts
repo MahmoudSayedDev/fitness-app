@@ -7,5 +7,9 @@ export const ContentRoutes: Routes = [
     {
         path: 'home',
         loadComponent: () => import('../../features/home/home.component').then((C) => C.HomeComponent)
+    },
+    {
+        path: 'about',
+        loadComponent: () => import('../../features/about-us/about-us.component').then((C) => C.AboutUsComponent)
     }
 ];
