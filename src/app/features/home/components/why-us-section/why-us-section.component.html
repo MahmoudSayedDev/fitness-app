@@ -1,1 +1,95 @@
-<p>why-us-section works!</p>
+<section class="why-us-section">
+  <div class="why-us-content">
+    <div class="left-col">
+      <span class="bg-text">{{ 'home.whyUs.bgText' | translate }}</span>
+
+      <div class="subtitle">
+        <i class="pi pi-dumbbell" style="color: #ff4100"></i>
+        <span class="subtitle-text">{{ 'home.whyUs.subtitle' | translate }}</span>
+      </div>
+
+      <h2 class="main-title">
+        {{ 'home.whyUs.titlePart1' | translate }}
+        <span style="color: #ff4100">{{ 'home.whyUs.titleHighlight' | translate }}</span>
+        {{ 'home.whyUs.titlePart2' | translate }}
+      </h2>
+
+      <p class="description">
+        {{ 'home.whyUs.description' | translate }}
+      </p>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-left">
+            <div class="number-circle">01</div>
+            <div class="dashed-line"></div>
+          </div>
+          <div class="timeline-body">
+            <h4 class="feature-title">{{ 'home.whyUs.feature1Title' | translate }}</h4>
+            <p class="feature-desc">
+              {{ 'home.whyUs.feature1Desc' | translate }}
+            </p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-left">
+            <div class="number-circle">02</div>
+            <div class="dashed-line"></div>
+          </div>
+          <div class="timeline-body">
+            <h4 class="feature-title">{{ 'home.whyUs.feature2Title' | translate }}</h4>
+            <p class="feature-desc">
+              {{ 'home.whyUs.feature2Desc' | translate }}
+            </p>
+          </div>
+        </div>
+
+        <div class="timeline-item last">
+          <div class="timeline-left">
+            <div class="number-circle">03</div>
+          </div>
+          <div class="timeline-body">
+            <h4 class="feature-title">{{ 'home.whyUs.feature3Title' | translate }}</h4>
+            <p class="feature-desc">
+              {{ 'home.whyUs.feature3Desc' | translate }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="right-col">
+      <div class="image-grid">
+        <div class="img-col left-imgs">
+          <img
+            class="grid-img"
+            src="/assets/imgs/Athelte 1.png"
+            alt="Athlete 1"
+            loading="lazy"
+          />
+          <img
+            class="grid-img"
+            src="/assets/imgs/Athelte 2.jpg"
+            alt="Athlete 2"
+            loading="lazy"
+          />
+        </div>
+        <div class="img-col right-imgs">
+          <img
+            class="grid-img"
+            src="/assets/imgs/Athelte 3.jpg"
+            alt="Athlete 3"
+            loading="lazy"
+          />
+          <img
+            class="grid-img"
+            src="/assets/imgs/Athelte 4.png"
+            alt="Athlete 4"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
