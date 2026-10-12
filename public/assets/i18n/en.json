@@ -13,6 +13,9 @@
       "Remove": "Remove",
       "back": "back",
       "checkout": "checkout",
+      "Get Started": "Get Started",
+      "Explore More": "Explore More",
+      "read more": "read more",
       "Add Address": "Add Address",
       "Update Address": "Update Address",
       "try-again": "Try again"
@@ -60,6 +63,7 @@
     "female": "Female",
     "login": "Login",
     "register now": "Register",
+    "sign up": "sign up",
     "logout": "Logout",
     "don\u2019t have an account yet?": "Don't have an account yet?",
     "create one now!": "Create one now!",
@@ -81,13 +85,77 @@
   "footer": {},
   "home": {
     "title": "home",
-    "aboutUs": {}
-  },
-  "contact": {
-    "title": "contact"
+    "hero": {
+      "titleStart": "Your body can",
+      "titleHighlight": "stand almost",
+      "titleEnd": "anything",
+      "descriptionStart": "It's your mind that needs convincing. Push past your limits, stay",
+      "descriptionMiddle": "committed, and watch as your body transform into powerhouse of",
+      "descriptionEnd": "strength and resilience. Start your journey today & truly capable of!",
+      "stats": {
+        "activeMembers": "Active Members",
+        "certifiedTrainers": "Certified Trainers",
+        "yearsOfExperience": "Years Of Experience"
+      }
+    },
+    "aboutUs": {},
+    "whyUs": {
+      "bgText": "WHY US",
+      "subtitle": "Why Us",
+      "titlePart1": "ELEVATE FITNESS WITH THE",
+      "titleHighlight": "BEST WAY",
+      "titlePart2": "POSSIBLE",
+      "description": "We offer a fitness journey tailored to your goals, combining expert guidance, cutting-edge equipment, and a community that keeps you motivated every step of the way.",
+      "feature1Title": "Personalized Fitness Plans",
+      "feature1Desc": "Custom workout and nutrition plans designed specifically for your body and goals.",
+      "feature2Title": "Results-Driven Focus",
+      "feature2Desc": "Every program is built around measurable results and continuous progress tracking.",
+      "feature3Title": "State-Of-The-Art Equipment",
+      "feature3Desc": "Train with the latest fitness technology in a modern, inspiring environment."
+    }
   },
   "about": {
-    "title": "about"
+    "title": "about us",
+    "headingStart": "Empowering You to Achieve",
+    "headingHighlight": "Your Fitness",
+    "headingEnd": "Goals",
+    "description": "We believe fitness is more than just a workout—it's a lifestyle. With top-of-the-line facilities, certified trainers, and a supportive community, we're here to inspire and guide you every step of the way.",
+    "features": {
+      "personalTrainer": {
+        "title": "Personal Trainer",
+        "description": "Achieve your fitness goals with the guidance of our certified trainers."
+      },
+      "cardioPrograms": {
+        "title": "Cardio Programs",
+        "description": "From steady-state runs to interval sprints, our treadmill programs offer a variety of options."
+      },
+      "qualityEquipment": {
+        "title": "Quality Equipment",
+        "description": "Our gym is equipped with the latest cardio and strength machines."
+      },
+      "healthyNutrition": {
+        "title": "Healthy Nutrition",
+        "description": "Fuel your fitness journey with customized meal plans tailored to your needs."
+      }
+    }
+  },
+  "classes": {
+    "title": "classes"
+  },
+  "healthy": {
+    "title": "healthy",
+    "headingStart": "Fuel your fitness journey with customized",
+    "headingHighlight": "meal plans",
+    "headingEnd": "for you"
+  },
+  "account settings": {
+    "title": "account settings"
+  },
+  "marquee-banner": {
+    "outdoor & online trainers": "outdoor & online trainers",
+    "personal training": "personal training",
+    "live classes": "live classes",
+    "personal trainers": "personal trainers"
   },
   "chatbot": {
     "hey-ask-me": "Hey Ask Me",

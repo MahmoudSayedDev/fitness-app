@@ -5,18 +5,21 @@
 
 @import 'tailwindcss';
 @import 'tailwindcss-primeui';
+@import "primeicons/primeicons.css";
 @custom-variant dark (&:where(.dark, .dark *));
 
 
 :root {
-    --p-primary-color: #FF4100 !important;
-    --p-primary-hover-color: #FF4100 !important;
-    --p-primary-active-color: #FF4100 !important;
+  --p-primary-color: #FF4100 !important;
+  --p-primary-hover-color: #FF4100 !important;
+  --p-primary-active-color: #FF4100 !important;
 }
 
 .dark {
-    color: #F3F3F4;
-    background: #242424;
+  color: #F3F3F4;
+  background: #242424;
+
+  height: 200vh;
 }
 
 html[lang="ar"] body {
@@ -33,4 +36,11 @@ html[lang="ar"] .lang-switcher {
 
 html[lang="en"] .lang-switcher {
   font-family: "Zain", sans-serif;
+}
+
+.p-speeddial-item {
+  button {
+    margin-bottom: .5rem;
+    padding: 1rem !important;
+  }
 }
