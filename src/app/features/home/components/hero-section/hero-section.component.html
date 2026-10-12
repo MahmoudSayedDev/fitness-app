@@ -3,7 +3,7 @@
         <div class="container mx-auto">
             <div class="grid grid-cols-6 lg:grid-cols-12 items-center">
                 <div class="col-span-8 px-6 lg:px-0">
-                    <h1 class="uppercase font-bold mb-9 text-7xl">
+                    <h1 class="uppercase font-bold mb-9 text-6xl lg:text-7xl">
                         <!-- Your body can <span class="text-primary">stand <br> almost</span> anything -->
                         {{ 'home.hero.titleStart' | translate }}
                         <span class="text-primary">
@@ -35,7 +35,7 @@
                         </p>
                     </div>
 
-                    <div class=" flex justify-start items-center gap-12">
+                    <div class="flex flex-col lg:flex-row justify-start items-start lg:items-center gap-7 lg:gap-12">
                         <app-button type="submit" [withArrow]="true" styleClass="border-primary! border-[1px] px-6 rounded-full">{{'common.actions.Get Started' | translate}}</app-button>
                         <app-button type="submit" [outline]="true" [withArrow]="true" styleClass="border-[1px] px-6 rounded-full">{{'common.actions.Explore More' | translate}}</app-button>
                     </div>
