@@ -22,6 +22,7 @@ import { FormsModule } from '@angular/forms';
 import { ChatMarkdownService } from '../../services/chat-markdown.service';
 import { ChatbotService } from '../../services/chatbot.service';
 import { ChatbotContent } from '../../models/chatbot-content.model';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   imports: [
@@ -32,6 +33,7 @@ import { ChatbotContent } from '../../models/chatbot-content.model';
     LucideLoaderCircle,
     ToggleChatbotComponent,
     FormsModule,
+    TranslatePipe
   ],
   selector: 'app-chatbot',
   styleUrl: './chatbot.component.scss',

@@ -14,7 +14,8 @@
       "back": "back",
       "checkout": "checkout",
       "Add Address": "Add Address",
-      "Update Address": "Update Address"
+      "Update Address": "Update Address",
+      "try-again": "Try again"
     },
     "messages": {
       "Loading": "Loading...",
@@ -87,5 +88,18 @@
   },
   "about": {
     "title": "about"
+  },
+  "chatbot": {
+    "hey-ask-me": "Hey Ask Me",
+    "tap-to-close": "Tap to Close",
+    "smart-coach": "Smart coach",
+    "greeting": "Hey! I'm Emo",
+    "greeting-desc": "Your personal fitness assistant. Ask me about workouts, nutrition, recovery, or building healthier habits!",
+    "new-chat": "New Chat",
+    "previous-conversations": "Previous conversations",
+    "no-previous-chats-yet": "No previous chats yet",
+    "your-conversations-will-appear-here": "Your conversations will appear here.",
+    "ask-me-anything": "Ask Me Any Things",
+    "emo": "Emo"
   }
 }

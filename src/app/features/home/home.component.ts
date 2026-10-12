@@ -8,6 +8,7 @@ import { HealthyNutritionSectionComponent } from './components/healthy-nutrition
 import { FooterComponent } from '../../shared/layout/footer/footer.component';
 import { ThemeSwitcherComponent } from '../../shared/components/theme-switcher/theme-switcher.component';
 import { ChatbotComponent } from '../chatbot/components/chatbot/chatbot.component';
+import { LanguageSwitcherComponent } from '../../shared/components/language-switcher/language-switcher.component';
 
 @Component({
   imports: [
@@ -20,7 +21,8 @@ import { ChatbotComponent } from '../chatbot/components/chatbot/chatbot.componen
     FooterComponent,
     ThemeSwitcherComponent,
     ChatbotComponent,
-  ],
+    LanguageSwitcherComponent
+],
   selector: 'app-home',
   styleUrl: './home.component.scss',
   templateUrl: './home.component.html',

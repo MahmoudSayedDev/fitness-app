@@ -14,7 +14,8 @@
             "back": "رجوع",
             "checkout": "دفع",
             "Add Address": "إضافة العنوان",
-            "Update Address": "تحديث العنوان"
+            "Update Address": "تحديث العنوان",
+            "try-again": "إعادة المحاولة"
         },
         "messages": {
             "Loading": "جاري التحميل...",
@@ -98,5 +99,18 @@
     },
     "about": {
         "title": "نبذة عنا"
+    },
+    "chatbot": {
+        "hey-ask-me": "مرحباً، اسألني",
+        "tap-to-close": "اضغط للإغلاق",
+        "smart-coach": "المدرب الذكي",
+        "greeting": "مرحباً! أنا إيمو",
+        "greeting-desc": "مساعدك الشخصي للياقة البدنية. اسألني عن التمارين، التغذية، الاستشفاء، أو بناء عادات صحية أفضل!",
+        "new-chat": "محادثة جديدة",
+        "previous-conversations": "المحادثات السابقة",
+        "no-previous-chats-yet": "لا توجد محادثات سابقة بعد",
+        "your-conversations-will-appear-here": "ستظهر محادثاتك هنا.",
+        "ask-me-anything": "اسألني أي شيئ",
+        "emo": "إيمو"
     }
 }
