@@ -7,6 +7,7 @@ import { WhyUsSectionComponent } from './components/why-us-section/why-us-sectio
 import { HealthyNutritionSectionComponent } from './components/healthy-nutrition-section/healthy-nutrition-section.component';
 import { FooterComponent } from '../../shared/layout/footer/footer.component';
 import { ThemeSwitcherComponent } from '../../shared/components/theme-switcher/theme-switcher.component';
+import { ChatbotComponent } from '../chatbot/components/chatbot/chatbot.component';
 
 @Component({
   imports: [
@@ -17,8 +18,9 @@ import { ThemeSwitcherComponent } from '../../shared/components/theme-switcher/t
     WhyUsSectionComponent,
     HealthyNutritionSectionComponent,
     FooterComponent,
-    ThemeSwitcherComponent
-],
+    ThemeSwitcherComponent,
+    ChatbotComponent,
+  ],
   selector: 'app-home',
   styleUrl: './home.component.scss',
   templateUrl: './home.component.html',
