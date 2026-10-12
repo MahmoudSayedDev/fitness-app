@@ -1,1 +1,43 @@
-<p>healthy-nutrition-section works!</p>
+<div class="cover py-3 bg-cover bg-center bg-no-repeat relative" style=" background-image: url(assets/imgs/healthy-bg.jpg);">
+    <div class="layer bg-[#ffffff99] dark:bg-[#24242499] backdrop-blur-[86px] absolute w-full h-[65%] top-16"></div>
+    <div class="container mx-auto px-7 lg:px-0">
+        <div class="title-sction flex flex-col justify-center items-center mb-3 pt-2">
+            <span class="uppercase text-transparent text-6xl lg:text-7xl" style="-webkit-text-stroke: 1px #818181;">{{'healthy.title' | translate}}</span>
+            
+            <span class="flex justify-center items-center gap-4 relative z-10 -top-6">
+                <svg lucideDumbbell class="size-7 rotate-45 text-primary" strokeWidth="1"></svg>
+                <h2 class="capitalize text-primary font-semibold">{{'healthy.title' | translate}}</h2>
+            </span>
+        </div>
+
+        <div class="lg:w-[50%] m-auto text-center mb-3 relative">
+            <h3 class="uppercase font-bold mb-9 text-5xl">
+                {{ 'healthy.headingStart'  | translate }}
+                <span class="text-primary">
+                    {{ 'healthy.headingHighlight'| translate }}
+                </span>
+                {{ 'healthy.headingEnd'| translate }}
+            </h3>
+        </div>
+
+        <div class="grid lg:grid-cols-3 gap-7 mb-24">
+            @for (item of mealsCategories().slice(-3); track $index) {
+                <div class="rounded-xl relative overflow-hidden shadow lg:h-72.5 xl:h-100">
+                    <img class="w-full" [src]="item.strCategoryThumb">
+
+                    <div class="flex flex-col items-start absolute bg-[#FFFFFF80] dark:bg-[#24242480] backdrop-blur-[58.2px] w-full bottom-0 p-3">
+                        <h5 class="font-bold tracking-widest uppercase text-xl">{{item.strCategory}}</h5>
+                        <app-button 
+                            type="submit" 
+                            [withArrow]="true" 
+                            styleClass="bg-transparent! text-[#FF4100]! px-0! tracking-widest font-medium text-lg pe-3!" 
+                            arrowStyleClass="border-0!"
+                            [arrowProps]="{width:'7', height:'7', fill:'#000'}">
+                            {{'common.actions.read more' | translate}}
+                        </app-button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { ButtonComponent } from '../../shared/components/button/button.component';
 import { HeroSectionComponent } from './components/hero-section/hero-section.component';
 import { AboutUsSectionComponent } from './components/about-us-section/about-us-section.component';
 import { WorkoutsSectionComponent } from './components/workouts-section/workouts-section.component';
@@ -8,10 +7,10 @@ import { HealthyNutritionSectionComponent } from './components/healthy-nutrition
 import { FooterComponent } from '../../shared/layout/footer/footer.component';
 import { ThemeSwitcherComponent } from '../../shared/components/theme-switcher/theme-switcher.component';
 import { ChatbotComponent } from '../chatbot/components/chatbot/chatbot.component';
+import { MarqueeBannerComponent } from '../../shared/components/marquee-banner/marquee-banner.component';
 
 @Component({
   imports: [
-    ButtonComponent,
     HeroSectionComponent,
     AboutUsSectionComponent,
     WorkoutsSectionComponent,
@@ -20,6 +19,7 @@ import { ChatbotComponent } from '../chatbot/components/chatbot/chatbot.componen
     FooterComponent,
     ThemeSwitcherComponent,
     ChatbotComponent,
+    MarqueeBannerComponent,
   ],
   selector: 'app-home',
   styleUrl: './home.component.scss',
