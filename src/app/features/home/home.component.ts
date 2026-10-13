@@ -5,7 +5,7 @@ import { WorkoutsSectionComponent } from './components/workouts-section/workouts
 import { WhyUsSectionComponent } from './components/why-us-section/why-us-section.component';
 import { HealthyNutritionSectionComponent } from './components/healthy-nutrition-section/healthy-nutrition-section.component';
 import { FooterComponent } from '../../shared/layout/footer/footer.component';
-import { ThemeSwitcherComponent } from '../../shared/components/theme-switcher/theme-switcher.component';
+import { ChatbotComponent } from '../chatbot/components/chatbot/chatbot.component';
 import { MarqueeBannerComponent } from '../../shared/components/marquee-banner/marquee-banner.component';
 
 @Component({
@@ -16,7 +16,7 @@ import { MarqueeBannerComponent } from '../../shared/components/marquee-banner/m
     WhyUsSectionComponent,
     HealthyNutritionSectionComponent,
     FooterComponent,
-    ThemeSwitcherComponent,
+    ChatbotComponent,
     MarqueeBannerComponent,
   ],
   selector: 'app-home',

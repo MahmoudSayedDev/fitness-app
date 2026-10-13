@@ -1,0 +1,213 @@
+<div class="fixed right-20 space-y-2 z-50" [class]="isOpen() ? 'bottom-3' : 'bottom-20'">
+  <div class="flex justify-center">
+    <app-toggle-chatbot
+      (onClick)="toggleChatbot()"
+      [label]="
+        isOpen()
+          ? `${('chatbot.tap-to-close' | translate)}`
+          : `${('chatbot.hey-ask-me' | translate)}`
+      "
+    ></app-toggle-chatbot>
+  </div>
+  @if (isOpen()) {
+    <div class="origin-bottom transition">
+      <section
+        class="bg-cover bg-center w-93.75 h-150 rounded-[20px] overflow-hidden border-2 border-[#FF4100] drop-shadow-[0_4px_217.4px_#000000]"
+        style="background-image: url(assets/imgs/chat_bg.jpg)"
+      >
+        <div class="bg-[#1A1A1A80] backdrop-blur-[12.5px] h-full relative">
+          <div class="pt-10 flex flex-col h-full">
+            <div class="flex items-center justify-between rtl:flex-row-reverse mx-4 mb-10 shrink-0">
+              <span class="text-[#F3F3F4] text-2xl font-bold">
+                {{ 'chatbot.smart-coach' | translate }}
+              </span>
+              <button (click)="togglePrevChats()" class="cursor-pointer">
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M17.3923 1.87513H2.81201C1.25293 1.8156 1.25293 4.18541 2.81201 4.12588H17.3342C18.8649 4.18541 18.9245 1.87513 17.3937 1.87513H17.3923ZM2.81201 10.8753C1.31246 10.8753 1.31246 13.1246 2.81201 13.1246H11.0326C12.5634 13.1246 12.5634 10.8753 11.0326 10.8753H2.81201ZM2.81201 19.8755C1.31246 19.8755 1.31246 22.1248 2.81201 22.1248H21.2333C22.7329 22.1248 22.7329 19.8755 21.2333 19.8755H2.81201Z"
+                    fill="#FF4100"
+                  />
+                </svg>
+              </button>
+            </div>
+            <div
+              #messagesContainer
+              class="space-y-6 mx-4 flex-1 mb-24 overflow-y-auto scrollbar-none"
+            >
+              @if (messages().length === 0 && !isLoading()) {
+                <div class="flex h-full flex-col items-center justify-center px-6 text-center">
+                  <div class="mb-4 text-5xl">🤖</div>
+
+                  <h3 class="text-xl font-semibold text-[#F3F3F4]">
+                    {{ 'chatbot.greeting' | translate }}
+                  </h3>
+
+                  <p class="mt-2 max-w-sm text-sm text-slate-400">
+                    {{ 'chatbot.greeting-desc' | translate }}
+                  </p>
+                </div>
+              }
+
+              @for (message of messages(); track message.id) {
+                @if (message.role === 'user') {
+                  <div class="flex items-start justify-end gap-4">
+                    <div
+                      class="rounded-tl-[20px] rounded-b-[20px] p-2 bg-[#FF6A0080] backdrop-blur-xl w-3/4"
+                    >
+                      <div
+                        class="smart-coach-markdown text-lg text-[#F3F3F4]"
+                        [innerHTML]="formatMessage(message.content)"
+                      ></div>
+                    </div>
+                    <div
+                      class="w-9 h-9 rounded-full overflow-hidden drop-shadow-[0_0_10px_#FF410040]"
+                    >
+                      <img class="object-cover w-full" src="assets/imgs/user.jpg" alt="You" />
+                    </div>
+                  </div>
+                } @else {
+                  <div class="flex items-start gap-4">
+                    <div
+                      class="w-9 h-9 rounded-full overflow-hidden drop-shadow-[0_0_10px_#FF410040]"
+                    >
+                      <img src="assets/imgs/ai.jpg" alt="Emo" />
+                    </div>
+                    <div
+                      class="rounded-tr-[20px] rounded-b-[20px] p-2 bg-[#24242480] backdrop-blur-xl w-3/4"
+                    >
+                      <div
+                        class="smart-coach-markdown text-lg text-[#F3F3F4]"
+                        [innerHTML]="formatMessage(message.content)"
+                      ></div>
+                    </div>
+                  </div>
+                }
+              }
+              @if (isLoading()) {
+                <div class="flex items-start gap-3">
+                  <div class="size-9 shrink-0 overflow-hidden rounded-full">
+                    <img src="assets/imgs/ai.jpg" alt="Emo" />
+                  </div>
+
+                  <div
+                    class="flex items-center gap-1 rounded-2xl rounded-bl-sm bg-[#24242480] px-4 py-3"
+                    aria-label="Emo is thinking"
+                  >
+                    <span class="typing-dot"></span>
+                    <span class="typing-dot"></span>
+                    <span class="typing-dot"></span>
+                  </div>
+                </div>
+              }
+              @if (error()) {
+                <div class="flex items-center justify-between gap-3 text-sm">
+                  <p class="text-red-600">{{ error() }}</p>
+
+                  @if (failedQuestion()) {
+                    <button
+                      type="button"
+                      class="shrink-0 font-semibold text-orange-400 hover:text-orange-300 transition cursor-pointer active:scale-90"
+                      (click)="retryLastMessage()"
+                      [disabled]="isLoading()"
+                    >
+                      {{ 'common.actions.try-again' | translate }}
+                    </button>
+                  }
+                </div>
+              }
+            </div>
+            <form
+              #userForm="ngForm"
+              (ngSubmit)="sendMessage(inputValue()); inputValue.set('')"
+              class="rounded-full px-4 py-2 border border-[#F3F3F4] absolute bottom-8 left-8 right-8 flex items-center justify-between rtl:flex-row-reverse gap-2 focus-within:border-[#F24822] transition"
+            >
+              <label for="textinput" class="text-[#F24822]">
+                <svg lucidePencilLine class="size-5"></svg>
+              </label>
+              <input
+                [(ngModel)]="inputValue"
+                id="textinput"
+                class="focus:outline-0 text-[#D3D3D3]"
+                type="text"
+                name="question"
+                [placeholder]="'chatbot.ask-me-anything' | translate"
+                [disabled]="isLoading()"
+              />
+              <button
+                type="submit"
+                class="rounded-full bg-[#F24822] p-1 enabled:cursor-pointer hover:opacity-90 transition disabled:opacity-60 disabled:cursor-no-drop"
+                [disabled]="isLoading() || !inputValue().trim()"
+              >
+                @if (isLoading()) {
+                  <svg lucideLoaderCircle class="text-white size-4.5 animate-spin"></svg>
+                } @else {
+                  <svg lucideArrowUp class="text-white size-4.5"></svg>
+                }
+              </button>
+            </form>
+          </div>
+          <div
+            class="absolute top-0 left-0 bg-[#242424CC] py-6 px-4 rounded-[10px] backdrop-blur-[20px] drop-shadow-[0_0_10px_#00000040] transition max-h-75 h-full"
+            [class.-translate-x-full]="!isPrevChatsopen()"
+          >
+            <div class="flex flex-col gap-2 h-full">
+              <div class="text-[#F3F3F4] flex justify-between items-center shrink-0">
+                <span class="text-2xl font-bold">{{ 'chatbot.emo' | translate }}</span>
+              </div>
+              <button
+                type="button"
+                (click)="startNewChat()"
+                class="cursor-pointer text-lg font-semibold text-[#F3F3F4] flex items-center gap-2 hover:bg-gray-50/20 w-full p-1 rounded-sm shrink-0"
+              >
+                <svg lucidePenLine class="size-4"></svg>
+                {{ 'chatbot.new-chat' | translate }}
+              </button>
+              <div class="flex flex-col flex-1 min-h-0">
+                <h3 class="text-lg font-semibold text-[#F3F3F4]">
+                  {{ 'chatbot.previous-conversations' | translate }}
+                </h3>
+                <div class="space-y-2 flex-1 min-h-0 overflow-y-auto scrollbar-none">
+                  @if (chatHistory.conversations().length === 0) {
+                    <div class="flex flex-1 flex-col items-center justify-center p-6 text-center">
+                      <p class="font-medium text-[#F3F3F4]">
+                        {{ 'chatbot.no-previous-chats-yet' | translate }}
+                      </p>
+                      <p class="mt-1 text-sm text-gray-500">
+                        {{ 'chatbot.your-conversations-will-appear-here' | translate }}
+                      </p>
+                    </div>
+                  } @else {
+                    @for (item of chatHistory.conversations(); track item.id) {
+                      <div class="pb-2 border-b border-[#2D2D2D]">
+                        <div
+                          (click)="selectConversation(item)"
+                          class="flex items-center justify-between rtl:flex-row-reverse hover:bg-gray-50/20 p-0.5 rounded-sm cursor-pointer"
+                        >
+                          <span class="text-sm text-[#D3D3D3]">{{ item.title }}</span>
+                          <button
+                            type="button"
+                            class="shrink-0 rounded-lg p-1 text-red-500 hover:bg-red-50 cursor-pointer"
+                            aria-label="Delete conversation"
+                            (click)="$event.stopPropagation(); deleteConversation(item.id)"
+                          >
+                            <svg lucideTrash class="text-[#FF4100] size-4"></svg>
+                          </button>
+                        </div>
+                      </div>
+                    }
+                  }
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  }
+</div>
