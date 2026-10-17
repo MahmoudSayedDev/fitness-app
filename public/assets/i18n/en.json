@@ -149,7 +149,21 @@
     "headingEnd": "for you"
   },
   "account settings": {
-    "title": "account settings"
+    "title": "account settings",
+    "your Goal": "your Goal",
+    "level": "level",
+    "weight": "weight",
+    "tAP TO CHANGE": "tAP TO CHANGE",
+    "Change Password": "Change Password",
+    "Select Language": "Select Language",
+    "Mood": "Mood",
+    "light": "light",
+    "dark": "dark",
+    "Security": "Security",
+    "Privacy Policy": "Privacy Policy",
+    "Help": "Help",
+    "Logout": "Logout",
+    "current-lang": "العربية"
   },
   "marquee-banner": {
     "outdoor & online trainers": "outdoor & online trainers",

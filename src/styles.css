@@ -13,13 +13,14 @@
   --p-primary-color: #FF4100 !important;
   --p-primary-hover-color: #FF4100 !important;
   --p-primary-active-color: #FF4100 !important;
+
+  --p-toggleswitch-background: #242424 !important;
+  --p-toggleswitch-hover-background: #242424 !important;
 }
 
 .dark {
   color: #F3F3F4;
   background: #242424;
-
-  height: 200vh;
 }
 
 html[lang="ar"] body {

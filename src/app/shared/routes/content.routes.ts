@@ -11,5 +11,9 @@ export const ContentRoutes: Routes = [
     {
         path: 'about',
         loadComponent: () => import('../../features/about-us/about-us.component').then((C) => C.AboutUsComponent)
+    },
+    {
+        path: 'account-settings',
+        loadComponent: () => import('../../features/account-settings/account-settings.component').then((C) => C.AccountSettingsComponent)
     }
 ];

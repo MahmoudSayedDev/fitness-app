@@ -27,9 +27,7 @@ export class HeaderComponent implements OnInit {
   isMenuOpen = signal(false);
   isAuthenticated = this._authService.isAuthenticated
 
-  ngOnInit(): void {
-    console.log(this.isAuthenticated());
-  }
+  ngOnInit(): void {}
 
   toggleMenu() {
     this.isMenuOpen.update(value => !value);

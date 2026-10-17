@@ -1,0 +1,79 @@
+<section id="acc" class="min-h-screen overflow-hidden">
+    <div class="min-h-screen bg-[#ffffff99] dark:bg-[#24242499] backdrop-blur-[86px] pt-24 pb-9 lg:pt-32">
+        <div class="container mx-auto">
+            <div class="grid lg:grid-cols-3 items-center gap-3 gap-y-12">
+                <div class="text-center capitalize">
+                    <h4 class="font-bold text-4xl">{{'account settings.your Goal' | translate}}</h4>
+                    <button class="uppercase mb-4 underline cursor-pointer">{{'account settings.tAP TO CHANGE' | translate}}</button>
+
+                    <span class=" bg-primary flex justify-between items-center px-6 py-3 border rounded-full mx-auto w-[50%]">
+                        <p class="font-bold">lose weight</p>
+                        <svg lucideRefreshCw class="w-5 h-5 lg:w-6 lg:h-6"></svg>
+                    </span>
+                </div>
+
+                <div class="text-center capitalize">
+                    <h4 class="font-bold text-4xl">{{'account settings.level' | translate}}</h4>
+                    <button class="uppercase mb-4 underline cursor-pointer">{{'account settings.tAP TO CHANGE' | translate}}</button>
+
+                    <span class=" bg-primary flex justify-between items-center px-6 py-3 border rounded-full mx-auto w-[50%]">
+                        <p class="font-bold">lose weight</p>
+                        <svg lucideRefreshCw class="w-5 h-5 lg:w-6 lg:h-6"></svg>
+                    </span>
+                </div>
+
+                <div class="text-center capitalize">
+                    <h4 class="font-bold text-4xl">{{'account settings.weight' | translate}}</h4>
+                    <button class="uppercase mb-4 underline cursor-pointer">{{'account settings.tAP TO CHANGE' | translate}}</button>
+
+                    <span class=" bg-primary flex justify-between items-center px-6 py-3 border rounded-full mx-auto w-[50%]">
+                        <p class="font-bold">lose weight</p>
+                        <svg lucideRefreshCw class="w-5 h-5 lg:w-6 lg:h-6"></svg>
+                    </span>
+                </div>
+            </div>
+
+
+            <div class="w-[90%] lg:w-[60%] mx-auto mt-9">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-9">
+                    <div class="border rounded-2xl py-16 flex flex-col justify-center items-center">
+                        <svg lucideRefreshCw class="w-5 h-5 text-primary mb-3"></svg>
+                        <p class="font-medium">{{'account settings.Change Password' | translate}}</p>
+                    </div>
+
+                    <div class="border rounded-2xl py-16 flex flex-col justify-center items-center">
+                        <svg lucideGlobe class="w-5 h-5 text-primary mb-3"></svg>
+                        <p class="font-medium mb-2">{{'account settings.Select Language' | translate}}</p>
+                        <button (click)="toggleLanguage()" class="cursor-pointer">(<span class="text-primary">{{'account settings.current-lang' | translate}}</span>)</button>
+                    </div>
+
+                    <div class="border rounded-2xl py-16 flex flex-col justify-center items-center">
+                        <svg lucideSunMoon class="w-5 h-5 text-primary mb-3"></svg>
+                        <p class="font-medium mb-5">{{'account settings.Mood' | translate}} (<span class="text-primary capitalize">{{('account settings.' + currentTheme()) | translate}}</span>)</p>
+                        <p-toggleswitch [(ngModel)]="checked" (ngModelChange)="toggleTheme()" [ngModelOptions]="{standalone: true}"/>
+                    </div>
+
+                    <div class="border rounded-2xl py-16 flex flex-col justify-center items-center">
+                        <svg lucideCog class="w-5 h-5 text-primary mb-3"></svg>
+                        <p class="font-medium">{{'account settings.Security' | translate}}</p>
+                    </div>
+
+                    <div class="border rounded-2xl py-16 flex flex-col justify-center items-center">
+                        <svg lucideShieldAlert class="w-5 h-5 text-primary mb-3"></svg>
+                        <p class="font-medium">{{'account settings.Privacy Policy' | translate}}</p>
+                    </div>
+
+                    <div class="border rounded-2xl py-16 flex flex-col justify-center items-center">
+                        <svg lucideLifeBuoy class="w-5 h-5 text-primary mb-3"></svg>
+                        <p class="font-medium">{{'account settings.Help' | translate}}</p>
+                    </div>
+
+                    <div class="lg:col-start-2 border rounded-2xl py-16 flex flex-col justify-center items-center">
+                        <svg lucideCircleArrowOutUpRight class="w-5 h-5 text-primary mb-3 rotate-45"></svg>
+                        <p class="font-medium">{{'account settings.Logout' | translate}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
