@@ -4,31 +4,31 @@
             <div class="grid lg:grid-cols-3 items-center gap-3 gap-y-12">
                 <div class="text-center capitalize">
                     <h4 class="font-bold text-4xl">{{'account settings.your Goal' | translate}}</h4>
-                    <button class="uppercase mb-4 underline cursor-pointer">{{'account settings.tAP TO CHANGE' | translate}}</button>
+                    <button (click)="showDialog('goal')" class="uppercase mb-4 underline cursor-pointer">{{'account settings.tAP TO CHANGE' | translate}}</button>
 
                     <span class=" bg-primary flex justify-between items-center px-6 py-3 border rounded-full mx-auto w-[50%]">
-                        <p class="font-bold">lose weight</p>
-                        <svg lucideRefreshCw class="w-5 h-5 lg:w-6 lg:h-6"></svg>
+                        <p class="font-bold">{{profileData()?.goal || ''}}</p>
+                        <svg lucideRefreshCw class="w-5 h-5 lg:w-6 lg:h-6 animate-spin" [ngClass]="{'animate-none!': profileData()?.goal}"></svg>
                     </span>
                 </div>
 
                 <div class="text-center capitalize">
                     <h4 class="font-bold text-4xl">{{'account settings.level' | translate}}</h4>
-                    <button class="uppercase mb-4 underline cursor-pointer">{{'account settings.tAP TO CHANGE' | translate}}</button>
+                    <button (click)="showDialog('level')" class="uppercase mb-4 underline cursor-pointer">{{'account settings.tAP TO CHANGE' | translate}}</button>
 
                     <span class=" bg-primary flex justify-between items-center px-6 py-3 border rounded-full mx-auto w-[50%]">
-                        <p class="font-bold">lose weight</p>
-                        <svg lucideRefreshCw class="w-5 h-5 lg:w-6 lg:h-6"></svg>
+                        <p class="font-bold">{{profileData()?.activityLevel || ''}}</p>
+                        <svg lucideRefreshCw class="w-5 h-5 lg:w-6 lg:h-6 animate-spin" [ngClass]="{'animate-none!': profileData()?.activityLevel}"></svg>
                     </span>
                 </div>
 
                 <div class="text-center capitalize">
                     <h4 class="font-bold text-4xl">{{'account settings.weight' | translate}}</h4>
-                    <button class="uppercase mb-4 underline cursor-pointer">{{'account settings.tAP TO CHANGE' | translate}}</button>
+                    <button (click)="showDialog('weight')" class="uppercase mb-4 underline cursor-pointer">{{'account settings.tAP TO CHANGE' | translate}}</button>
 
                     <span class=" bg-primary flex justify-between items-center px-6 py-3 border rounded-full mx-auto w-[50%]">
-                        <p class="font-bold">lose weight</p>
-                        <svg lucideRefreshCw class="w-5 h-5 lg:w-6 lg:h-6"></svg>
+                        <p class="font-bold">{{profileData()?.weight || ''}}</p>
+                        <svg lucideRefreshCw class="w-5 h-5 lg:w-6 lg:h-6 animate-spin" [ngClass]="{'animate-none!': profileData()?.weight}"></svg>
                     </span>
                 </div>
             </div>
@@ -68,7 +68,7 @@
                         <p class="font-medium">{{'account settings.Help' | translate}}</p>
                     </div>
 
-                    <div class="lg:col-start-2 border rounded-2xl py-16 flex flex-col justify-center items-center">
+                    <div (click)="logout()" class="lg:col-start-2 border rounded-2xl py-16 flex flex-col justify-center items-center cursor-pointer">
                         <svg lucideCircleArrowOutUpRight class="w-5 h-5 text-primary mb-3 rotate-45"></svg>
                         <p class="font-medium">{{'account settings.Logout' | translate}}</p>
                     </div>
@@ -77,3 +77,46 @@
         </div>
     </div>
 </section>
+
+
+
+<p-dialog 
+    maskStyleClass="bg-[#24242499]! backdrop-blur-[2px]" 
+    contentStyleClass="p-4! pt-9!"
+    [dismissableMask]="true"
+    [modal]="true"
+    [(visible)]="visible"
+    [style]="{ width: '35rem' }"
+>
+    <div class=" text-center ">
+        <h6 class="text-4xl font-bold capitalize">what is your Goal ?</h6>
+        <p class="text-xl capitalize">this helps us create Your personalized plan</p>
+    </div>
+
+    <div class="step-container">
+        <div class="radio-list">
+            @for (item of items(); track $index) {
+                <label class="radio-item bg-[#D3D3D333] border-[#D9D9D9]" [class.selected]="selected() === item.value">
+                    <input
+                        type="radio"
+                        name="item"
+                        [value]="item.value"
+                        (change)="selected.set(item.value)"
+                        hidden
+                    />
+                    <span class="radio-label">{{ item.label }}</span>
+                    <span class="radio-circle border-[#D9D9D9]" [class.checked]="selected() === item.value"></span>
+                </label>
+            }
+        </div>
+        <app-button 
+            class="w-full" 
+            styleClass="py-4 rounded-3xl!" 
+            type="button" 
+            (onClick)="updateProfileData()" 
+            [isLoading]="formSubmited()"
+        >
+            Save
+        </app-button>
+    </div>
+</p-dialog>

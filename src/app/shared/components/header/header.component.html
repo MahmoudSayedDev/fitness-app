@@ -33,18 +33,18 @@
         </ul>
       </nav>
 
-      <div class="hidden sm:flex items-center justify-end gap-2 lg:gap-4">
+      <div class="hidden sm:flex justify-end items-center gap-4 lg:gap-x-9">
 
         @if (isAuthenticated()) {
           <a [routerLink]="['/account-settings']" class="bg-primary text-white rounded-full p-2 lg:p-2.5">
             <svg lucideUser class="w-5 h-5 lg:w-6 lg:h-6"></svg>
           </a>
         } @else {
-          <app-button type="button" [withArrow]="true" styleClass="border px-3 lg:px-6 py-2 rounded-full text-sm lg:text-base">
+          <app-button [routerLink]="['/auth/login']" type="button" [withArrow]="true" styleClass="border border-primary! px-3 lg:px-7 py-2 rounded-full text-sm lg:text-base">
             {{'auth.login' | translate}}
           </app-button>
 
-          <app-button type="button" [outline]="true" [withArrow]="true" styleClass="border px-3 lg:px-5 py-2 rounded-full text-sm lg:text-base">
+          <app-button [routerLink]="['/auth/register']" type="button" [outline]="true" [withArrow]="true" styleClass="border px-3 lg:px-5 py-2 rounded-full text-sm lg:text-base">
             {{'auth.sign up' | translate}}
           </app-button>
         }
