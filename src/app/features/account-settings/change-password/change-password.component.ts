@@ -1,4 +1,4 @@
-import { Component, inject, model, OnInit, signal } from '@angular/core';
+import { Component, DestroyRef, inject, model, OnInit, signal } from '@angular/core';
 import { InputComponent } from '../../../shared/components/input/input.component';
 import { FieldErrorComponent } from '../../../shared/components/field-error/field-error.component';
 import { ButtonComponent } from '../../../shared/components/button/button.component';
@@ -6,6 +6,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { TranslatePipe } from '@ngx-translate/core';
 import { VALIDATION_PATTERNS } from '../../../core/validators/patterns';
 import { AuthService } from '../../../core/auth/services/auth.service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   imports: [
@@ -22,6 +23,7 @@ import { AuthService } from '../../../core/auth/services/auth.service';
 export class ChangePasswordComponent implements OnInit {
 
   private _authService = inject(AuthService)
+  private readonly destroyRef = inject(DestroyRef);
   private fb = inject(FormBuilder)
 
   form!: FormGroup
@@ -43,12 +45,12 @@ export class ChangePasswordComponent implements OnInit {
 
   submit() {
     this.formSubmited.set(true)
-    
+
     if (this.form.invalid) {
       return
     }
 
-    this._authService.changePassword(this.form.value).subscribe({
+    this._authService.changePassword(this.form.value).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: () => {
         this.visible.set(false)
         this.formSubmited.set(false)

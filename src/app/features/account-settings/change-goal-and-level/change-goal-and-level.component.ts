@@ -1,9 +1,10 @@
-import { Component, inject, input, model, OnInit, signal } from '@angular/core';
+import { Component, DestroyRef, inject, input, model, OnInit, signal } from '@angular/core';
 import { AuthService } from '../../../core/auth/services/auth.service';
 import { User } from '../../../core/auth/models/profile-data.interface';
 import { ActivityLevel, Goal, RegistrationData, SelectionItem } from '../../auth/register/models/register.models';
 import { TranslatePipe } from '@ngx-translate/core';
 import { ButtonComponent } from '../../../shared/components/button/button.component';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   imports: [
@@ -17,6 +18,7 @@ import { ButtonComponent } from '../../../shared/components/button/button.compon
 export class ChangeGoalAndLevelComponent implements OnInit {
 
   private _authService = inject(AuthService)
+  private readonly destroyRef = inject(DestroyRef);
 
   dialogKey = input<string>()
   visible = model<boolean>(false);
@@ -80,14 +82,14 @@ export class ChangeGoalAndLevelComponent implements OnInit {
         break;
     }
 
-    this._authService.updateProfileData(dataToSend).subscribe({
+    this._authService.updateProfileData(dataToSend).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: (res) => {
-       this.visible.set(false)
+        this.visible.set(false)
         this.formSubmited.set(false)
         this.profileData.set(res.user)
       }, error: (err) => {
         console.log(err);
-       this.visible.set(false)
+        this.visible.set(false)
         this.formSubmited.set(false)
       }
     })

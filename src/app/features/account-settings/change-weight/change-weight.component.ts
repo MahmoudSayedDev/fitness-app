@@ -1,10 +1,11 @@
-import { Component, inject, input, model, signal } from '@angular/core';
+import { Component, DestroyRef, inject, input, model, signal } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
 import { ButtonComponent } from '../../../shared/components/button/button.component';
 import { AuthService } from '../../../core/auth/services/auth.service';
 import { WheelSelectorComponent } from '../../auth/register/components/wheel-selector/wheel-selector.component';
 import { RegistrationData } from '../../auth/register/models/register.models';
 import { User } from '../../../core/auth/models/profile-data.interface';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   imports: [
@@ -19,6 +20,7 @@ import { User } from '../../../core/auth/models/profile-data.interface';
 export class ChangeWeightComponent {
 
   private _authService = inject(AuthService)
+  private readonly destroyRef = inject(DestroyRef);
 
   visible = model<boolean>(false);
   profileData = model<User | null>()
@@ -38,7 +40,7 @@ export class ChangeWeightComponent {
       weight: selectedValue
     };
 
-    this._authService.updateProfileData(dataToSend).subscribe({
+    this._authService.updateProfileData(dataToSend).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: (res) => {
         this.visible.set(false)
         this.formSubmited.set(false)
