@@ -7,6 +7,7 @@
       "previous": "Previous",
       "start": "Start",
       "submite": "Submit",
+      "Save": "Save",
       "save-changes": "Save Changes",
       "delete-my-account": "Delete My Account",
       "retry": "Retry",
@@ -29,17 +30,17 @@
       "Contact us": "Contact us"
     },
     "validation": {
-      "required": "This field is required",
-      "This field is required": "This field is required",
-      "Please enter a valid email.": "Please enter a valid email.",
-      "passwordMismatch": "Passwords do not match",
-      "PASSWORD_REQ_ERROR": "Password is required",
-      "CPASSWORD_REQ_ERROR": "Confirm password is required",
-      "EMAIL_REQ_ERROR": "Email is required",
-      "PASSWORD_PATTERN_ERROR": "Please enter a valid password",
-      "USERNAME_REQ_ERROR": "Username is required",
-      "FN_REQ_ERROR": "First Name is required",
-      "LN_REQ_ERROR": "Last Name is required",
+      "required": "{{label}} is required.",
+      "requiredTrue": "You must accept {{label}} to continue.",
+      "email": "Enter a valid {{label}} address.",
+      "minlength": "{{label}} must be at least {{requiredLength}} characters (currently {{actualLength}}).",
+      "maxlength": "{{label}} must be no more than {{requiredLength}} characters.",
+      "min": "{{label}} must be {{min}} or greater.",
+      "max": "{{label}} must be {{max}} or less.",
+      "pattern": "The format entered for {{label}} isn't valid.",
+      "defaultLabel": "This field",
+      "defaultAcceptLabel": "this",
+      "defaultEmailLabel": "email",
       "PASSWORD_PATTERN_ERRORS": {
         "8 or more characters": "8 or more characters",
         "At least one uppercase letter A-Z": "At least one uppercase letter A-Z",
@@ -47,6 +48,9 @@
         "At least one number 0-9": "At least one number 0-9",
         "At least one special character like": "At least one special character like #@&-"
       }
+    },
+    "units": {
+      "kg": "kg"
     }
   },
   "auth": {
@@ -149,7 +153,33 @@
     "headingEnd": "for you"
   },
   "account settings": {
-    "title": "account settings"
+    "title": "account settings",
+    "your Goal": "your Goal",
+    "level": "level",
+    "weight": "weight",
+    "tAP TO CHANGE": "tAP TO CHANGE",
+    "Change Password": "Change Password",
+    "Select Language": "Select Language",
+    "Mood": "Mood",
+    "light": "light",
+    "dark": "dark",
+    "Security": "Security",
+    "Privacy Policy": "Privacy Policy",
+    "Help": "Help",
+    "Logout": "Logout",
+    "current-lang": "العربية",
+    "dialog": {
+      "what is your Goal ?": "what is your Goal ?",
+      "what is your weight ?": "what is your weight ?",
+      "your regular physical activity level ?": "your regular physical activity level ?",
+      "this helps us create Your personalized plan": "this helps us create Your personalized plan",
+      "change password": "Change Password",
+      "Current Password": "Current Password",
+      "Enter Current Password": "Enter Current Password",
+      "New Password": "New Password",
+      "Enter new Password": "Enter New Password",
+      "Please enter a valid password": "Please enter a valid password"
+    }
   },
   "marquee-banner": {
     "outdoor & online trainers": "outdoor & online trainers",

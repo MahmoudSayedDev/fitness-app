@@ -1,0 +1,17 @@
+#acc {
+    background-image: url(/assets/imgs/auth_bg.webp);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.step-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2.5rem;
+    min-height: 100%;
+    padding: 2rem;
+    width: 100%;
+    background: transparent;
+}

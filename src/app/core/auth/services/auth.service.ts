@@ -22,7 +22,7 @@ export class AuthService {
     private readonly currentUser = signal<User | null>(null)
     private readonly cookieService = inject(CookieService);
 
-    readonly isAuthenticated = computed<boolean>(() => this.getToken() !== null)
+    readonly isAuthenticated = signal<boolean>(this.getToken() !== '');
 
     login(data: LoginReq): Observable<RegisterRes> {
         return this._httpClient.post<RegisterRes>(this.api + '/auth/signin', data).pipe(
@@ -49,7 +49,11 @@ export class AuthService {
     }
 
     changePassword(data: ChangePasswordReq): Observable<{}> {
-        return this._httpClient.patch<{}>(this.api + '/auth/change-password', data)
+        return this._httpClient.patch<RegisterRes>(this.api + '/auth/change-password', data).pipe(
+            tap(res => {
+                this.handleAuthentication(res);
+            })
+        )
     }
 
 
@@ -91,12 +95,14 @@ export class AuthService {
 
     private handleAuthentication(response: RegisterRes): void {
         this.cookieService.set(this.TOKEN_KEY, response.token);
-        this.currentUser.set(response.user);
+        this.currentUser.set(this.currentUser() || response.user);
+        this.isAuthenticated.set(true);
     }
 
     private clearAuthentication(): void {
         this.cookieService.delete(this.TOKEN_KEY);
         this.currentUser.set(null);
+        this.isAuthenticated.set(false);
     }
 
     getToken() {
