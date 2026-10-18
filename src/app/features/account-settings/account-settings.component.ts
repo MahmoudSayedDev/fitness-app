@@ -9,9 +9,10 @@ import { AuthService } from '../../core/auth/services/auth.service';
 import { User } from '../../core/auth/models/profile-data.interface';
 import { NgClass } from '@angular/common';
 import { DialogModule } from 'primeng/dialog';
-import { ButtonComponent } from '../../shared/components/button/button.component';
 import { Router } from '@angular/router';
-import { ActivityLevel, Goal, RegistrationData, SelectionItem } from '../auth/register/models/register.models';
+import { ChangeWeightComponent } from './change-weight/change-weight.component';
+import { ChangeGoalAndLevelComponent } from './change-goal-and-level/change-goal-and-level.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 @Component({
   imports: [
@@ -27,7 +28,9 @@ import { ActivityLevel, Goal, RegistrationData, SelectionItem } from '../auth/re
     FormsModule,
     NgClass,
     DialogModule,
-    ButtonComponent
+    ChangeGoalAndLevelComponent,
+    ChangeWeightComponent,
+    ChangePasswordComponent
   ],
   selector: 'app-account-settings',
   styleUrl: './account-settings.component.scss',
@@ -40,20 +43,15 @@ export class AccountSettingsComponent implements OnInit {
   private _authService = inject(AuthService)
   private _router = inject(Router)
 
+  dialogKey = signal('');
+  visible = signal<boolean>(false);
   profileData = signal<User | null>(null)
-
-  visible: boolean = false;
-  dialogKey = signal('goal');
-  items = signal<SelectionItem[]>([])
-  selected = signal<Goal | ActivityLevel | null>(null);
-  formSubmited = signal<boolean>(false)
 
   checked = signal<boolean>(false);
   currentTheme = this._themeSwitcherService.currentTheme;
 
   ngOnInit(): void {
     this.checked.set(this.currentTheme() == 'dark')
-
     this.getProfileData()
   }
 
@@ -70,67 +68,7 @@ export class AccountSettingsComponent implements OnInit {
 
   showDialog(key: string) {
     this.dialogKey.set(key);
-    this.selected.set(null);
-    this.visible = true
-
-    switch (key) {
-      case 'goal':
-        this.items.set([
-          { value: 'Gain weight', label: 'Gain Weight' },
-          { value: 'Lose weight', label: 'Lose Weight' },
-          { value: 'Get fitter', label: 'Get Fitter' },
-          { value: 'Gain more flexible', label: 'Gain More Flexible' },
-          { value: 'Learn the basic', label: 'Learn The Basic' },
-        ])
-        break;
-      case 'level':
-        this.items.set([
-          { value: 'level1', label: 'Sedentary' },
-          { value: 'level2', label: 'Lightly Active' },
-          { value: 'level3', label: 'Moderately Active' },
-          { value: 'level4', label: 'Very Active' },
-          { value: 'level5', label: 'Extra Active' },
-        ])
-        break;
-
-      default:
-        break;
-    }
-  }
-
-  updateProfileData() {
-    this.formSubmited.set(true)
-    const selectedValue = this.selected();
-
-    if (selectedValue === null) {
-      return;
-    }
-
-    const dataToSend: Partial<RegistrationData> = {};
-
-    switch (this.dialogKey()) {
-      case 'goal':
-        dataToSend.goal = selectedValue as Goal;
-        break;
-      case 'level':
-        dataToSend.activityLevel = selectedValue as ActivityLevel;
-        break;
-
-      default:
-        break;
-    }
-
-    this._authService.updateProfileData(dataToSend).subscribe({
-      next: (res) => {
-        this.visible = false
-        this.formSubmited.set(false)
-        this.profileData.set(res.user)
-      }, error: (err) => {
-        console.log(err);
-        this.visible = false
-        this.formSubmited.set(false)
-      }
-    })
+    this.visible.set(true)
   }
 
   toggleLanguage() {

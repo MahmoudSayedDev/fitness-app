@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { authGuard } from '../../core/guards/auth/auth.guard';
 
 export const ContentRoutes: Routes = [
     {
@@ -14,6 +15,7 @@ export const ContentRoutes: Routes = [
     },
     {
         path: 'account-settings',
-        loadComponent: () => import('../../features/account-settings/account-settings.component').then((C) => C.AccountSettingsComponent)
+        loadComponent: () => import('../../features/account-settings/account-settings.component').then((C) => C.AccountSettingsComponent),
+        canActivate: [authGuard]
     }
 ];

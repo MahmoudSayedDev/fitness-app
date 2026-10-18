@@ -49,7 +49,11 @@ export class AuthService {
     }
 
     changePassword(data: ChangePasswordReq): Observable<{}> {
-        return this._httpClient.patch<{}>(this.api + '/auth/change-password', data)
+        return this._httpClient.patch<RegisterRes>(this.api + '/auth/change-password', data).pipe(
+            tap(res => {
+                this.handleAuthentication(res);
+            })
+        )
     }
 
 
@@ -91,7 +95,7 @@ export class AuthService {
 
     private handleAuthentication(response: RegisterRes): void {
         this.cookieService.set(this.TOKEN_KEY, response.token);
-        this.currentUser.set(response.user);
+        this.currentUser.set(this.currentUser() || response.user);
         this.isAuthenticated.set(true);
     }
 

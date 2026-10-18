@@ -1,0 +1,24 @@
+<div class="text-center">
+    <h6 class="text-xl lg:text-4xl font-bold capitalize">{{'account settings.dialog.what is your weight ?' | translate}}</h6>
+    <p class="text-md lg:text-xl capitalize">{{'account settings.dialog.this helps us create Your personalized plan' | translate}}</p>
+</div>
+
+<div class="my-7">
+    <app-wheel-selector
+        [min]="45"
+        [max]="150"
+        [unit]="'common.units.kg' | translate"
+        [initialValue]="selected()"
+        (valueChange)="selected.set($event)"
+    />
+</div>
+
+<app-button 
+    class="w-full" 
+    styleClass="py-4 rounded-3xl!" 
+    type="button" 
+    (onClick)="save()" 
+    [isLoading]="formSubmited()"
+>
+    {{'common.actions.Save' | translate}}
+</app-button>

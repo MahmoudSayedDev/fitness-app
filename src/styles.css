@@ -8,7 +8,6 @@
 @import "primeicons/primeicons.css";
 @custom-variant dark (&:where(.dark, .dark *));
 
-
 :root {
   --p-primary-color: #FF4100 !important;
   --p-primary-hover-color: #FF4100 !important;
@@ -18,6 +17,8 @@
   --p-toggleswitch-hover-background: #242424 !important;
 
   --p-dialog-border-radius: 24px !important;
+
+  --field-error-color: #ec003f;
 }
 
 .dark {
@@ -54,4 +55,8 @@ html[lang="en"] .lang-switcher {
 
 .p-dialog-header {
   display: none !important;
+}
+
+.text-error-color {
+  color: var(--field-error-color);
 }
