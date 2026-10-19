@@ -1,0 +1,34 @@
+<div class="text-center">
+    @if (dialogKey() == 'goal') {
+        <h6 class="text-xl lg:text-4xl font-bold capitalize">{{'account settings.dialog.what is your Goal ?' | translate}}</h6>
+    } @else if (dialogKey() == 'level') {
+        <h6 class="text-xl lg:text-4xl font-bold capitalize">{{'account settings.dialog.your regular physical activity level ?' | translate}}</h6>
+    } 
+    <p class="text-md lg:text-xl capitalize">{{'account settings.dialog.this helps us create Your personalized plan' | translate}}</p>
+</div>
+
+<div class="radio-list mx-auto my-7">
+    @for (item of items(); track $index) {
+        <label class="radio-item bg-[#D3D3D333] border-[#D9D9D9]" [class.selected]="selected() === item.value">
+            <input
+                type="radio"
+                name="item"
+                [value]="item.value"
+                (change)="selected.set(item.value)"
+                hidden
+            />
+            <span class="radio-label">{{ item.label }}</span>
+            <span class="radio-circle border-[#D9D9D9]" [class.checked]="selected() === item.value"></span>
+        </label>
+    }
+</div>
+
+<app-button 
+    class="w-full" 
+    styleClass="py-4 rounded-3xl!" 
+    type="button" 
+    (onClick)="save()" 
+    [isLoading]="formSubmited()"
+>
+    {{'common.actions.Save' | translate}}
+</app-button>

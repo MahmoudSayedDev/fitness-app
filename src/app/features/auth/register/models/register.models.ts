@@ -12,6 +12,11 @@ export interface RegistrationData {
   activityLevel: ActivityLevel;
 }
 
+export interface SelectionItem {
+  label: string;
+  value: Goal | ActivityLevel;
+}
+
 export type Gender = 'male' | 'female';
 
 export type Goal =

@@ -7,6 +7,7 @@
             "previous": "السابق",
             "start": "ابدأ",
             "submite": "إرسال",
+            "Save": "حفظ",
             "save-changes": "حفظ التغييرات",
             "delete-my-account": "حذف حسابي",
             "retry": "إعادة المحاولة",
@@ -30,16 +31,17 @@
             "Contact us": "تواصل معنا"
         },
         "validation": {
-            "required": "هذا الحقل مطلوب",
-            "This field is required": "هذا الحقل مطلوب",
-            "Please enter a valid email.": "يرجى إدخال بريد إلكتروني صالح.",
-            "passwordMismatch": "كلمتا المرور غير متطابقتين",
-            "PASSWORD_REQ_ERROR": "كلمة المرور مطلوبة",
-            "EMAIL_REQ_ERROR": "البريد الإلكتروني مطلوب",
-            "PASSWORD_PATTERN_ERROR": "يرجى إدخال كلمة مرور صالحة",
-            "USERNAME_REQ_ERROR": "اسم المستخدم مطلوب",
-            "FN_REQ_ERROR": "الاسم الأول مطلوب",
-            "LN_REQ_ERROR": "الاسم الأخير مطلوب",
+            "required": "حقل {{label}} مطلوب.",
+            "requiredTrue": "يجب الموافقة على {{label}} للمتابعة.",
+            "email": "يرجى إدخال {{label}} صحيح.",
+            "minlength": "يجب ألا يقل طول {{label}} عن {{requiredLength}} أحرف (الطول الحالي {{actualLength}}).",
+            "maxlength": "يجب ألا يزيد طول {{label}} عن {{requiredLength}} أحرف.",
+            "min": "يجب أن تكون قيمة {{label}} أكبر من أو تساوي {{min}}.",
+            "max": "يجب أن تكون قيمة {{label}} أقل من أو تساوي {{max}}.",
+            "pattern": "التنسيق المُدخل لحقل {{label}} غير صحيح.",
+            "defaultLabel": "هذا الحقل",
+            "defaultAcceptLabel": "هذا",
+            "defaultEmailLabel": "البريد الإلكتروني",
             "PASSWORD_PATTERN_ERRORS": {
                 "8 or more characters": "8 خانات أو أكثر",
                 "At least one uppercase letter A-Z": "حرف واحد كبير على الأقل A-Z",
@@ -47,6 +49,9 @@
                 "At least one number 0-9": "رقم واحد على الأقل 0-9",
                 "At least one special character like": "رمز واحد على الأقل مثل #@&-"
             }
+        },
+        "units": {
+            "kg": "كجم"
         }
     },
     "auth": {
@@ -169,7 +174,33 @@
         }
     },
     "account settings": {
-        "title": "إعدادات الحساب"
+        "title": "إعدادات الحساب",
+        "your Goal": "هدفك",
+        "level": "المستوى",
+        "weight": "الوزن",
+        "tAP TO CHANGE": "اضغط للتغيير",
+        "Change Password": "تغيير كلمة المرور",
+        "Select Language": "اختر اللغة",
+        "Mood": "السمة",
+        "light": "فاتح",
+        "dark": "داكن",
+        "Security": "الامان",
+        "Privacy Policy": "سياسة الخصوصية",
+        "Help": "مساعدة",
+        "Logout": "تسجيل خروج",
+        "current-lang": "English",
+        "dialog": {
+            "what is your Goal ?": "ما هو هدفك؟",
+            "what is your weight ?": "ما هو وزنك؟",
+            "your regular physical activity level ?": "ما مستوى نشاطك البدني المعتاد؟",
+            "this helps us create Your personalized plan": "يساعدنا هذا في إعداد خطة مخصصة لك",
+            "change password": "تغيير كلمة المرور",
+            "Current Password": "كلمة المرور الحالية",
+            "Enter Current Password": "أدخل كلمة المرور الحالية",
+            "New Password": "كلمة المرور الجديدة",
+            "Enter new Password": "أدخل كلمة المرور الجديدة",
+            "Please enter a valid password": "يرجى إدخال كلمة مرور صحيحة"
+        }
     },
     "marquee-banner": {
         "outdoor & online trainers": "مدربون في الهواء الطلق وعبر الإنترنت",
