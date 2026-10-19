@@ -15,6 +15,7 @@
       "checkout": "checkout",
       "Get Started": "Get Started",
       "Explore More": "Explore More",
+      "explore": "Explore",
       "read more": "read more",
       "Add Address": "Add Address",
       "Update Address": "Update Address",
@@ -146,7 +147,15 @@
     "title": "healthy",
     "headingStart": "Fuel your fitness journey with customized",
     "headingHighlight": "meal plans",
-    "headingEnd": "for you"
+    "headingEnd": "for you",
+    "details": {
+      "ingredients": "Ingredients",
+      "category": "Category",
+      "area": "Area",
+      "ingredientsCount": "Items",
+      "loading": "Loading...",
+      "notFound": "Meal not found."
+    }
   },
   "account settings": {
     "title": "account settings"
