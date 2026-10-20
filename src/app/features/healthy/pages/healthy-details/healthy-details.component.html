@@ -1,0 +1,99 @@
+<div class="cover pt-36 pb-16 bg-cover bg-center bg-no-repeat relative" >
+    <div class="layer bg-[#ffffff99] dark:bg-[#24242499] backdrop-blur-[86px] absolute inset-0"></div>
+
+    <div class="container mx-auto px-7 lg:px-0 relative">
+        <!-- header -->
+        <div class="title-sction flex justify-center items-center gap-4 mb-10 pt-2">
+            <span class="uppercase text-transparent text-6xl lg:text-7xl absolute -top-full start-1/2 -translate-x-1/2 rtl:translate-x-1/2 whitespace-nowrap" style="-webkit-text-stroke: 1px #818181;">{{'healthy.title' | translate}}</span>
+            <svg lucideDumbbell class="size-7 rotate-45 text-primary relative z-10" strokeWidth="1"></svg>
+        </div>
+
+        <div class="grid grid-cols-12 gap-7 items-start">
+            <!-- side list -->
+            <aside class="col-span-12 lg:col-span-4 rounded-xl bg-[#FFFFFF80] dark:bg-[#24242480] backdrop-blur-[58.2px] p-4">
+                <div class="categories-carousel mb-4">
+                    <swiper-container
+                        slides-per-view="auto"
+                        space-between="8"
+                        free-mode="true"
+                        style="width: 100%"
+                    >
+                        @for (category of mealsCategories(); track category.idCategory) {
+                            <swiper-slide style="width: auto">
+                                <button
+                                    type="button"
+                                    class="category-tab"
+                                    [class.active]="selectedCategory() === category.strCategory"
+                                    (click)="selectCategory(category.strCategory)"
+                                >
+                                    {{ category.strCategory }}
+                                </button>
+                            </swiper-slide>
+                        }
+                    </swiper-container>
+                </div>
+
+                <ul class="meals-list max-h-[640px] overflow-y-auto">
+                    @for (meal of meals(); track meal.idMeal) {
+                        <li>
+                            <a
+                                [routerLink]="['/healthy', meal.idMeal]"
+                                class="meal-item flex items-center gap-4 p-3 rounded-lg"
+                                [class.active]="meal.idMeal === mealDetails()?.idMeal"
+                            >
+                                <img class="size-16 rounded-xl object-cover shrink-0" [src]="meal.strMealThumb" [alt]="meal.strMeal" loading="lazy">
+                                <span class="font-medium line-clamp-2">{{ meal.strMeal }}</span>
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </aside>
+
+            <!-- details -->
+            <section class="col-span-12 lg:col-span-8">
+                @if (isLoadingDetails()) {
+                    <div class="text-center font-semibold py-24">{{ 'healthy.details.loading' | translate }}</div>
+                } @else if (mealDetails(); as meal) {
+                    <div class="hero rounded-t-xl overflow-hidden relative bg-cover bg-center min-h-[400px] flex items-end" [style.background-image]="'url(' + meal.strMealThumb + ')'">
+                        <div class="relative z-10 w-full p-6 text-white">
+                            <h1 class="text-4xl lg:text-5xl font-medium text-center mb-6">{{ meal.strMeal }}</h1>
+                            <p class="opacity-90 line-clamp-4 mb-6">{{ meal.strInstructions }}</p>
+
+                            <div class="flex flex-wrap justify-between gap-4">
+                                <div class="stat">
+                                    <span>{{ meal.strCategory }}</span>
+                                    <span class="text-primary font-semibold">{{ 'healthy.details.category' | translate }}</span>
+                                </div>
+                                <div class="stat">
+                                    <span>{{ meal.strArea }}</span>
+                                    <span class="text-primary font-semibold">{{ 'healthy.details.area' | translate }}</span>
+                                </div>
+                                <div class="stat">
+                                    <span>{{ ingredients().length }}</span>
+                                    <span class="text-primary font-semibold">{{ 'healthy.details.ingredientsCount' | translate }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="rounded-b-xl bg-[#FFFFFF80] dark:bg-[#24242480] backdrop-blur-[58.2px] p-4">
+                        <h4 class="text-3xl font-medium mb-5">{{ 'healthy.details.ingredients' | translate }}</h4>
+
+                        <div class="grid md:grid-cols-2 gap-x-16">
+                            @for (ingredient of ingredients(); track $index) {
+                                <div class="ingredient flex justify-between gap-4 py-2 text-sm">
+                                    <span class="font-semibold">{{ ingredient.name }}</span>
+                                    <span class="text-primary text-end">{{ ingredient.measure }}</span>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                } @else {
+                    <p class="text-center opacity-75 py-24">{{ 'healthy.details.notFound' | translate }}</p>
+                }
+            </section>
+        </div>
+    </div>
+</div>
+
+<app-marquee-banner></app-marquee-banner>

@@ -14,7 +14,14 @@ export const ContentRoutes: Routes = [
         loadComponent: () => import('../../features/about-us/about-us.component').then((C) => C.AboutUsComponent)
     },
     {
-        path: 'account-settings',
+        path: 'healthy',
+        loadComponent: () => import('../../features/healthy/healthy.component').then((C) => C.HealthyComponent)
+    },
+    {
+        path: 'healthy/:id',
+        loadComponent: () => import('../../features/healthy/pages/healthy-details/healthy-details.component').then((C) => C.HealthyDetailsComponent)
+    },
+    {   path: 'account-settings',
         loadComponent: () => import('../../features/account-settings/account-settings.component').then((C) => C.AccountSettingsComponent),
         canActivate: [authGuard]
     }

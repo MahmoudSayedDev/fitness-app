@@ -16,6 +16,7 @@
             "checkout": "دفع",
             "Get Started": "ابدأ الان",
             "Explore More": "اكتشف المزيد",
+            "explore": "اكتشف",
             "read more": "اقرأ المزيد",
             "Add Address": "إضافة العنوان",
             "Update Address": "تحديث العنوان",
@@ -162,7 +163,15 @@
         "title": "التغذية صحية",
         "headingStart": "عزز رحلتك نحو اللياقة البدنية",
         "headingHighlight": "بخطط وجبات",
-        "headingEnd": "مصممة خصيصاً لك"
+        "headingEnd": "مصممة خصيصاً لك",
+        "details": {
+            "ingredients": "المكونات",
+            "category": "التصنيف",
+            "area": "المطبخ",
+            "ingredientsCount": "عناصر",
+            "loading": "جارٍ التحميل...",
+            "notFound": "لم يتم العثور على الوجبة."
+        }
     },
     "account settings": {
         "title": "إعدادات الحساب",
