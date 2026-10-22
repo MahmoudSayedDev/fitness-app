@@ -1,0 +1,48 @@
+<div
+  class="cursor-pointer border-b border-[#3333] dark:border-[#333] py-3 ps-1.75 pe-2.5 transition hover:bg-[#00000008] dark:hover:bg-[#ffffff0a]"
+>
+  <div class="flex items-center gap-3.5">
+    <div class="w-18 h-20 rounded-[14px] overflow-hidden shrink-0">
+      <img
+        [youtubeFallback]="exercise().short_youtube_demonstration_link"
+        class="object-cover w-full h-full"
+        [src]="exercise().short_youtube_demonstration_link | youtubeThumbnail"
+        [alt]="exercise().exercise"
+        loading="lazy"
+      />
+    </div>
+    <div class="flex flex-col justify-between flex-1">
+      <h4 class="font-semibold text-[#111827] dark:text-[#F3F3F4]">{{ exercise().exercise }}</h4>
+      <p class="text-[13px] text-primary font-medium">
+        Compound • {{ exercise().primary_equipment }}
+      </p>
+      <p class="text-xs text-[#0000008c] dark:text-[#ffffff94]">
+        Abdominals • {{ exercise().prime_mover_muscle }}
+      </p>
+      <p class="text-xs text-[#0000008c] dark:text-[#ffffff94]">
+        {{ exercise().movement_pattern_1 }}
+      </p>
+    </div>
+    <button class="cursor-pointer w-6 h-6 rounded-full bg-primary flex items-center justify-center">
+      <svg
+        class="size-4 translate-x-0.5"
+        version="1.1"
+        viewBox="0 0 13 14"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:sketch="http://www.bohemiancoding.com/sketch/ns"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+      >
+        <title></title>
+        <desc></desc>
+        <defs></defs>
+        <g fill="none" fill-rule="evenodd" id="Page-1" stroke="none" stroke-width="1">
+          <g fill="#000000" id="Icons-AV" transform="translate(-88.000000, -88.000000)">
+            <g id="play-arrow" transform="translate(88.500000, 88.000000)">
+              <path d="M0,0 L0,14 L11,7 L0,0 Z" id="Shape"></path>
+            </g>
+          </g>
+        </g>
+      </svg>
+    </button>
+  </div>
+</div>

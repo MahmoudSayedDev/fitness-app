@@ -112,6 +112,12 @@
       "feature2Desc": "Every program is built around measurable results and continuous progress tracking.",
       "feature3Title": "State-Of-The-Art Equipment",
       "feature3Desc": "Train with the latest fitness technology in a modern, inspiring environment."
+    },
+    "workouts": {
+      "bgText": "WORKOUTS",
+      "subtitle": "Fitness Class",
+      "title": "TRANSFORM YOUR BODY WITH OUR DYNAMIC",
+      "titleHighlight": "UPCOMING WORKOUTS"
     }
   },
   "about": {
@@ -140,7 +146,9 @@
     }
   },
   "classes": {
-    "title": "classes"
+    "title": "classes",
+    "bgText": "WORKOUTS",
+    "subtitle": "Fitness Class"
   },
   "healthy": {
     "title": "healthy",

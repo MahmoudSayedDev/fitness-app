@@ -1,0 +1,28 @@
+<div class="rounded-2xl overflow-hidden relative h-full">
+  <img [src]="muscle().image" [alt]="muscle().name" class="w-full h-100 block object-cover" />
+  <div
+    class="w-full bg-[#f4f4f5] dark:bg-[#27272a] backdrop-blur-[68.2px] absolute bottom-0 left-0 p-4 space-y-2"
+  >
+    <h3
+      class="text-[22px] font-bold text-[#242424] dark:text-[#F3F3F4] uppercase tracking-[2.25px]"
+    >
+      {{ muscle().name }}
+    </h3>
+    <button
+      (click)="exploreClick()"
+      class="cursor-pointer flex items-center gap-2 text-xl font-medium text-primary"
+    >
+      <span>Explore</span>
+      <span class="w-6 h-6 bg-primary rounded-full flex justify-center items-center">
+        <svg width="7" height="7" viewBox="0 0 7 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M5.76999 0.339434C4.9425 1.16692 3.4345 1.16725 2.60667 0.339431L2.26726 1.92322e-05L1.58844 0.678842L1.92785 1.01825C2.52997 1.62037 3.35881 1.92109 4.18799 1.92143L-2.55913e-06 6.10943L0.67882 6.78825L4.86682 2.60025C4.86716 3.42943 5.16787 4.25828 5.76999 4.86039L6.1094 5.1998L6.78822 4.52098L6.44881 4.18157C5.62099 3.35375 5.62133 1.84574 6.44881 1.01826L6.78822 0.678845L6.1094 2.2604e-05L5.76999 0.339434Z"
+            fill="#171E2E"
+          />
+        </svg>
+      </span>
+    </button>
+  </div>
+</div>

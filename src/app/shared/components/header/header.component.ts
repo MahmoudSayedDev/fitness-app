@@ -28,7 +28,7 @@ export class HeaderComponent implements OnInit {
   isAuthenticated = this._authService.isAuthenticated
 
   ngOnInit(): void {
-    console.log(this.isAuthenticated());
+    // console.log(this.isAuthenticated());
   }
 
   toggleMenu() {

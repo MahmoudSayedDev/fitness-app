@@ -1,0 +1,215 @@
+:host {
+  --title-color: #18181b;
+  --overlay-bg: rgba(255, 255, 255, 0.6);
+  --tab-text: #18181b;
+  --dot-inactive: #3f3f46;
+  display: block;
+}
+
+:host-context(.dark) {
+  --title-color: #ffffff;
+  --overlay-bg: rgba(0, 0, 0, 0.65);
+  --tab-text: #ffffff;
+  --dot-inactive: #d4d4d8;
+}
+
+.workouts-section {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.section-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url(/assets/imgs/workoutsbg.jpg);
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60%;
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      transparent 20%,
+      var(--overlay-bg) 20%,
+      var(--overlay-bg) 50%,
+      transparent 100%
+    );
+    pointer-events: none;
+  }
+}
+
+.section-blur {
+  position: absolute;
+  top: 20%;
+  left: 0;
+  right: 0;
+  height: 30%;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 1;
+  pointer-events: none;
+  mask-image: linear-gradient(180deg, transparent 0%, black 15%, black 70%, transparent 100%);
+  -webkit-mask-image: linear-gradient(
+    180deg,
+    transparent 0%,
+    black 15%,
+    black 70%,
+    transparent 100%
+  );
+}
+
+.section-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1200px;
+  // padding: 4rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.section-header {
+  position: relative;
+  text-align: center;
+}
+
+.bg-text {
+  position: absolute;
+  top: -1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Baloo Thambi 2', sans-serif;
+  font-weight: 700;
+  font-size: 64px;
+  line-height: 120%;
+  text-transform: uppercase;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.15);
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.subtitle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.main-title {
+  font-family: 'Baloo Thambi 2', sans-serif;
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 120%;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--title-color);
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.muscle-carousel {
+  max-width: 720px;
+  width: 100%;
+}
+
+.muscle-tab {
+  padding: 0.4rem 1.25rem;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  background: transparent;
+  color: var(--tab-text);
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.muscle-tab.active {
+  background: #ff4100;
+  color: #ffffff;
+}
+
+.carousel-wrapper {
+  width: 100%;
+}
+
+.loading {
+  color: var(--title-color);
+  font-weight: 600;
+}
+
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 9999px;
+  background: var(--dot-inactive);
+  transition: all 0.3s ease;
+}
+
+.dot.active {
+  width: 28px;
+  background: #ff4100;
+}
+
+@media (max-width: 768px) {
+  .main-title {
+    font-size: 1.5rem;
+  }
+
+  .bg-text {
+    font-size: 2.5rem;
+  }
+}
+
+// SWIPER
+.muscle-carousel {
+  swiper-slide {
+    width: auto !important;
+  }
+  swiper-container::part(wrapper) {
+    align-items: center;
+  }
+}
+
+// .carousel-wrapper {
+//   swiper-container::part(wrapper) {
+//     display: grid !important;
+//     grid-template-columns: repeat(3, 1fr);
+//     grid-template-rows: repeat(2, 1fr);
+//     gap: 1.5rem !important;
+//   }
+// }
+.carousel-wrapper {
+  swiper-container.workouts {
+    // add class="workouts" to the swiper-container
+    --rows: 1;
+    --gap: 16px; // keep equal to spaceBetween
+    --card-h: 260px; // your card's height
+    width: 100%;
+    height: calc(var(--card-h) * var(--rows) + var(--gap) * (var(--rows) - 1));
+  }
+}
