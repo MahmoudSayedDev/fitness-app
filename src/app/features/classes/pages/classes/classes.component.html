@@ -7,9 +7,9 @@
   "
 >
   <div class="min-h-screen pt-34 bg-[#ffffff99] dark:bg-[#24242499] backdrop-blur-[86.1px] pb-13">
-    <div class="max-w-7xl mx-auto">
+    <div class="max-w-7xl mx-auto px-4">
       <div class="flex justify-center">
-        <div class="section-header">
+        <div class="relative">
           <span class="bg-text">{{ 'classes.bgText' | translate }}</span>
           <div class="subtitle">
             <svg lucideDumbbell class="text-[#ff4100]"></svg>
@@ -23,7 +23,7 @@
           <span class="text-primary">{{ 'classes.header-heighlight' | translate }}</span>
         </h2>
       </div>
-      <div class="section-content">
+      <div class="relative w-full max-w-300 flex flex-col items-center gap-10">
         <div class="max-w-1/2 w-full flex items-center gap-5 overflow-x-auto scrollbar-none">
           @for (muscle of classesFacade.muscles(); track muscle._id) {
             <button
@@ -41,7 +41,7 @@
         </div>
 
         @if (classesFacade.loadWorkoutsLoading()) {
-          <div class="loading">Loading...</div>
+          <div class="loading text-[#18181b] dark:text-[#ffffff]">Loading...</div>
         } @else {
           <div class="carousel-wrapper">
             <swiper-container

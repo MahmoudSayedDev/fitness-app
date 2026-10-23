@@ -19,7 +19,7 @@ export const ContentRoutes: Routes = [
   {
     path: 'classes',
     loadComponent: () =>
-      import('../../features/classes/classes.component').then((C) => C.ClassesComponent),
+      import('../../features/classes/pages/classes/classes.component').then((C) => C.ClassesComponent),
   },
   {
     path: 'classes/:id',

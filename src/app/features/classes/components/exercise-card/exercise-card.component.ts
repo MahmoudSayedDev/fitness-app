@@ -13,9 +13,9 @@ export class ExerciseCardComponent {
   exercise = input.required<Exercise>();
   isActive = input<boolean>(false);
 
-  onClick = output<Exercise>();
+  onClick = output<string>();
 
   handleClick(): void {
-    this.onClick.emit(this.exercise());
+    this.onClick.emit(this.exercise()._id);
   }
 }

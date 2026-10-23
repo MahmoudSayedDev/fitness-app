@@ -13,9 +13,10 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import type { SwiperOptions } from 'swiper/types';
 import { SwiperDirective } from '../../../../shared/directives/swiper.directive';
 import { CardItemComponent } from '../../../../shared/components/card-item/card-item.component';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
-  imports: [SwiperDirective, CardItemComponent],
+  imports: [SwiperDirective, CardItemComponent, TranslatePipe],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   selector: 'app-recommended-meals',
   styleUrl: './recommended-meals.component.scss',

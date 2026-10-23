@@ -1,14 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Service } from '@angular/core';
-import { Muscle, MusclesResponse, WorkoutResponse } from '../models/classes.model';
+import { MusclesResponse, WorkoutResponse } from '../models/classes.model';
 import { MY_TOKEN } from '../../../core/tokens/app-config.token';
-import { concatMap, map, Observable } from 'rxjs';
-import { Exercise, ExerciseResponse } from '../models/exercises.model';
+import { map, Observable } from 'rxjs';
+import { ExerciseResponse } from '../models/exercises.model';
 import {
   AllLevelsResponse,
   Level,
   LevelsByWorkoutResponse,
-  unformatedLevelsByWorkoutResponse,
+  UnformatedLevelsByWorkoutResponse,
 } from '../models/levels.models';
 
 @Service()
@@ -28,12 +28,9 @@ export class ClassesApiService {
     workoutId: string,
     difficultyLevelId: string,
   ): Observable<ExerciseResponse> {
-    return this._httpClient.get<ExerciseResponse>(
-      `${this._api}/exercises/by-muscle-difficulty?primeMoverMuscleId=${workoutId}&difficultyLevelId=${difficultyLevelId}`,
-      {
-        params: { primeMoverMuscleId: workoutId, difficultyLevelId: difficultyLevelId },
-      },
-    );
+    return this._httpClient.get<ExerciseResponse>(`${this._api}/exercises/by-muscle-difficulty`, {
+      params: { primeMoverMuscleId: workoutId, difficultyLevelId },
+    });
   }
 
   loadAllLevels(): Observable<AllLevelsResponse> {
@@ -42,59 +39,18 @@ export class ClassesApiService {
 
   loadWorkoutLevels(workoutId: string): Observable<LevelsByWorkoutResponse> {
     return this._httpClient
-      .get<unformatedLevelsByWorkoutResponse>(
-        `${this._api}/levels/difficulty-levels/by-prime-mover?primeMoverMuscleId=${workoutId}`,
+      .get<UnformatedLevelsByWorkoutResponse>(
+        `${this._api}/levels/difficulty-levels/by-prime-mover`,
+        { params: { primeMoverMuscleId: workoutId } },
       )
       .pipe(
-        map((res) => {
-          const newLevels: Level[] = res.difficulty_levels.map((level) => ({
+        map((res) => ({
+          ...res,
+          difficulty_levels: res.difficulty_levels.map((level): Level => ({
             _id: level.id,
             name: level.name,
-          }));
-
-          return { ...res, difficulty_levels: newLevels };
-        }),
-      );
-  }
-
-  loadExercisesFromWorkout(
-    workoutId: string,
-  ): Observable<{ levels: Level[]; exercises: Exercise[] }> {
-    return this.loadWorkoutLevels(workoutId).pipe(
-      concatMap((levelsRes) => {
-        const levelId: string = levelsRes.difficulty_levels[0]._id;
-
-        return this.loadExercisesByWorkoutAndDifficulty(workoutId, levelId).pipe(
-          map((exercisesRes) => ({
-            levels: levelsRes.difficulty_levels,
-            exercises: exercisesRes.exercises,
           })),
-        );
-      }),
-    );
-  }
-
-  loadExercisesFromMuscle(
-    muscleId: string,
-  ): Observable<{ workouts: Muscle[]; levels: Level[]; exercises: Exercise[] }> {
-    return this.loadWorkouts(muscleId).pipe(
-      concatMap((workoutRes) => {
-        const workoutId: string = workoutRes.muscles[0]._id;
-
-        return this.loadWorkoutLevels(workoutId).pipe(
-          concatMap((levelsRes) => {
-            const levelId: string = levelsRes.difficulty_levels[0]._id;
-
-            return this.loadExercisesByWorkoutAndDifficulty(workoutId, levelId).pipe(
-              map((exercisesRes) => ({
-                workouts: workoutRes.muscles,
-                levels: levelsRes.difficulty_levels,
-                exercises: exercisesRes.exercises,
-              })),
-            );
-          }),
-        );
-      }),
-    );
+        })),
+      );
   }
 }

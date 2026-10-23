@@ -4,30 +4,36 @@ import {
   computed,
   CUSTOM_ELEMENTS_SCHEMA,
   inject,
-  OnInit,
   signal,
 } from '@angular/core';
 import { LucideDumbbell } from '@lucide/angular';
 import { TranslatePipe } from '@ngx-translate/core';
-import { ClassesFacadeService } from './services/classes-facade.service';
-import { Muscle } from './models/classes.model';
 import type { SwiperContainer } from 'swiper/element';
 import type { SwiperOptions } from 'swiper/types';
-import { SwiperDirective } from '../../shared/directives/swiper.directive';
 import { Router } from '@angular/router';
-import { CardItemComponent } from '../../shared/components/card-item/card-item.component';
-import { MarqueeBannerComponent } from '../../shared/components/marquee-banner/marquee-banner.component';
-import { FooterComponent } from '../../shared/layout/footer/footer.component';
+import { CardItemComponent } from '../../../../shared/components/card-item/card-item.component';
+import { MarqueeBannerComponent } from '../../../../shared/components/marquee-banner/marquee-banner.component';
+import { SwiperDirective } from '../../../../shared/directives/swiper.directive';
+import { FooterComponent } from '../../../../shared/layout/footer/footer.component';
+import { Muscle } from '../../models/classes.model';
+import { ClassesFacadeService } from '../../services/classes-facade.service';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [TranslatePipe, LucideDumbbell, SwiperDirective, CardItemComponent, MarqueeBannerComponent, FooterComponent],
+  imports: [
+    TranslatePipe,
+    LucideDumbbell,
+    SwiperDirective,
+    CardItemComponent,
+    MarqueeBannerComponent,
+    FooterComponent,
+  ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   selector: 'app-classes',
   styleUrl: './classes.component.scss',
   templateUrl: './classes.component.html',
 })
-export class ClassesComponent implements OnInit {
+export class ClassesComponent {
   protected readonly classesFacade = inject(ClassesFacadeService);
   private readonly router = inject(Router);
 
@@ -48,10 +54,8 @@ export class ClassesComponent implements OnInit {
     },
   };
 
-  // Rebuilt whenever the workouts change; a fresh element picks it up on creation
   protected readonly workoutsConfig = computed<SwiperOptions>(() => {
     const count = this.classesFacade.workouts().length;
-    // if everything fits in one row of N columns, don't ask for 2 rows
     const rows = (cols: number) => (count <= cols ? 1 : 2);
 
     return {
@@ -70,7 +74,7 @@ export class ClassesComponent implements OnInit {
   });
 
   protected selectMuscle(muscle: Muscle): void {
-    this.classesFacade.selectMuscle(muscle);
+    this.classesFacade.selectMuscle(muscle._id);
   }
 
   protected onExplore(workoutId: string): void {
@@ -87,9 +91,5 @@ export class ClassesComponent implements OnInit {
       this.pageCount.set(swiper.snapGrid.length);
       this.activePage.set(swiper.snapIndex);
     });
-  }
-
-  ngOnInit(): void {
-    this.classesFacade.loadMuscles(true);
   }
 }

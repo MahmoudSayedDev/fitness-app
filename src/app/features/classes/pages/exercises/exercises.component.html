@@ -9,11 +9,11 @@
   <div class="min-h-screen pt-34 pb-13 bg-[#ffffff99] dark:bg-[#24242499] backdrop-blur-[86.1px]">
     <div class="max-w-7xl mx-auto">
       <div class="flex justify-center">
-        <div class="section-header">
+        <div class="relative">
           <span class="bg-text">{{ 'classes.bgText' | translate }}</span>
         </div>
       </div>
-      <div class="section-content py-1">
+      <div class="relative w-full max-w-300 flex flex-col items-center gap-10 py-1">
         <!-- MUSCLES -->
         <div class="max-w-1/2 w-full flex items-center gap-5 overflow-x-auto scrollbar-none">
           @for (muscle of classesFacade.muscles(); track muscle._id) {
@@ -24,7 +24,7 @@
                   ? 'bg-primary font-bold text-white'
                   : 'bg-transparent font-semibold text-[#1f2937] dark:text-white hover:text-primary transition'
               "
-              (click)="selectMuscle(muscle)"
+              (click)="selectMuscle(muscle._id)"
             >
               {{ muscle.name }}
             </button>
@@ -42,7 +42,7 @@
                   ? 'bg-[#ff41002e] border-[#ff4100]! text-[#cc3300] dark:text-white font-semibold'
                   : 'bg-[#ffffffd9] dark:bg-[#24242473] text-[#000000b3] dark:text-[#ffffffbf]'
               "
-              (click)="selectWorkout(workout)"
+              (click)="selectWorkout(workout._id)"
             >
               @if (workout.image) {
                 <img [src]="workout.image" [alt]="workout.name" class="w-5 h-5 rounded-full" />
@@ -52,7 +52,7 @@
           }
         </div>
         <!-- GRID -->
-        <div class="w-full grid grid-cols-[400px_minmax(0,1fr)] gap-8">
+        <div class="w-full grid grid-cols-1 lg:grid-cols-[400px_minmax(0,1fr)] gap-8">
           <!-- SIDEBAR -->
           <div
             class="max-h-220 h-fit w-full rounded-[20px] bg-white dark:bg-[#24242499] border border-[#00000014] backdrop-blur-[20px] flex flex-col py-5.5 px-4"
@@ -69,7 +69,7 @@
                       ? 'bg-primary font-bold text-white'
                       : 'bg-transparent font-medium text-[#0009] dark:text-[#ffffffb3] hover:text-[#111827] dark:hover:text-white transition'
                   "
-                  (click)="selectLevel(level)"
+                  (click)="selectLevel(level._id)"
                 >
                   {{ level.name }}
                 </button>
@@ -94,9 +94,9 @@
           <div class="relative w-full rounded-[20px] overflow-hidden space-y-6">
             <app-youtube-player [exercise]="classesFacade.selectedExercise()!" />
             <div class="h-12.5 flex justify-between">
-              <div class="flex gap-2 items-center">
+              <div class="flex gap-2 items-center rtl:flex-row-revers">
                 <span
-                  class="w-8.75 h-8.75 rounded-full border-2 dark:border-[#F3F3F4] border-[#242424] bg-primary flex items-center justify-center"
+                  class="w-8.75 h-8.75 rounded-full border-2 dark:border-[#F3F3F4] border-[#242424] bg-primary flex items-center justify-center rtl:rotate-180"
                 >
                   <svg
                     width="18"
@@ -114,12 +114,12 @@
                   </svg>
                 </span>
                 <p class="font-bold text-[#242424] dark:text-[#F3F3F4]">
-                  Expertly designed workout.
+                  {{ 'classes.banner' | translate }}
                 </p>
               </div>
-              <div class="flex gap-2 items-center">
+              <div class="flex gap-2 items-center rtl:flex-row-revers">
                 <span
-                  class="w-8.75 h-8.75 rounded-full border-2 dark:border-[#F3F3F4] border-[#242424] bg-primary flex items-center justify-center"
+                  class="w-8.75 h-8.75 rounded-full border-2 dark:border-[#F3F3F4] border-[#242424] bg-primary flex items-center justify-center rtl:rotate-180"
                 >
                   <svg
                     width="18"
@@ -137,12 +137,12 @@
                   </svg>
                 </span>
                 <p class="font-bold text-[#242424] dark:text-[#F3F3F4]">
-                  Expertly designed workout.
+                  {{ 'classes.banner' | translate }}
                 </p>
               </div>
-              <div class="flex gap-2 items-center">
+              <div class="flex gap-2 items-center rtl:flex-row-revers">
                 <span
-                  class="w-8.75 h-8.75 rounded-full border-2 dark:border-[#F3F3F4] border-[#242424] bg-primary flex items-center justify-center"
+                  class="w-8.75 h-8.75 rounded-full border-2 dark:border-[#F3F3F4] border-[#242424] bg-primary flex items-center justify-center rtl:rotate-180"
                 >
                   <svg
                     width="18"
@@ -160,7 +160,7 @@
                   </svg>
                 </span>
                 <p class="font-bold text-[#242424] dark:text-[#F3F3F4]">
-                  Expertly designed workout.
+                  {{ 'classes.banner' | translate }}
                 </p>
               </div>
             </div>

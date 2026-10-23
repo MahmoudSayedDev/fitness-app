@@ -1,13 +1,10 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, inject, OnInit } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, inject } from '@angular/core';
 import { ExerciseCardComponent } from '../../components/exercise-card/exercise-card.component';
 import { TranslatePipe } from '@ngx-translate/core';
 import { ClassesFacadeService } from '../../services/classes-facade.service';
-import { Muscle } from '../../models/classes.model';
 import { ActivatedRoute } from '@angular/router';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { map } from 'rxjs';
-import { Level } from '../../models/levels.models';
-import { Exercise } from '../../models/exercises.model';
+import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
+import { filter, map } from 'rxjs';
 import { RecommendedMealsComponent } from '../../components/recommended-meals/recommended-meals.component';
 import { YoutubePlayerComponent } from '../../components/youtube-player/youtube-player.component';
 import { MarqueeBannerComponent } from '../../../../shared/components/marquee-banner/marquee-banner.component';
@@ -27,33 +24,33 @@ import { FooterComponent } from '../../../../shared/layout/footer/footer.compone
   styleUrl: './exercises.component.scss',
   templateUrl: './exercises.component.html',
 })
-export class ExercisesComponent implements OnInit {
+export class ExercisesComponent {
   protected readonly classesFacade = inject(ClassesFacadeService);
   private readonly activatedRoute = inject(ActivatedRoute);
 
-  protected readonly routeId = toSignal(
-    this.activatedRoute.paramMap.pipe(map((param) => param.get('id'))),
-  );
-
-  protected selectMuscle(muscle: Muscle): void {
-    this.classesFacade.selectMuscle(muscle, true);
+  constructor() {
+    this.activatedRoute.paramMap
+      .pipe(
+        map((params) => params.get('id')),
+        filter((id): id is string => !!id),
+        takeUntilDestroyed(),
+      )
+      .subscribe((id) => this.classesFacade.selectWorkout(id));
   }
 
-  protected selectWorkout(workout: Muscle): void {
-    this.classesFacade.selectWorkout(workout, true);
+  protected selectMuscle(muscleId: string): void {
+    this.classesFacade.selectMuscle(muscleId);
   }
 
-  protected selectLevel(level: Level): void {
-    this.classesFacade.selectLevel(level, this.routeId()!);
+  protected selectWorkout(workoutId: string): void {
+    this.classesFacade.selectWorkout(workoutId);
   }
 
-  protected selectExercise(exercise: Exercise): void {
-    this.classesFacade.selectExercise(exercise);
+  protected selectLevel(levelId: string): void {
+    this.classesFacade.selectLevel(levelId);
   }
 
-  ngOnInit(): void {
-    this.classesFacade.loadMuscles(true);
-
-    this.classesFacade.loadWorkoutLevels(this.routeId()!, true);
+  protected selectExercise(exerciseId: string): void {
+    this.classesFacade.selectExercise(exerciseId);
   }
 }

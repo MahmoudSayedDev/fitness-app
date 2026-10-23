@@ -3,7 +3,7 @@ export interface AllLevelsResponse {
   levels: Level[];
 }
 
-export interface unformatedLevelsByWorkoutResponse {
+export interface UnformatedLevelsByWorkoutResponse {
   message: string;
   totalLevels: number;
   difficulty_levels: unformatedLevel[];

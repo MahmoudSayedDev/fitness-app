@@ -1,7 +1,8 @@
 import { Component, input, output } from '@angular/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
-  imports: [],
+  imports: [TranslatePipe],
   selector: 'app-card-item',
   styleUrl: './card-item.component.scss',
   templateUrl: './card-item.component.html',

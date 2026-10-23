@@ -1,14 +1,17 @@
-<div class="carousel-wrapper">
-  <swiper-container init="false" [appSwiper]="workoutsConfig()">
-    @for (meal of meals(); track meal.idMeal) {
-      <swiper-slide>
-        <app-card-item
-          [id]="meal.idMeal"
-          [title]="meal.strMeal"
-          [imageUrl]="meal.strMealThumb"
-          height="h-87.5"
-        ></app-card-item>
-      </swiper-slide>
-    }
-  </swiper-container>
-</div>
+<section class="flex flex-col gap-4">
+  <h3 class="text-[32px] font-medium">{{'classes.recommendation'|translate}}</h3>
+  <div class="carousel-wrapper">
+    <swiper-container init="false" [appSwiper]="workoutsConfig()">
+      @for (meal of meals(); track meal.idMeal) {
+        <swiper-slide>
+          <app-card-item
+            [id]="meal.idMeal"
+            [title]="meal.strMeal"
+            [imageUrl]="meal.strMealThumb"
+            height="h-87.5"
+          ></app-card-item>
+        </swiper-slide>
+      }
+    </swiper-container>
+  </div>
+</section>

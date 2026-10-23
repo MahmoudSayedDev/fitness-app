@@ -155,7 +155,9 @@
     "bgText": "WORKOUTS",
     "subtitle": "Fitness Class",
     "header": "Transform Your Body with Our Dynamic",
-    "header-heighlight": "Upcoming Workouts"
+    "header-heighlight": "Upcoming Workouts",
+    "banner": "Expertly designed workout.",
+    "recommendation": "Recommendation For You"
   },
   "healthy": {
     "title": "healthy",

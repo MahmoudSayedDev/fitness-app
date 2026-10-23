@@ -16,7 +16,7 @@
             "checkout": "دفع",
             "Get Started": "ابدأ الان",
             "Explore More": "اكتشف المزيد",
-            "explore": "اكتشف",
+            "explore": "استكشف",
             "read more": "اقرأ المزيد",
             "Add Address": "إضافة العنوان",
             "Update Address": "تحديث العنوان",
@@ -167,7 +167,9 @@
         "bgText": "التمارين",
         "subtitle": "حصة لياقة",
         "header": "غيّر جسدك مع تماريننا الديناميكية ",
-        "header-heighlight": "التمارين القادمة"
+        "header-heighlight": "التمارين القادمة",
+        "banner": "تمارين مصممة باحترافية.",
+        "recommendation": "توصيات لك"
     },
     "healthy": {
         "title": "التغذية صحية",
