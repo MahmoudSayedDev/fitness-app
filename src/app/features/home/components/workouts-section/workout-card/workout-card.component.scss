@@ -38,28 +38,35 @@
   margin: 0 0 0.75rem;
 }
 
-.card-action {
+.explore-btn {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-}
-
-.explore-text {
-  color: #ff4100;
-  font-weight: 600;
-  font-size: 0.9rem;
-}
-
-.explore-btn {
-  width: 32px;
-  height: 32px;
-  border-radius: 9999px;
-  background: #ff4100;
-  border: none;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #ffffff;
-  font-size: 0.85rem;
+
+  &:hover {
+    .icon {
+      transform: scale(1.05);
+    }
+  }
+
+  .text {
+    color: #ff4100;
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+
+  .icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 9999px;
+    background: #ff4100;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-size: 0.85rem;
+    transition: all 0.2s;
+  }
 }

@@ -13,6 +13,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { register } from 'swiper/element/bundle';
 import { MY_TOKEN } from '../../../../core/tokens/app-config.token';
 import { WorkoutCardComponent } from './workout-card/workout-card.component';
+import { TranslatePipe } from '@ngx-translate/core';
 
 export interface Muscle {
   _id: string;
@@ -38,7 +39,7 @@ interface MuscleGroupResponse {
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [WorkoutCardComponent],
+  imports: [WorkoutCardComponent, TranslatePipe],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   selector: 'app-workouts-section',
   styleUrl: './workouts-section.component.scss',

@@ -1,14 +1,15 @@
 <div class="workout-card">
   <div class="card-image">
-    <img [src]="imageUrl()" [alt]="title()" loading="lazy" />
+    <!-- <img [src]="imageUrl()" [alt]="title()" loading="lazy" /> -->
+    <img [src]="imageUrl()" alt="title()" loading="lazy" />
   </div>
   <div class="card-body">
     <h3 class="card-title">{{ title() }}</h3>
-    <div class="card-action">
-      <span class="explore-text">Explore</span>
-      <button type="button" class="explore-btn" (click)="explore.emit()" aria-label="Explore">
+    <button type="button" class="explore-btn">
+      <span class="text">Explore</span>
+      <div class="icon" (click)="explore.emit()" aria-label="Explore">
         <i class="pi pi-arrow-up-right"></i>
-      </button>
-    </div>
+      </div>
+    </button>
   </div>
 </div>

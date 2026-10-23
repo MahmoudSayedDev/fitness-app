@@ -1,0 +1,80 @@
+<section
+  style="
+    background-image: url('/assets/imgs/workoutsbg.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  "
+>
+  <div class="min-h-screen pt-34 bg-[#ffffff99] dark:bg-[#24242499] backdrop-blur-[86.1px] pb-13">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex justify-center">
+        <div class="relative">
+          <span class="bg-text">{{ 'classes.bgText' | translate }}</span>
+          <div class="subtitle">
+            <svg lucideDumbbell class="text-[#ff4100]"></svg>
+            <span style="color: #ff4100">{{ 'classes.subtitle' | translate }}</span>
+          </div>
+        </div>
+      </div>
+      <div class="flex justify-center mt-3 max-w-160 mx-auto">
+        <h2 class="text-[40px] font-bold uppercase">
+          {{ 'classes.header' | translate }}
+          <span class="text-primary">{{ 'classes.header-heighlight' | translate }}</span>
+        </h2>
+      </div>
+      <div class="relative w-full max-w-300 flex flex-col items-center gap-10">
+        <div class="max-w-1/2 w-full flex items-center gap-5 overflow-x-auto scrollbar-none">
+          @for (muscle of classesFacade.muscles(); track muscle._id) {
+            <button
+              class="py-1.5 px-4.5 rounded-full text-nowrap cursor-pointer"
+              [class]="
+                classesFacade.selectedMuscle()?._id === muscle._id
+                  ? 'bg-primary font-bold text-white'
+                  : 'bg-transparent font-semibold text-[#1f2937] dark:text-white hover:text-primary transition'
+              "
+              (click)="selectMuscle(muscle)"
+            >
+              {{ muscle.name }}
+            </button>
+          }
+        </div>
+
+        @if (classesFacade.loadWorkoutsLoading()) {
+          <div class="loading text-[#18181b] dark:text-[#ffffff]">Loading...</div>
+        } @else {
+          <div class="carousel-wrapper">
+            <swiper-container
+              init="false"
+              [appSwiper]="workoutsConfig()"
+              (swiperinit)="syncSwiperState($event)"
+              (swiperbreakpoint)="syncSwiperState($event)"
+              (swiperslidechange)="syncSwiperState($event)"
+            >
+              @for (workout of classesFacade.workouts(); track workout._id) {
+                <swiper-slide>
+                  <app-card-item
+                    [imageUrl]="workout.image || ''"
+                    [title]="workout.name"
+                    [id]="workout._id"
+                    (explore)="onExplore($event)"
+                  ></app-card-item>
+                </swiper-slide>
+              }
+            </swiper-container>
+          </div>
+
+          @if (pageCount() > 1) {
+            <div class="carousel-dots">
+              @for (i of dots(); track i) {
+                <span class="dot" [class.active]="i === activePage()"></span>
+              }
+            </div>
+          }
+        }
+      </div>
+    </div>
+  </div>
+</section>
+<app-marquee-banner></app-marquee-banner>
+<app-footer></app-footer>
