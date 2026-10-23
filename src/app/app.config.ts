@@ -1,4 +1,4 @@
-import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
+import { ApplicationConfig, inject, provideAppInitializer, provideBrowserGlobalErrorListeners } from '@angular/core';
 import { provideRouter, withInMemoryScrolling } from '@angular/router';
 import { routes } from './app.routes';
 import { provideClientHydration } from '@angular/platform-browser';
@@ -10,6 +10,8 @@ import { MY_TOKEN } from './core/tokens/app-config.token';
 import { authInterceptor } from './core/interceptors/auth/auth.interceptor';
 import { provideTranslateService } from '@ngx-translate/core';
 import { provideTranslateHttpLoader } from "@ngx-translate/http-loader";
+import { languageInterceptor } from './core/interceptors/language/language.interceptor';
+import { LanguageSwitcherService } from './shared/components/language-switcher/services/language-switcher.service';
 
 
 export const appConfig: ApplicationConfig = {
@@ -26,8 +28,9 @@ export const appConfig: ApplicationConfig = {
         provideClientHydration(),
         provideHttpClient(
             withFetch(),
-            withInterceptors([authInterceptor]),
+            withInterceptors([authInterceptor, languageInterceptor]),
         ),
+        provideAppInitializer(() => inject(LanguageSwitcherService).initLanguage()),
         providePrimeNG({
             theme: {
                 preset: Aura,

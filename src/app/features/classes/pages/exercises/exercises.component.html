@@ -6,14 +6,13 @@
     background-repeat: no-repeat;
   "
 >
-  <div class="min-h-screen pt-34 bg-[#ffffff99] dark:bg-[#24242499] backdrop-blur-[86.1px]">
+  <div class="min-h-screen pt-34 pb-13 bg-[#ffffff99] dark:bg-[#24242499] backdrop-blur-[86.1px]">
     <div class="max-w-7xl mx-auto">
       <div class="flex justify-center">
         <div class="section-header">
           <span class="bg-text">{{ 'classes.bgText' | translate }}</span>
         </div>
       </div>
-      <h1 class="bg-lime-100 text-black text-3xl w-fit" (click)="test()">test</h1>
       <div class="section-content py-1">
         <!-- MUSCLES -->
         <div class="max-w-1/2 w-full flex items-center gap-5 overflow-x-auto scrollbar-none">
@@ -22,8 +21,8 @@
               class="py-1.5 px-4.5 rounded-full text-nowrap cursor-pointer"
               [class]="
                 classesFacade.selectedMuscle()?._id === muscle._id
-                  ? 'bg-primary font-bold'
-                  : 'bg-transparent font-semibold'
+                  ? 'bg-primary font-bold text-white'
+                  : 'bg-transparent font-semibold text-[#1f2937] dark:text-white hover:text-primary transition'
               "
               (click)="selectMuscle(muscle)"
             >
@@ -43,6 +42,7 @@
                   ? 'bg-[#ff41002e] border-[#ff4100]! text-[#cc3300] dark:text-white font-semibold'
                   : 'bg-[#ffffffd9] dark:bg-[#24242473] text-[#000000b3] dark:text-[#ffffffbf]'
               "
+              (click)="selectWorkout(workout)"
             >
               @if (workout.image) {
                 <img [src]="workout.image" [alt]="workout.name" class="w-5 h-5 rounded-full" />
@@ -55,10 +55,11 @@
         <div class="w-full grid grid-cols-[400px_minmax(0,1fr)] gap-8">
           <!-- SIDEBAR -->
           <div
-            class="max-h-150 h-full w-full rounded-[20px] bg-white dark:bg-[#24242499] border border-[#00000014] backdrop-blur-[20px] flex flex-col py-5.5 px-4"
+            class="max-h-220 h-fit w-full rounded-[20px] bg-white dark:bg-[#24242499] border border-[#00000014] backdrop-blur-[20px] flex flex-col py-5.5 px-4"
           >
+            <!-- LEVELS -->
             <div
-              class="flex items-center gap-2 px-1 pt-1 pb-3.5 border-b border-[#3333] dark:border-[#333] overflow-x-auto scrollbar-none"
+              class="flex items-center gap-2 shrink-0 px-1 pt-1 pb-3.5 border-b border-[#3333] dark:border-[#333] overflow-x-auto scrollbar-none"
             >
               @for (level of classesFacade.levels(); track level._id) {
                 <button
@@ -74,57 +75,24 @@
                 </button>
               }
             </div>
+            <!-- EXERCISES -->
             <div
               class="h-full flex flex-col overflow-y-auto scrollbar-thin scrollbar-thumb-[#00000026] dark:scrollbar-thumb-[#ffffff1f] gap-2"
             >
               @for (exercise of classesFacade.exercises(); track exercise._id) {
-                <app-exercise-card [exercise]="exercise"></app-exercise-card>
+                @if (exercise.short_youtube_demonstration_link) {
+                  <app-exercise-card
+                    (onClick)="selectExercise($event)"
+                    [exercise]="exercise"
+                    [isActive]="exercise._id === classesFacade.selectedExercise()?._id"
+                  ></app-exercise-card>
+                }
               }
             </div>
           </div>
           <!-- MAIN -->
           <div class="relative w-full rounded-[20px] overflow-hidden space-y-6">
-            <div class="backdrop-blur-[55.3px] h-134 rounded-[20px]">
-              <img
-                [youtubeFallback]="
-                  classesFacade.selectedExercise()?.short_youtube_demonstration_link
-                "
-                class="object-cover w-full h-full"
-                [src]="
-                  classesFacade.selectedExercise()?.short_youtube_demonstration_link
-                    | youtubeThumbnail
-                "
-                [alt]="classesFacade.selectedExercise()?.exercise"
-                loading="lazy"
-              />
-              <div
-                class="absolute inset-0 bg-linear-to-t from-[#1a1a1a] via-[#1a1a1a]/80 to-black/30"
-              ></div>
-              <div class="absolute z-10 bottom-8 right-8 left-8 space-y-4">
-                <h3 class="text-center text-4xl font-semibold text-[#F3F3F4]">
-                  {{ classesFacade.selectedExercise()?.exercise }}
-                </h3>
-                <p class="text-[#F3F3F4]">
-                  Target: {{ classesFacade.selectedExercise()?.target_muscle_group }} • Prime Mover:
-                  {{ classesFacade.selectedExercise()?.prime_mover_muscle }} • Posture:
-                  {{ classesFacade.selectedExercise()?.posture }} • Mechanics:
-                  {{ classesFacade.selectedExercise()?.mechanics }} • Movement:
-                  {{ classesFacade.selectedExercise()?.movement_pattern_1 }}
-                </p>
-                <div class="flex items-center justify-between">
-                  <span
-                    class="p-1.5 px-5 text-sm bg-[#1e1f2199] font-medium border-[0.5px] border-[#ffffff38] backdrop-blur-[10px] rounded-[20px] text-[#D3D3D3]"
-                  >
-                    {{ classesFacade.selectedExercise()?.difficulty_level }}
-                  </span>
-                  <span
-                    class="p-1.5 px-5 text-sm bg-[#1e1f2199] font-medium border-[0.5px] border-[#ffffff38] backdrop-blur-[10px] rounded-[20px] text-[#D3D3D3]"
-                  >
-                    {{ classesFacade.selectedExercise()?.posture }}
-                  </span>
-                </div>
-              </div>
-            </div>
+            <app-youtube-player [exercise]="classesFacade.selectedExercise()!" />
             <div class="h-12.5 flex justify-between">
               <div class="flex gap-2 items-center">
                 <span
@@ -196,9 +164,14 @@
                 </p>
               </div>
             </div>
+            <div class="">
+              <app-recommended-meals></app-recommended-meals>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 </section>
+<app-marquee-banner></app-marquee-banner>
+<app-footer></app-footer>

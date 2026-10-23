@@ -14,12 +14,14 @@ import { Muscle } from './models/classes.model';
 import type { SwiperContainer } from 'swiper/element';
 import type { SwiperOptions } from 'swiper/types';
 import { SwiperDirective } from '../../shared/directives/swiper.directive';
-import { MuscleCardComponent } from './components/class-card/muscle-card.component';
 import { Router } from '@angular/router';
+import { CardItemComponent } from '../../shared/components/card-item/card-item.component';
+import { MarqueeBannerComponent } from '../../shared/components/marquee-banner/marquee-banner.component';
+import { FooterComponent } from '../../shared/layout/footer/footer.component';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [TranslatePipe, LucideDumbbell, SwiperDirective, MuscleCardComponent],
+  imports: [TranslatePipe, LucideDumbbell, SwiperDirective, CardItemComponent, MarqueeBannerComponent, FooterComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   selector: 'app-classes',
   styleUrl: './classes.component.scss',
@@ -27,7 +29,7 @@ import { Router } from '@angular/router';
 })
 export class ClassesComponent implements OnInit {
   protected readonly classesFacade = inject(ClassesFacadeService);
-  private readonly router = inject(Router)
+  private readonly router = inject(Router);
 
   protected readonly pageCount = signal(0);
   protected readonly activePage = signal(0);
@@ -72,7 +74,7 @@ export class ClassesComponent implements OnInit {
   }
 
   protected onExplore(workoutId: string): void {
-    this.router.navigate(['/exercises/', workoutId])
+    this.router.navigate(['/classes/', workoutId]);
   }
 
   protected syncSwiperState(event: Event): void {
@@ -88,6 +90,6 @@ export class ClassesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.classesFacade.loadMuscles();
+    this.classesFacade.loadMuscles(true);
   }
 }

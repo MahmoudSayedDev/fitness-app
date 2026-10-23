@@ -3,7 +3,8 @@ import { AbstractControl, NgControl } from '@angular/forms';
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { of, switchMap } from 'rxjs';
 import { FieldErrorMessages } from './types/field-error.types';
-import { DEFAULT_FIELD_ERROR_MESSAGES } from './token/field-error-messages';
+import { createDefaultFieldErrorMessages } from './token/field-error-messages';
+import { TranslateService } from '@ngx-translate/core';
 
 let nextId = 0;
 
@@ -17,7 +18,8 @@ let nextId = 0;
   },
 })
 export class FieldErrorComponent {
-  private readonly defaultMessages = DEFAULT_FIELD_ERROR_MESSAGES
+  private readonly translate = inject(TranslateService);
+  private readonly defaultMessages = createDefaultFieldErrorMessages(this.translate);
 
   readonly control = input<AbstractControl | NgControl | null>(null);
   readonly label = input<string>('');

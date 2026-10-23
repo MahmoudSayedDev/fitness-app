@@ -4,55 +4,46 @@ import { Muscle, MusclesResponse, WorkoutResponse } from '../models/classes.mode
 import { MY_TOKEN } from '../../../core/tokens/app-config.token';
 import { concatMap, map, Observable } from 'rxjs';
 import { Exercise, ExerciseResponse } from '../models/exercises.model';
-import { AllLevelsResponse, Level, LevelsByWorkoutResponse, unformatedLevelsByWorkoutResponse } from '../models/levels.models';
+import {
+  AllLevelsResponse,
+  Level,
+  LevelsByWorkoutResponse,
+  unformatedLevelsByWorkoutResponse,
+} from '../models/levels.models';
 
 @Service()
 export class ClassesApiService {
   private readonly _httpClient = inject(HttpClient);
   private readonly _api = inject(MY_TOKEN);
 
-  loadMuscles(lang: 'en' | 'ar' = 'en'): Observable<MusclesResponse> {
-    return this._httpClient.get<MusclesResponse>(`${this._api}/muscles`, {
-      headers: { 'accept-language': lang },
-    });
+  loadMuscles(): Observable<MusclesResponse> {
+    return this._httpClient.get<MusclesResponse>(`${this._api}/muscles`);
   }
 
-  loadWorkouts(muscleId: string, lang: 'en' | 'ar' = 'en'): Observable<WorkoutResponse> {
-    return this._httpClient.get<WorkoutResponse>(`${this._api}/musclesGroup/${muscleId}`, {
-      headers: { 'accept-language': lang },
-    });
+  loadWorkouts(muscleId: string): Observable<WorkoutResponse> {
+    return this._httpClient.get<WorkoutResponse>(`${this._api}/musclesGroup/${muscleId}`);
   }
 
   loadExercisesByWorkoutAndDifficulty(
     workoutId: string,
     difficultyLevelId: string,
-    lang: 'en' | 'ar' = 'en',
   ): Observable<ExerciseResponse> {
     return this._httpClient.get<ExerciseResponse>(
       `${this._api}/exercises/by-muscle-difficulty?primeMoverMuscleId=${workoutId}&difficultyLevelId=${difficultyLevelId}`,
       {
-        headers: { 'accept-language': lang },
         params: { primeMoverMuscleId: workoutId, difficultyLevelId: difficultyLevelId },
       },
     );
   }
 
-  loadAllLevels(lang: 'en' | 'ar' = 'en'): Observable<AllLevelsResponse> {
-    return this._httpClient.get<AllLevelsResponse>(`${this._api}/levels`, {
-      headers: { 'accept-language': lang },
-    });
+  loadAllLevels(): Observable<AllLevelsResponse> {
+    return this._httpClient.get<AllLevelsResponse>(`${this._api}/levels`);
   }
 
-  loadWorkoutLevels(
-    workoutId: string,
-    lang: 'en' | 'ar' = 'en',
-  ): Observable<LevelsByWorkoutResponse> {
+  loadWorkoutLevels(workoutId: string): Observable<LevelsByWorkoutResponse> {
     return this._httpClient
       .get<unformatedLevelsByWorkoutResponse>(
         `${this._api}/levels/difficulty-levels/by-prime-mover?primeMoverMuscleId=${workoutId}`,
-        {
-          headers: { 'accept-language': lang },
-        },
       )
       .pipe(
         map((res) => {

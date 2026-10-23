@@ -29,7 +29,6 @@ export class HealthyNutritionSectionComponent implements OnInit {
     this._healthyService.getMealsCategories().subscribe({
       next: (res) => {
         this.mealsCategories.set(res.categories)
-        console.log(this.mealsCategories());
       }, error: (err) => {
         console.log(err);
       }

@@ -6,7 +6,7 @@
     background-repeat: no-repeat;
   "
 >
-  <div class="min-h-screen pt-34 bg-[#ffffff99] dark:bg-[#24242499] backdrop-blur-[86.1px]">
+  <div class="min-h-screen pt-34 bg-[#ffffff99] dark:bg-[#24242499] backdrop-blur-[86.1px] pb-13">
     <div class="max-w-7xl mx-auto">
       <div class="flex justify-center">
         <div class="section-header">
@@ -19,36 +19,19 @@
       </div>
       <div class="flex justify-center mt-3 max-w-160 mx-auto">
         <h2 class="text-[40px] font-bold uppercase">
-          Transform Your Body with Our Dynamic <span class="text-primary">Upcoming Workouts</span>
+          {{ 'classes.header' | translate }}
+          <span class="text-primary">{{ 'classes.header-heighlight' | translate }}</span>
         </h2>
       </div>
-      <div class="section-content pb-50">
-        <!-- <div class="muscle-carousel">
-          <swiper-container [appSwiper]="muscleConfig" style="width: 100%">
-            @for (muscle of classesFacade.muscles(); track muscle._id) {
-              <swiper-slide style="width: auto">
-                <button
-                  type="button"
-                  class="muscle-tab"
-                  [class.active]="classesFacade.selectedMuscle()?._id === muscle._id"
-                  [attr.aria-pressed]="classesFacade.selectedMuscle()?._id === muscle._id"
-                  (click)="selectMuscle(muscle)"
-                >
-                  {{ muscle.name }}
-                </button>
-              </swiper-slide>
-            }
-          </swiper-container>
-        </div> -->
-
+      <div class="section-content">
         <div class="max-w-1/2 w-full flex items-center gap-5 overflow-x-auto scrollbar-none">
           @for (muscle of classesFacade.muscles(); track muscle._id) {
             <button
               class="py-1.5 px-4.5 rounded-full text-nowrap cursor-pointer"
               [class]="
                 classesFacade.selectedMuscle()?._id === muscle._id
-                  ? 'bg-primary font-bold'
-                  : 'bg-transparent font-semibold'
+                  ? 'bg-primary font-bold text-white'
+                  : 'bg-transparent font-semibold text-[#1f2937] dark:text-white hover:text-primary transition'
               "
               (click)="selectMuscle(muscle)"
             >
@@ -70,10 +53,12 @@
             >
               @for (workout of classesFacade.workouts(); track workout._id) {
                 <swiper-slide>
-                  <app-muscle-card
-                    [muscle]="workout"
+                  <app-card-item
+                    [imageUrl]="workout.image || ''"
+                    [title]="workout.name"
+                    [id]="workout._id"
                     (explore)="onExplore($event)"
-                  ></app-muscle-card>
+                  ></app-card-item>
                 </swiper-slide>
               }
             </swiper-container>
@@ -91,3 +76,5 @@
     </div>
   </div>
 </section>
+<app-marquee-banner></app-marquee-banner>
+<app-footer></app-footer>

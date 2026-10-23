@@ -1,19 +1,27 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, inject, OnInit } from '@angular/core';
 import { ExerciseCardComponent } from '../../components/exercise-card/exercise-card.component';
 import { TranslatePipe } from '@ngx-translate/core';
-import type { SwiperContainer } from 'swiper/element';
-import type { SwiperOptions } from 'swiper/types';
 import { ClassesFacadeService } from '../../services/classes-facade.service';
 import { Muscle } from '../../models/classes.model';
 import { ActivatedRoute } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs';
 import { Level } from '../../models/levels.models';
-import { YoutubeFallbackDirective } from '../../../../shared/directives/youtube-fallback.directive';
-import { YoutubeThumbnailPipe } from '../../../../shared/pipes/youtube-thumbnail.pipe';
+import { Exercise } from '../../models/exercises.model';
+import { RecommendedMealsComponent } from '../../components/recommended-meals/recommended-meals.component';
+import { YoutubePlayerComponent } from '../../components/youtube-player/youtube-player.component';
+import { MarqueeBannerComponent } from '../../../../shared/components/marquee-banner/marquee-banner.component';
+import { FooterComponent } from '../../../../shared/layout/footer/footer.component';
 
 @Component({
-  imports: [ExerciseCardComponent, TranslatePipe, YoutubeFallbackDirective, YoutubeThumbnailPipe],
+  imports: [
+    ExerciseCardComponent,
+    TranslatePipe,
+    RecommendedMealsComponent,
+    YoutubePlayerComponent,
+    MarqueeBannerComponent,
+    FooterComponent,
+  ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   selector: 'app-exercises',
   styleUrl: './exercises.component.scss',
@@ -28,22 +36,24 @@ export class ExercisesComponent implements OnInit {
   );
 
   protected selectMuscle(muscle: Muscle): void {
-    this.classesFacade.selectMuscle(muscle);
+    this.classesFacade.selectMuscle(muscle, true);
+  }
+
+  protected selectWorkout(workout: Muscle): void {
+    this.classesFacade.selectWorkout(workout, true);
   }
 
   protected selectLevel(level: Level): void {
-    this.classesFacade.selectLevel(level);
+    this.classesFacade.selectLevel(level, this.routeId()!);
   }
 
-  test() {
-    console.log('Levels: ', this.classesFacade.levels());
+  protected selectExercise(exercise: Exercise): void {
+    this.classesFacade.selectExercise(exercise);
   }
 
   ngOnInit(): void {
-    this.classesFacade.loadMuscles();
+    this.classesFacade.loadMuscles(true);
 
-    console.log('test');
-    this.classesFacade.loadExercisesFromWorkout(this.routeId()!);
-    // this.classesFacade.loadWorkoutLevels(this.routeId()!);
+    this.classesFacade.loadWorkoutLevels(this.routeId()!, true);
   }
 }

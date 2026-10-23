@@ -1,44 +1,47 @@
-import { DOCUMENT, inject, Service, signal } from '@angular/core';
+import { computed, DOCUMENT, inject, Service, signal } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { CookieService } from 'ngx-cookie-service';
-import { LangType, LangConfig } from '../models/lang-config';
+import { DEFAULT_LANG, LANGUAGES, LangConfig, LangType } from '../models/lang-config';
 
 @Service()
 export class LanguageSwitcherService {
+  private readonly translate = inject(TranslateService);
+  private readonly cookies = inject(CookieService);
+  private readonly document = inject(DOCUMENT);
 
-    private readonly _translateService = inject(TranslateService);
-    private readonly _cookieService = inject(CookieService);
-    private readonly document = inject(DOCUMENT);
+  readonly languages = LANGUAGES;
 
-    languages = signal<LangConfig[]>([])
-    selectedLanguage = signal<LangConfig | null>(null)
-    currentLang = signal<LangType>('en');
+  private readonly _currentLang = signal<LangType>(this.readSavedLang());
+  readonly currentLang = this._currentLang.asReadonly();
 
-    initLanguage() {
-        this.languages.set([
-            {
-                name: 'العربية',
-                code: 'ar',
-            },
-            {
-                name: 'English',
-                code: 'en',
-            }
-        ]);
+  readonly selectedLanguage = computed<LangConfig>(
+    () => this.languages.find((l) => l.code === this._currentLang()) ?? this.languages[0],
+  );
 
-        this.selectedLanguage.update(val => this._translateService.getCurrentLang() === 'en' ? val = this.languages()[0] : val = this.languages()[1])
-    }
+  initLanguage(): void {
+    this.setLanguage(this._currentLang());
+  }
 
-    toggleLanguage() {
-        this.currentLang.set(this._translateService.getCurrentLang() as LangType)
-        const nextLang = signal<string>(this.currentLang() === 'en' ? 'ar' : 'en')
+  toggleLanguage(): void {
+    this.setLanguage(this._currentLang() === 'en' ? 'ar' : 'en');
+  }
 
-        this._translateService.use(nextLang());
-        this._cookieService.set('lang', nextLang(), 90, '/');
+  setLanguage(code: LangType): void {
+    const lang = this.languages.find((l) => l.code === code);
+    if (!lang) return;
 
-        this.document.documentElement.setAttribute('lang', nextLang());
-        this.document.documentElement.setAttribute('dir', nextLang() === 'ar' ? 'rtl' : 'ltr');
+    this.translate.use(lang.code);
+    this.cookies.set('lang', lang.code, { expires: 90, path: '/', sameSite: 'Lax' });
 
-        this.selectedLanguage.set(nextLang() === 'en' ? this.languages()[0] : this.languages()[1]);
-    }
+    const html = this.document.documentElement;
+    html.setAttribute('lang', lang.code);
+    html.setAttribute('dir', lang.dir);
+
+    this._currentLang.set(lang.code);
+  }
+
+  private readSavedLang(): LangType {
+    const saved = this.cookies.get('lang');
+    return this.languages.some((l) => l.code === saved) ? (saved as LangType) : DEFAULT_LANG;
+  }
 }

@@ -1,0 +1,39 @@
+<article
+  tabindex="0"
+  role="button"
+  (click)="handleClick()"
+  (keydown.enter)="handleClick()"
+  (keydown.space)="$event.preventDefault(); handleClick()"
+  class="group relative flex flex-col w-full min-w-0 overflow-hidden rounded-2xl transition-all duration-300 ease-out focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 cursor-pointer select-none"
+  [class]="height()"
+>
+  <div class="relative w-full h-full shrink-0">
+    <img
+      loading="lazy"
+      class="h-full w-full object-cover object-center transition-transform duration-500 ease-out group-hover:scale-105"
+      [src]="imageUrl()"
+      [alt]="title()"
+    />
+  </div>
+  <div
+    class="absolute bottom-0 w-full p-3 flex flex-col justify-between gap-1.5 rounded-b-2xl dark:bg-[#242424]/80 bg-[#f8fafcf2] backdrop-blur-[50.83px] transition-colors duration-300"
+  >
+    <h4 class="text-lg font-bold uppercase tracking-wider truncate min-w-0 w-full">
+      {{ title() }}
+    </h4>
+    <div class="flex items-center gap-2 shrink-0 w-full min-w-0" aria-hidden="true">
+      <span class="font-medium transition-colors duration-200 truncate text-primary">
+        Explore
+      </span>
+      <span
+        class="size-6 rounded-full bg-primary text-white flex items-center justify-center shrink-0 shadow-sm transition-all duration-200 group-hover:scale-110 group-hover:bg-orange-600"
+      >
+        <svg class="size-2.5 fill-current" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M10.0796 0.592978C8.63402 2.0385 5.99968 2.0391 4.55356 0.592972L3.96064 5.4104e-05L2.7748 1.18589L3.33772 1.7788C4.38956 2.83064 5.83746 3.35596 7.28596 3.35656L-3.99556e-05 10.6726L1.18579 11.8584L8.5018 4.5424C8.5024 5.9909 9.02772 7.4388 10.0796 8.49064L10.6725 9.08356L11.8583 7.89772L11.2654 7.3048C9.81926 5.85868 9.81986 3.22434 11.2654 1.77881L11.8583 1.18589L10.6725 6.0173e-05L10.0796 0.592978Z"
+          />
+        </svg>
+      </span>
+    </div>
+  </div>
+</article>

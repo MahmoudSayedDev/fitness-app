@@ -3,7 +3,7 @@ import { ClassesApiService } from './classes-api.service';
 import { Muscle } from '../models/classes.model';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { finalize } from 'rxjs';
-import { DifficultyLevel, Exercise } from '../models/exercises.model';
+import { Exercise } from '../models/exercises.model';
 import { Level } from '../models/levels.models';
 
 @Service()
@@ -22,11 +22,6 @@ export class ClassesFacadeService {
 
   private _loadLevelsLoading = signal<boolean>(false);
   loadLevelsLoading = this._loadLevelsLoading.asReadonly();
-
-  private _musclesCache: Muscle[] = [];
-  private _workoutsCache = new Map<string, Muscle[]>();
-  private _exercisesCache = new Map<string, Exercise[]>();
-  private _levelsCache = new Map<string, Level[]>();
 
   private _muscles = signal<Muscle[]>([]);
   muscles = this._muscles.asReadonly();
@@ -52,14 +47,7 @@ export class ClassesFacadeService {
   private _selectedLevel = signal<Level | null>(null);
   selectedLevel = this._selectedLevel.asReadonly();
 
-  loadMuscles(): void {
-    const hasCache = this._musclesCache.length > 0;
-
-    if (hasCache) {
-      this._muscles.set(this._musclesCache);
-      return;
-    }
-
+  loadMuscles(sequence: boolean = true): void {
     this._loadMusclesLoading.set(true);
 
     this._classesApi
@@ -70,19 +58,15 @@ export class ClassesFacadeService {
       )
       .subscribe({
         next: (res) => {
-          const list = res.musclesGroup;
-          this._muscles.set(list);
-          this._musclesCache = list;
+          this._muscles.set(res.musclesGroup);
+          this._selectedMuscle.set(res.musclesGroup[0]);
 
-          if (list.length > 0) {
-            this._selectedMuscle.set(list[0]);
-            this.loadWorkouts(list[0]._id);
-          }
+          if (sequence) this.loadWorkouts(res.musclesGroup[0]._id);
         },
       });
   }
 
-  loadWorkouts(muscleId: string): void {
+  loadWorkouts(muscleId: string, sequence: boolean = true): void {
     this._loadWorkoutsLoading.set(true);
 
     this._classesApi
@@ -93,56 +77,15 @@ export class ClassesFacadeService {
       )
       .subscribe({
         next: (res) => {
-          // const mapped: MuscleGroupWorkout[] = (res.muscles ?? []).map((item) => ({
-          //   _id: item._id,
-          //   title: item.name,
-          //   image: item.image,
-          // }));
           this._workouts.set(res.muscles);
-          this._workoutsCache.set(muscleId, res.muscles);
           this._selectedWorkout.set(res.muscles[0]);
-          // this.loadWorkoutLevels(mapped[0]._id);
-          // this.loadExercises(mapped[0]._id);
+
+          if (sequence) this.loadWorkoutLevels(res.muscles[0]._id);
         },
       });
   }
 
-  private createExerciseKey(workoutId: string, difficultyId: string): string {
-    return `${workoutId}_${difficultyId}`;
-  }
-
-  setExercisesCache(workoutId: string, difficultyId: string, exercises: Exercise[]): void {
-    const key = this.createExerciseKey(workoutId, difficultyId);
-    this._exercisesCache.set(key, exercises);
-  }
-
-  loadExercises(workoutId: string = this.workouts()[0]._id, difficultyLevelId: string): void {
-    this._loadExercisesLoading.set(true);
-
-    this._classesApi
-      .loadExercisesByWorkoutAndDifficulty(workoutId, difficultyLevelId)
-      .pipe(
-        takeUntilDestroyed(this._destroyRef),
-        finalize(() => this._loadExercisesLoading.set(false)),
-      )
-      .subscribe({
-        next: (res) => {
-          this._exercises.set(res.exercises);
-          this.setExercisesCache(workoutId, difficultyLevelId, res.exercises);
-        },
-      });
-  }
-
-  loadWorkoutLevels(
-    workoutId: string = this.selectedWorkout()?._id ?? this.workouts()[0]._id,
-  ): void {
-    const hasCache = this._levelsCache.has(workoutId);
-
-    if (hasCache) {
-      this._levels.set(this._levelsCache.get(workoutId)!);
-      return;
-    }
-
+  loadWorkoutLevels(workoutId: string, sequence: boolean = true): void {
     this._loadLevelsLoading.set(true);
 
     this._classesApi
@@ -154,85 +97,46 @@ export class ClassesFacadeService {
       .subscribe({
         next: (res) => {
           this._levels.set(res.difficulty_levels);
-          this._selectedLevel.set(this._levels()[0]);
-        },
-        error: (err) => {
-          console.log(err);
+          this._selectedLevel.set(res.difficulty_levels[0]);
+
+          if (sequence) this.loadExercises(workoutId, res.difficulty_levels[0]._id!);
         },
       });
   }
 
-  selectMuscle(muscle: Muscle, initial: boolean = false): void {
-    const hasCache = this._workoutsCache.has(muscle._id);
-    const refetch = muscle._id === this._selectedMuscle()?._id;
+  loadExercises(workoutId: string, difficultyLevelId: string): void {
+    this._loadExercisesLoading.set(true);
 
-    if (hasCache && !refetch) {
-      this._workouts.set(this._workoutsCache.get(muscle._id)!);
-      this._selectedMuscle.set(muscle);
-    } else {
-      this._selectedMuscle.set(muscle);
-      this.loadWorkouts(muscle._id);
-    }
-  }
-
-  selectWorkout(workout: Muscle): void {
-    const hasCache = this._exercisesCache.has(workout._id);
-
-    if (hasCache) {
-      this._exercises.set(this._exercisesCache.get(workout._id)!);
-      this._selectedWorkout.set(workout);
-    } else {
-      this._selectedWorkout.set(workout);
-      this.loadExercises(workout._id, DifficultyLevel.Beginner);
-    }
-  }
-
-  selectLevel(level: Level): void {
-    const key = this.createExerciseKey(this.selectedWorkout()?._id!, level._id);
-    const hasCache = this._exercisesCache.has(key);
-
-    if (hasCache) {
-      this._exercises.set(this._exercisesCache.get(key)!);
-      this._selectedLevel.set(level);
-    } else {
-      this.loadExercises(this.selectedWorkout()?._id!, level._id);
-      this._selectedLevel.set(level);
-    }
-  }
-
-  loadExercisesFromWorkout(workoutId: string): void {
     this._classesApi
-      .loadExercisesFromWorkout(workoutId)
+      .loadExercisesByWorkoutAndDifficulty(workoutId, difficultyLevelId)
       .pipe(
         takeUntilDestroyed(this._destroyRef),
         finalize(() => this._loadExercisesLoading.set(false)),
       )
       .subscribe({
         next: (res) => {
-          this._levels.set(res.levels);
           this._exercises.set(res.exercises);
-          this._selectedLevel.set(res.levels[0]);
           this._selectedExercise.set(res.exercises[0]);
         },
       });
   }
 
-  loadExercisesFromMuscle(muscleId: string): void {
-    this._classesApi
-      .loadExercisesFromMuscle(muscleId)
-      .pipe(
-        takeUntilDestroyed(this._destroyRef),
-        finalize(() => this._loadExercisesLoading.set(false)),
-      )
-      .subscribe({
-        next: (res) => {
-          this._workouts.set(res.workouts);
-          this._levels.set(res.levels);
-          this._exercises.set(res.exercises);
-          this._selectedWorkout.set(res.workouts[0]);
-          this._selectedLevel.set(res.levels[0]);
-          this._selectedExercise.set(res.exercises[0]);
-        },
-      });
+  selectMuscle(muscle: Muscle, sequence: boolean = true): void {
+    this._selectedMuscle.set(muscle);
+    this.loadWorkouts(muscle._id, sequence);
+  }
+
+  selectWorkout(workout: Muscle, sequence: boolean = true): void {
+    this._selectedWorkout.set(workout);
+    this.loadWorkoutLevels(workout._id, sequence);
+  }
+
+  selectLevel(level: Level, workoutId: string): void {
+    this._selectedLevel.set(level);
+    this.loadExercises(workoutId, level._id);
+  }
+
+  selectExercise(exercise: Exercise): void {
+    this._selectedExercise.set(exercise);
   }
 }

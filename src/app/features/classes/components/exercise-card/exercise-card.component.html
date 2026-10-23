@@ -1,5 +1,7 @@
 <div
   class="cursor-pointer border-b border-[#3333] dark:border-[#333] py-3 ps-1.75 pe-2.5 transition hover:bg-[#00000008] dark:hover:bg-[#ffffff0a]"
+  [class]="isActive() ? 'bg-[#ff41001f]' : ''"
+  (click)="handleClick()"
 >
   <div class="flex items-center gap-3.5">
     <div class="w-18 h-20 rounded-[14px] overflow-hidden shrink-0">
