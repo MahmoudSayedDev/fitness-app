@@ -9,6 +9,10 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const router = inject(Router);
   const token = authService.getToken();
 
+  if (req.url.includes('themealdb.com')) {
+    return next(req);
+  }
+
   const authReq = token ? req.clone({
     setHeaders: {
       Authorization: `Bearer ${token}`,
