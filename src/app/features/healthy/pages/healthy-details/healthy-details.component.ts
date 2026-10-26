@@ -11,7 +11,6 @@ import {
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { LucideDumbbell } from '@lucide/angular';
 import { TranslatePipe } from '@ngx-translate/core';
 import { map, switchMap, tap } from 'rxjs';
 import { register } from 'swiper/element/bundle';
@@ -24,7 +23,6 @@ import { HealthyService } from '../../services/healthy.service';
   imports: [
     RouterLink,
     TranslatePipe,
-    LucideDumbbell
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   selector: 'app-healthy-details',
