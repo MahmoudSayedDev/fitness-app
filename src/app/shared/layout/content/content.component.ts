@@ -5,12 +5,18 @@ import { SpeedDialModule } from 'primeng/speeddial';
 import { MenuItem } from 'primeng/api';
 import { ThemeSwitcherService } from '../../components/theme-switcher/services/theme-switcher.service';
 import { LanguageSwitcherService } from '../../components/language-switcher/services/language-switcher.service';
+import { MarqueeBannerComponent } from '../../components/marquee-banner/marquee-banner.component';
+import { FooterComponent } from '../footer/footer.component';
+import { ChatbotComponent } from '../../../features/chatbot/components/chatbot/chatbot.component';
 
 @Component({
   imports: [
     HeaderComponent,
     RouterOutlet,
-    SpeedDialModule
+    SpeedDialModule,
+    MarqueeBannerComponent,
+    FooterComponent,
+    ChatbotComponent
   ],
   selector: 'app-content',
   styleUrl: './content.component.scss',

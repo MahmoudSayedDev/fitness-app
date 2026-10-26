@@ -172,7 +172,8 @@
         "recommendation": "توصيات لك"
     },
     "healthy": {
-        "title": "التغذية صحية",
+        "title": "التغذية",
+        "Healthy Nutritions": "التغذية الصحية",
         "headingStart": "عزز رحلتك نحو اللياقة البدنية",
         "headingHighlight": "بخطط وجبات",
         "headingEnd": "مصممة خصيصاً لك",

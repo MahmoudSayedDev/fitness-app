@@ -7,17 +7,13 @@ import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { filter, map } from 'rxjs';
 import { RecommendedMealsComponent } from '../../components/recommended-meals/recommended-meals.component';
 import { YoutubePlayerComponent } from '../../components/youtube-player/youtube-player.component';
-import { MarqueeBannerComponent } from '../../../../shared/components/marquee-banner/marquee-banner.component';
-import { FooterComponent } from '../../../../shared/layout/footer/footer.component';
 
 @Component({
   imports: [
     ExerciseCardComponent,
     TranslatePipe,
     RecommendedMealsComponent,
-    YoutubePlayerComponent,
-    MarqueeBannerComponent,
-    FooterComponent,
+    YoutubePlayerComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   selector: 'app-exercises',

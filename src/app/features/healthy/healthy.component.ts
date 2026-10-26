@@ -15,7 +15,6 @@ import { LucideDumbbell } from '@lucide/angular';
 import { TranslatePipe } from '@ngx-translate/core';
 import { register } from 'swiper/element/bundle';
 import { ButtonComponent } from '../../shared/components/button/button.component';
-import { MarqueeBannerComponent } from '../../shared/components/marquee-banner/marquee-banner.component';
 import { MealsCategory } from './models/meals-categories.interface';
 import { Meal } from './models/meals.interface';
 import { HealthyService } from './services/healthy.service';
@@ -27,7 +26,6 @@ const MEALS_PER_PAGE = 6;
     ButtonComponent,
     TranslatePipe,
     LucideDumbbell,
-    MarqueeBannerComponent,
     RouterLink
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

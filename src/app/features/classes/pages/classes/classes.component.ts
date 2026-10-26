@@ -12,9 +12,7 @@ import type { SwiperContainer } from 'swiper/element';
 import type { SwiperOptions } from 'swiper/types';
 import { Router } from '@angular/router';
 import { CardItemComponent } from '../../../../shared/components/card-item/card-item.component';
-import { MarqueeBannerComponent } from '../../../../shared/components/marquee-banner/marquee-banner.component';
 import { SwiperDirective } from '../../../../shared/directives/swiper.directive';
-import { FooterComponent } from '../../../../shared/layout/footer/footer.component';
 import { Muscle } from '../../models/classes.model';
 import { ClassesFacadeService } from '../../services/classes-facade.service';
 
@@ -24,9 +22,7 @@ import { ClassesFacadeService } from '../../services/classes-facade.service';
     TranslatePipe,
     LucideDumbbell,
     SwiperDirective,
-    CardItemComponent,
-    MarqueeBannerComponent,
-    FooterComponent,
+    CardItemComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   selector: 'app-classes',

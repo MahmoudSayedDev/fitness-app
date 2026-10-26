@@ -15,7 +15,6 @@ import { LucideDumbbell } from '@lucide/angular';
 import { TranslatePipe } from '@ngx-translate/core';
 import { map, switchMap, tap } from 'rxjs';
 import { register } from 'swiper/element/bundle';
-import { MarqueeBannerComponent } from '../../../../shared/components/marquee-banner/marquee-banner.component';
 import { MealDetails, MealIngredient } from '../../models/meal-details.interface';
 import { MealsCategory } from '../../models/meals-categories.interface';
 import { Meal } from '../../models/meals.interface';
@@ -25,8 +24,7 @@ import { HealthyService } from '../../services/healthy.service';
   imports: [
     RouterLink,
     TranslatePipe,
-    LucideDumbbell,
-    MarqueeBannerComponent
+    LucideDumbbell
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   selector: 'app-healthy-details',
